@@ -1,0 +1,22 @@
+export const ROUTES = {
+  SPLASH: 'Splash',
+  LOGIN: 'Login',
+  REGISTER: 'Register',
+  INFOSCREEN1: 'INFOSCREEN1',
+  RolSelection: 'RoleSelection',
+  PhoneNumberVerification: 'PhoneNumberVerification',
+  OTPVerification: 'OTPVerification',
+  PasswordVerification: 'PasswordVerification',
+  ConsentTerms: 'ConsentTerms',
+  AccountCreated: 'AccountCreated',
+  LoginPhoneNumber: 'LoginPhoneNumber',
+  EmailLogin: 'EmailLogin',
+  LoginOTP: 'LoginOTP',
+  ForgetPhone:"ForgetPhone",
+  ForgetPhoneOTP:"ForgetPhoneOTP",
+  ResetPassword:"ResetPassword",
+  ForgetEmail:"ForgetEmail",
+  ForgetEmailOTP:"ForgetEmailOTP",
+
+  OTPVerification1:"OTPVerification1",
+};
