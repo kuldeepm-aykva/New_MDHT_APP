@@ -51,7 +51,7 @@ export default styles = StyleSheet.create({
     paddingVertical: verticalScale(14),
     backgroundColor: COLORS.white,
     fontFamily: FONT_FAMILY.regular,
-    height: verticalScale(50),
+    height: verticalScale(55),
   },
   disabledInput: {
     backgroundColor: '#F5F5F5',

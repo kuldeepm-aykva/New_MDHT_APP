@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { scale, verticalScale } from "../../../constants/responsive";
+import { COLORS } from "../../../constants";
 
 export default styles =StyleSheet.create({
   container: {
@@ -15,6 +16,7 @@ export default styles =StyleSheet.create({
     borderColor: "rgba(110, 110, 110, 0.25)",
     borderRadius: 14,
     textAlign: "center",
+    color:COLORS.black,
     fontSize: 20,
     fontWeight: "bold",
   },

@@ -5,18 +5,17 @@ export const ROUTES = {
   INFOSCREEN1: 'INFOSCREEN1',
   RolSelection: 'RoleSelection',
   PhoneNumberVerification: 'PhoneNumberVerification',
-  OTPVerification: 'OTPVerification',
   PasswordVerification: 'PasswordVerification',
   ConsentTerms: 'ConsentTerms',
   AccountCreated: 'AccountCreated',
   LoginPhoneNumber: 'LoginPhoneNumber',
   EmailLogin: 'EmailLogin',
-  LoginOTP: 'LoginOTP',
-  ForgetPhone:"ForgetPhone",
-  ForgetPhoneOTP:"ForgetPhoneOTP",
-  ResetPassword:"ResetPassword",
-  ForgetEmail:"ForgetEmail",
-  ForgetEmailOTP:"ForgetEmailOTP",
+  ForgetPhone: 'ForgetPhone',
+  ResetPassword: 'ResetPassword',
+  ForgetEmail: 'ForgetEmail',
+  OTPVerification: 'OTPVerification',
 
-  OTPVerification1:"OTPVerification1",
+  // PatientDashboard
+
+  PatientDashboard: 'PatientDashboard',
 };

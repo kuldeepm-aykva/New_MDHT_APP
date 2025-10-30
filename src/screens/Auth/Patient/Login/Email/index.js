@@ -66,7 +66,7 @@ const EmailLogin = ({navigation}) => {
     SetError(validationErrors);
 
     if (!validationErrors.EmailError && !validationErrors.PasswordError) {
-      // navigation.navigate(ROUTES.ConsentTerms);
+      navigation.navigate(ROUTES.PatientDashboard);
     }
   };
 

@@ -57,7 +57,10 @@ const PhoneNumberVerification = ({navigation}) => {
       return;
     }
     setError('');
-    navigation.navigate(ROUTES.OTPVerification);
+    navigation.navigate(ROUTES.OTPVerification, {
+      type: 'Phone',
+      from: 'signup',
+    });
   };
 
   return (

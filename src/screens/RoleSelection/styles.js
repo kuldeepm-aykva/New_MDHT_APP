@@ -10,6 +10,7 @@ export default Styles = StyleSheet.create({
   policy_text: {
     fontSize: FONT_SIZE.sm,
     textAlign: 'center',
+    color:COLORS.textPrimary,
   },
   login_container: {
     marginVertical: verticalScale(20),
@@ -27,5 +28,8 @@ export default Styles = StyleSheet.create({
   },
   logo_container:{
     marginVertical:verticalScale(15),
+  },
+  login_text:{
+    color:COLORS.textPrimary,
   }
 });

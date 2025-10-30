@@ -87,7 +87,7 @@ const ResetPassword = ({navigation}) => {
           symbol
         </Text>
 
-        <View style={[styles.form_container]}>
+        <View style={[CommonAuthStyles.form_container]}>
           <Column align="center" justify="center" spacing={12}>
             {/*  Password field */}
             <CustomTextInput

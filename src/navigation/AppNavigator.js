@@ -4,8 +4,7 @@ import AuthNavigator from './AuthNavigator';
 import MainNavigator from './MainNavigator';
 
 const AppNavigator = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   //   if (isLoading) {
   //     return <Loading message="Please wait..." />;
   //   }

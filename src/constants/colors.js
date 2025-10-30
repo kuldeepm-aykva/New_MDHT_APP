@@ -44,4 +44,6 @@ export const  COLORS = {
   overlay: 'rgba(68, 68, 68, 1)',
   overlayLight: 'rgba(0, 0, 0, 0.3)',
   overlayDark: 'rgba(0, 0, 0, 0.7)',
+
+  bg_light:"rgba(249, 250, 251, 1)",
 };

@@ -60,8 +60,10 @@ const LoginPhoneNumber = ({navigation}) => {
 
     setError('');
 
-    navigation.navigate(ROUTES.OTPVerification1, {
+    navigation.navigate(ROUTES.OTPVerification, {
       type: 'Phone',
+      name: 'ForgetPhone',
+      from: 'login',
     });
   };
   return (
@@ -184,7 +186,7 @@ const LoginPhoneNumber = ({navigation}) => {
             New to MDHealthTrak?{' '}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate(ROUTES.PhoneNumberVerification);
+                navigation.navigate(ROUTES.RolSelection);
               }}>
               <Text
                 style={[

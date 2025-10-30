@@ -14,7 +14,7 @@ const CountryPickerModal = ({
       show={isPickerVisible}
       lang="en"
       inputPlaceholder="Search Country"
-      inputPlaceholderTextColor={COLORS.textPrimaryLight}
+      inputPlaceholderTextColor={COLORS.textPrimary}
       onBackdropPress={() => setIsPickerVisible(false)}
       pickerButtonOnPress={item => {
         setSelectedCode({

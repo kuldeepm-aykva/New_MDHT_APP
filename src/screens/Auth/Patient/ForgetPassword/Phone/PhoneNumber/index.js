@@ -60,9 +60,10 @@ const ForgetPhone = ({navigation}) => {
 
     setError('');
 
-    navigation.navigate(ROUTES.OTPVerification1, {
+    navigation.navigate(ROUTES.OTPVerification, {
       type: 'Phone',
       name: 'ForgetPhone',
+      from: 'Forget',
     });
   };
   return (

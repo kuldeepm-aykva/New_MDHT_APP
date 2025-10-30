@@ -15,7 +15,7 @@ import {isTablet, scale, verticalScale} from '../../constants/responsive';
 import CustomButton from '../../components/common/Button';
 import styles from './styles';
 import {DynamicIcon} from '../../components/common/Icon';
-import { ROUTES } from '../../navigation/routes';
+import {ROUTES} from '../../navigation/routes';
 
 const RoleSelection = ({navigation}) => {
   const [selectedRole, setselectedRole] = useState('');
@@ -136,9 +136,9 @@ const RoleSelection = ({navigation}) => {
             <Text style={[styles.policy_text]}>
               Already Have an Account ?
               <TouchableOpacity
-              onPress={()=>{
-                navigation.navigate(ROUTES.LoginPhoneNumber)
-              }}
+                onPress={() => {
+                  navigation.navigate(ROUTES.LoginPhoneNumber);
+                }}
                 style={[commonstyles.paddingzero, commonstyles.marginZero]}>
                 <Text
                   style={[
@@ -175,7 +175,7 @@ const RoleSelection = ({navigation}) => {
                   Terms of Use{' '}
                 </Text>
               </TouchableOpacity>
-              and{' '}
+              and{" "}
               <TouchableOpacity
                 style={[commonstyles.paddingzero, commonstyles.marginZero]}>
                 <Text

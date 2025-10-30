@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Alert} from 'react-native';
 import {useState} from 'react';
 import React from 'react';
 
@@ -24,15 +24,15 @@ import {verticalScale} from '../../../../constants/responsive';
 import {PatientIcon} from '../../../../assets/svgImage';
 
 // validation
-import {OTpValidation} from '../Signup/OtpVerification/validation';
 
 // routes
 import {ROUTES} from '../../../../navigation/routes';
 import {useRoute} from '@react-navigation/native';
+import {OTpValidation} from './validation';
 
-const OTPVerification1 = ({navigation}) => {
+const OTPVerification = ({navigation}) => {
   const route = useRoute();
-  const {name, type} = route.params || {};
+  const {name, type, from} = route.params || {};
 
   // otp state
   const [otp, setotp] = useState('');
@@ -57,7 +57,18 @@ const OTPVerification1 = ({navigation}) => {
     }
     seterror('');
 
-    navigation.navigate(ROUTES.PasswordVerification);
+    if (from === 'Forget') {
+      navigation.navigate(ROUTES.ResetPassword);
+    }
+    if (from === 'login') {
+      navigation.navigate(ROUTES.PatientDashboard);
+      // Alert.alert('Dashboard');
+    }
+    if (from === 'signup') {
+      navigation.navigate(ROUTES.PasswordVerification);
+    }
+
+    // navigation.navigate(ROUTES.PasswordVerification);
   };
   return (
     <SafeArea backgroundColor={COLORS.white} statusBarStyle="dark-content">
@@ -71,7 +82,11 @@ const OTPVerification1 = ({navigation}) => {
           We have sent a verification code to your {'\n'} registered mobile
           number{' '}
           <Text style={[commonstyles.fontSemiBold, commonstyles.textPrimary]}>
-            {type === 'Phone' ? '+91 1234567890' : 'karandesai@gmail.com'}
+            {type === 'Phone'
+              ? '+91 900499xxxx'
+              : type === 'Email'
+              ? 'karandesai@gmail.com'
+              : ''}
           </Text>
         </Text>
 
@@ -144,4 +159,4 @@ const OTPVerification1 = ({navigation}) => {
   );
 };
 
-export default OTPVerification1;
+export default OTPVerification;

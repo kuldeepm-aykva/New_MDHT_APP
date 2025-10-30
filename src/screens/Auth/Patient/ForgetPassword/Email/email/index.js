@@ -44,9 +44,10 @@ const ForgetEmail = ({navigation}) => {
     }
 
     setError('');
-    navigation.navigate(ROUTES.OTPVerification1, {
-      type: 'Phone',
+    navigation.navigate(ROUTES.OTPVerification, {
+      type: 'Email',
       name: 'ForgetPhone',
+      from: 'Forget',
     });
   };
   return (

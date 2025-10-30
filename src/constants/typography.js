@@ -1,6 +1,7 @@
 import {normalizeFont} from './responsive';
 
 export const FONT_SIZE = {
+  8:normalizeFont(8),
   xs: normalizeFont(10),
   sm: normalizeFont(12),
   base: normalizeFont(14),

@@ -19,8 +19,8 @@ export default Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.borderSecondary,
     borderRadius: RADIUS[10],
-    paddingHorizontal: verticalScale(13),
-    paddingVertical: verticalScale(13),
+    paddingHorizontal: verticalScale(14),
+    paddingVertical: verticalScale(15),
   },
   flag: {
     fontSize: FONT_SIZE.md,
