@@ -6,6 +6,9 @@ import GoogleIcon from '../svgImage/common/google.svg';
 import HealthTracker_Icon from '../svgImage/Patient/Dashboard/health_tracker.svg';
 import Appointment_Icon from '../svgImage/Patient/Dashboard/appointments.svg';
 import CareTeam_Icon from '../svgImage/Patient/Dashboard/care_team';
+import Wave_Icon from '../svgImage/Patient/Dashboard/wave.svg';
+import Profile_Icon from '../svgImage/Patient/Dashboard/profile.svg';
+import Md_logo_Icon from '../svgImage/Patient/Dashboard/md_logo_1.svg';
 
 export {
   MDLogo,
@@ -16,4 +19,7 @@ export {
   HealthTracker_Icon,
   Appointment_Icon,
   CareTeam_Icon,
+  Wave_Icon,
+  Md_logo_Icon,
+  Profile_Icon,
 };

@@ -18,4 +18,5 @@ export const ROUTES = {
   // PatientDashboard
 
   PatientDashboard: 'PatientDashboard',
+  OnBoardingScreens:"OnBoardingScreens",
 };

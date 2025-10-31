@@ -1,6 +1,13 @@
-import {View, Text, Pressable, Image, ImageBackground} from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import {useState} from 'react';
-import {Container, Row, SafeArea} from '../../../components/layout';
+import {Column, Container, Row, SafeArea} from '../../../components/layout';
 import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../../constants';
 import Header from '../../../components/layout/Header';
 import {
@@ -10,14 +17,11 @@ import {
 } from '../../../assets/svgImage';
 import styles from './styles';
 import CarePlannerCard from '../common/CarePlanning';
-import {
-  moderateScale,
-  scale,
-  verticalScale,
-} from '../../../constants/responsive';
+import {scale, verticalScale} from '../../../constants/responsive';
 import RecommendedDoctor from '../common/RecommededDoctor';
 import CustomButton from '../../../components/common/Button';
-import {DynamicIcon} from '../../../components/common/Icon';
+import TabsCard from '../common/TabsCard';
+import Footer from '../../../components/layout/Footer';
 
 const PatientDashboard = () => {
   const CarePlaner = [
@@ -72,6 +76,7 @@ const PatientDashboard = () => {
         statusBarColor={COLORS.transparent}
         statusBarStyle="light-content">
         <Container padding="none" scrollable backgroundColor={COLORS.white}>
+          {/* care planning and banner  */}
           <View style={[styles.care_conatiner]}>
             <View>
               <Text style={[styles.heading]}>My Care Planning</Text>
@@ -108,8 +113,12 @@ const PatientDashboard = () => {
             </ImageBackground>
           </View>
 
+          {/* tabs  */}
           <View style={[styles.tabs]}>
-            <View style={[styles.tabs_btn_container]}>
+            <Row
+              align="center"
+              justify="space-around"
+              style={[styles.tabs_btn_container]}>
               <Pressable
                 style={[
                   styles.tabs_btn,
@@ -167,9 +176,12 @@ const PatientDashboard = () => {
                   Meals
                 </Text>
               </Pressable>
-            </View>
+            </Row>
             <View style={[styles.tab_cards_container]}>
-              {/* <View style={[styles.no_condition_added_container]}>
+              {/* <Column
+                align="center"
+                justify="center"
+                style={[styles.no_condition_added_container]}>
                 <Text style={[styles.no_condition_added_title]}>
                   No Conditions Added Yet
                 </Text>
@@ -179,101 +191,71 @@ const PatientDashboard = () => {
                 </Text>
                 <CustomButton
                   text="+ Add New Condition"
-                  btnstyle={{
-                    backgroundColor: COLORS.primaryLight,
-                    paddingVertical: verticalScale(10),
-                    paddingHorizontal: scale(25),
-                    // flex: 1,
-                    marginBottom: scale(5),
-                    width: '70%',
+                  size="small"
+                  btnStyle={{
+                    borderColor: COLORS.borderSecondary,
+                    backgroundColor: 'rgba(20, 146, 230, 0.15)',
+                    width: '65%',
                   }}
-                  textstyle={{
+                  textStyle={{
+                    fontSize: FONT_SIZE.sm,
                     color: COLORS.primary,
-                    //   fontFamily: theme.typography.fontFamily.medium,
-                    fontSize: moderateScale(14),
+                    fontWeight: FONT_WEIGHT.medium,
                   }}
-                  onPress={() => SetSymptomsModal(true)}
                 />
-              </View> */}
+              </Column> */}
 
               <View>
-                {activeTab === 'Tracker' ? (
-                  <View style={[styles.tabs_cards]}>
-                    <View>
-                      <Text style={[styles.updated]}>
-                        Updated: 02:55 pm | 28 September 2024
-                      </Text>
-                      <View style={[styles.symptom]}>
-                        <Text style={[styles.disease]}>Fever - </Text>
-                        <Text style={[styles.updated]}>Symptom</Text>
-                      </View>
-                    </View>
-                    <DynamicIcon
-                      type="Entypo"
-                      size={18}
-                      color={COLORS.textDark}
-                      name="chevron-right"
+                {activeTab === 'Tracker' && (
+                  <>
+                    <TabsCard
+                      updatedAt="Updated: 02:55 pm | 28 September 2024"
+                      title="Fever -"
+                      subtitle="Symptom"
+                      onPress={() => console.log('Tracker Card pressed')}
                     />
-                  </View>
-                ) : (
-                  ''
-                )}
-                {activeTab === 'Medicine' ? (
-                  <View style={[styles.tabs_cards]}>
-                    <View>
-                      <Text style={[styles.updated]}>
-                        Medicine: 02:55 pm | 28 September 2024
-                      </Text>
-                      <View style={[styles.symptom]}>
-                        <Text style={[styles.disease]}>Fever - </Text>
-                        <Text style={[styles.updated]}>Symptom</Text>
-                      </View>
-                    </View>
-                    <DynamicIcon
-                      type="Entypo"
-                      size={18}
-                      color={COLORS.textDark}
-                      name="chevron-right"
+                    <TabsCard
+                      updatedAt="Updated: 02:55 pm | 28 September 2024"
+                      title="Fever -"
+                      subtitle="Symptom"
+                      onPress={() => console.log('Tracker Card pressed')}
                     />
-                  </View>
-                ) : (
-                  ''
+                  </>
                 )}
-                {activeTab === 'Meals' ? (
-                  <View style={[styles.tabs_cards]}>
-                    <View>
-                      <Text style={[styles.updated]}>
-                        Meals: 02:55 pm | 28 September 2024
-                      </Text>
-                      <View style={[styles.symptom]}>
-                        <Text style={[styles.disease]}>Fever - </Text>
-                        <Text style={[styles.updated]}>Symptom</Text>
-                      </View>
-                    </View>
-                    <DynamicIcon
-                      type="Entypo"
-                      size={18}
-                      color={COLORS.textDark}
-                      name="chevron-right"
-                    />
-                  </View>
-                ) : (
-                  ''
+
+                {activeTab === 'Medicine' && (
+                  <TabsCard
+                    updatedAt="Updated: 02:55 pm | 28 September 2024"
+                    title="Cough Syrup -"
+                    subtitle="Medicine"
+                    onPress={() => console.log('Medicine Card pressed')}
+                  />
                 )}
-                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+
+                {activeTab === 'Meals' && (
+                  <TabsCard
+                    updatedAt="Meals: 02:55 pm | 28 September 2024"
+                    title="Lunch -"
+                    subtitle="Healthy Diet"
+                    onPress={() => console.log('Meals Card pressed')}
+                  />
+                )}
+                <Row align="center" justify="center">
                   <CustomButton
                     text="View All"
+                    size="small"
                     btnStyle={{
                       borderColor: COLORS.borderSecondary,
-                      backgroundColor:"rgba(20, 146, 230, 0.15)",
+                      backgroundColor: 'rgba(20, 146, 230, 0.15)',
+                      paddingHorizontal: verticalScale(25),
                     }}
                     textStyle={{
                       fontSize: FONT_SIZE.base,
                       color: COLORS.primary,
-                      fontWeight:FONT_WEIGHT.medium,
+                      fontWeight: FONT_WEIGHT.regular,
                     }}
                   />
-                </View>
+                </Row>
               </View>
             </View>
           </View>
@@ -299,6 +281,7 @@ const PatientDashboard = () => {
           </View>
         </Container>
       </SafeArea>
+      <Footer/>
     </>
   );
 };

@@ -38,7 +38,8 @@ export const  COLORS = {
   borderPrimary: '#075284',
   borderSecondary: 'rgba(110, 110, 110, 0.25)',
   borderError: '#FF4040',
-
+  borderColor:"#E8F2FB",
+ 
   // Other
   transparent: 'transparent',
   overlay: 'rgba(68, 68, 68, 1)',

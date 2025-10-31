@@ -9,10 +9,13 @@ export default styles = StyleSheet.create({
     color: COLORS.textDark,
     fontWeight: FONT_WEIGHT.medium,
   },
+
+  // care
   care_conatiner: {
     backgroundColor: COLORS.bg_light,
     borderRadius: scale(40),
-    padding: verticalScale(20),
+    paddingVertical: verticalScale(25),
+    paddingHorizontal: scale(18),
   },
   care_planer_container: {
     flexDirection: 'row',
@@ -21,6 +24,7 @@ export default styles = StyleSheet.create({
     marginVertical: verticalScale(15),
     flexWrap: 'wrap',
   },
+  // care
 
   //   banner
   banner_sub_text: {
@@ -64,7 +68,7 @@ export default styles = StyleSheet.create({
     backgroundColor: COLORS.bg_light,
     borderRadius: scale(40),
     paddingVertical: verticalScale(20),
-    paddingHorizontal: scale(15),
+    paddingHorizontal: scale(18),
     // marginVertical: verticalScale(20),
   },
   consult_doctor_heading_container: {
@@ -81,19 +85,14 @@ export default styles = StyleSheet.create({
   // doctor_card
 
   // tabs
-  // tabs
   tabs: {
     backgroundColor: COLORS.white,
-    paddingVertical: verticalScale(20),
-    paddingHorizontal: scale(15),
+    paddingVertical: verticalScale(30),
+    paddingHorizontal: scale(18),
   },
   tabs_btn_container: {
     borderBottomWidth: 1,
     borderColor: 'rgba(110, 110, 110, 0.11)',
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    alignItems: 'center',
     textAlign: 'center',
   },
   tabs_btn: {
@@ -102,19 +101,17 @@ export default styles = StyleSheet.create({
   },
   active_btn: {
     borderBottomWidth: 3,
-    borderRadius: scale(4),
     borderColor: COLORS.primary,
   },
   tabs_text: {
     textAlign: 'center',
     color: COLORS.textDark,
-    // fontFamily: theme.typography.fontFamily.medium,
-    fontSize: FONT_SIZE.sm,
+    fontWeight: FONT_WEIGHT.medium,
+    fontSize: FONT_SIZE.base,
   },
+
   tab_cards_container: {
-    // marginVertical: verticalScale(15),
     marginTop: verticalScale(20),
-    marginBottom: verticalScale(10),
   },
   no_condition_added_container: {
     justifyContent: 'center',
@@ -122,32 +119,16 @@ export default styles = StyleSheet.create({
   },
   no_condition_added_title: {
     textAlign: 'center',
-    // fontFamily: theme.typography.fontFamily.bold,
     color: '#555555',
-    // fontSize: theme.typography.fontSize.sm,
+    fontSize: FONT_SIZE.base,
     marginVertical: verticalScale(7),
+    fontWeight: FONT_WEIGHT.bold,
   },
   no_condition_added_sub_title: {
     textAlign: 'center',
-    // fontFamily: theme.typography.fontFamily.regular,
     color: '#777777',
-    // fontSize: theme.typography.fontSize.xs,
     marginBottom: verticalScale(20),
-  },
-  tabs_cards: {
-    backgroundColor: COLORS.white,
-    borderWidth: 1,
-    borderColor: COLORS.borderSecondary,
-    borderBottomWidth: 2,
-    borderBottomColor: 'blue',
-    borderRadius: scale(11),
-    paddingHorizontal: scale(18),
-    paddingVertical: verticalScale(10),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: 10,
-    marginBottom: verticalScale(15),
+    fontSize: FONT_SIZE.sm,
   },
   // tabs
 });

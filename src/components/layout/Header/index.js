@@ -24,7 +24,7 @@ const Header = ({user, title}) => {
         style={[
           styles.header_container,
           {
-            paddingTop: insets.top + verticalScale(10),
+            paddingTop: insets.top + verticalScale(20),
           },
         ]}>
         <Row align="center" justify="space-between">
@@ -37,7 +37,7 @@ const Header = ({user, title}) => {
               <View>
                 <Text style={styles.greeting}>Good Afternoon!</Text>
                 <Text style={styles.username}>
-                  Hi, {truncateText('Karan Desai', 10)}
+                  Hi, {truncateText('John Smith', 10)}
                 </Text>
               </View>
             </View>
