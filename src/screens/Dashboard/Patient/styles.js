@@ -58,7 +58,7 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     padding: verticalScale(20),
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     marginTop: verticalScale(10),
   },
   //   banner

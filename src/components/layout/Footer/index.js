@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import {Md_logo_Icon, Profile_Icon, Wave_Icon} from '../../../assets/svgImage';
 import {scale, verticalScale} from '../../../constants/responsive';
@@ -15,9 +16,9 @@ import Column from '../Column/Column';
 
 const {width} = Dimensions.get('window');
 
-const Footer = () => {
+const Footer = ({style, ...props}) => {
   return (
-    <View style={styles.main_container}>
+    <View style={[styles.main_container, style]}>
       <ImageBackground
         source={require('../../../assets/svgImage/common/footer_bgImg.png')}
         resizeMode="contain"
@@ -64,15 +65,17 @@ export default Footer;
 
 const styles = StyleSheet.create({
   main_container: {
-    backgroundColor: COLORS.white,
     position: 'relative',
-    paddingBottom: verticalScale(10),
+    // backgroundColor: 'red', 
+    paddingBottom:
+      Platform.OS === 'ios' ? verticalScale(30) : verticalScale(20),
   },
   footer_bg: {
     width: width,
-    height: verticalScale(110),
+    height: Platform.OS === 'ios' ? verticalScale(100) : verticalScale(110),
     justifyContent: 'flex-end',
     alignItems: 'center',
+    backgroundColor: 'transparent', 
   },
   footer_content: {
     paddingHorizontal: scale(70),

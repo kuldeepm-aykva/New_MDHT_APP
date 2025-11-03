@@ -1,39 +1,18 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {useState, useEffect} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import CustomButton from '../../components/common/Button';
-import {moderateScale, scale, verticalScale} from '../../constants/responsive';
-import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../constants';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import LinearGradient from 'react-native-linear-gradient';
+import {scale, verticalScale} from '../../constants/responsive';
+import {COLORS, FONT_SIZE, FONT_WEIGHT, RADIUS} from '../../constants';
+import {Row} from '../../components/layout';
 
-const onboardingScreens = [
-  'OnBoardingHealthTracker',
-  'OnBoardingAppointments',
-  'OnBoardingCareTeam',
-  'OnBoardingAIOverview',
-  'OnBoardingHealthMedicineMeals',
-  'OnBoardingConsultDoctor',
-];
-
-const InfoCards = ({title, subtitle}) => {
-  const navigation = useNavigation();
-  const route = useRoute();
-  const currentScreenName = route.name;
-
-  const handleNext = () => {
-    const currentIndex = onboardingScreens.indexOf(currentScreenName);
-    if (currentIndex < onboardingScreens.length - 1) {
-      navigation.navigate(onboardingScreens[currentIndex + 1]);
-    } else {
-      navigation.navigate('PatientDashboard');
-    }
-  };
-
-  const handleDotPress = screen => {
-    navigation.navigate(screen);
-  };
-
+const InfoCards = ({
+  title,
+  subtitle,
+  currentStep,
+  totalSteps,
+  onSkip,
+  onNext,
+  onDotPress,
+}) => {
   return (
     <View style={[Styles.info_container]}>
       <View style={Styles.info_cards}>
@@ -41,23 +20,24 @@ const InfoCards = ({title, subtitle}) => {
         <Text style={Styles.info_cards_Subtitle}>{subtitle}</Text>
       </View>
 
-      <View style={Styles.dotsContainer}>
-        {onboardingScreens.map((screen, index) => (
-          <TouchableOpacity key={index} onPress={() => handleDotPress(screen)}>
+      <Row align="center" justify="center" style={Styles.dotsContainer}>
+        {Array.from({length: totalSteps}).map((_, index) => (
+          <TouchableOpacity key={index} onPress={() => onDotPress(index)}>
             <View
               style={[
                 Styles.dot,
-                currentScreenName === screen ? Styles.active_dot : null,
+                currentStep === index ? Styles.active_dot : null,
               ]}
             />
           </TouchableOpacity>
         ))}
-      </View>
+      </Row>
 
-      <View style={Styles.btn_container}>
+      <Row align="center" justify="space-around" spacing={40}>
         <CustomButton
           text="Skip"
           size="small"
+          onPress={onSkip}
           btnStyle={{
             backgroundColor: COLORS.secondary,
             borderRadius: 13,
@@ -67,8 +47,9 @@ const InfoCards = ({title, subtitle}) => {
           }}
         />
         <CustomButton
-          text="Next"
+          text={currentStep === totalSteps - 1 ? 'Next' : 'Next'}
           size="small"
+          onPress={onNext}
           btnStyle={{
             backgroundColor: COLORS.white,
             borderRadius: 13,
@@ -78,7 +59,7 @@ const InfoCards = ({title, subtitle}) => {
           }}
           textStyle={{color: COLORS.primary}}
         />
-      </View>
+      </Row>
     </View>
   );
 };
@@ -94,7 +75,6 @@ const Styles = StyleSheet.create({
     paddingVertical: verticalScale(30),
     alignItems: 'center',
     bottom: 0,
-    // backgroundColor: COLORS.primary,
   },
   info_cards: {
     backgroundColor: COLORS.white,
@@ -102,38 +82,28 @@ const Styles = StyleSheet.create({
     padding: scale(20),
   },
   info_cards_title: {
-    // fontFamily: theme.typography.fontFamily.medium,
-    fontSize: FONT_SIZE.sm,
+    fontSize: FONT_SIZE.base,
     color: COLORS.textDark,
-    marginBottom: verticalScale(10),
-    fontWeight:FONT_WEIGHT.semiBold,
+    marginBottom: verticalScale(8),
+    fontWeight: FONT_WEIGHT.semiBold,
   },
   info_cards_Subtitle: {
-    // fontFamily: theme.typography.fontFamily.regular,
-    fontSize: FONT_SIZE.xs,
+    fontSize: FONT_SIZE.sm,
     color: COLORS.textPrimary,
-    fontWeight:FONT_WEIGHT.regular,
-  },
-  btn_container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    gap: 40,
-    alignItems: 'center',
+    fontWeight: FONT_WEIGHT.regular,
+    textAlign: 'left',
   },
   dotsContainer: {
-    flexDirection: 'row',
     backgroundColor: COLORS.white,
-    borderRadius: scale(20),
+    borderRadius: RADIUS.lg,
     paddingVertical: verticalScale(4),
-    paddingHorizontal: scale(8),
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: scale(4),
     marginVertical: verticalScale(20),
   },
   dot: {
-    width: scale(5),
-    height: scale(5),
-    borderRadius: scale(5),
+    width: scale(6),
+    height: scale(6),
+    borderRadius: RADIUS.full,
     marginHorizontal: scale(3),
     backgroundColor: '#AFAFAF',
   },

@@ -14,7 +14,7 @@ const Header = ({user, title}) => {
     <>
       <StatusBar
         translucent={true}
-        backgroundColor="transparent"
+        backgroundColor={COLORS.transparent}
         barStyle="light-content"
       />
       <LinearGradient

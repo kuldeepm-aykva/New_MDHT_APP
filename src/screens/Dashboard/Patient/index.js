@@ -281,7 +281,7 @@ const PatientDashboard = () => {
           </View>
         </Container>
       </SafeArea>
-      <Footer/>
+      <Footer style={{backgroundColor: COLORS.white}} />
     </>
   );
 };
