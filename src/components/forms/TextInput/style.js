@@ -17,9 +17,8 @@ export default styles = StyleSheet.create({
   },
   label: {
     fontSize: FONT_SIZE.sm,
-    color: COLORS.textDark,
+    color: COLORS.textPrimary,
     fontWeight: FONT_WEIGHT.medium,
-    fontFamily: FONT_FAMILY.medium,
   },
   required: {
     color: COLORS.error,
@@ -35,8 +34,6 @@ export default styles = StyleSheet.create({
     fontSize: FONT_SIZE.xs,
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
     position: 'relative',
   },
   input: {
@@ -63,7 +60,11 @@ export default styles = StyleSheet.create({
   },
   iconContainer: {
     position: 'absolute',
-    right: scale(16),
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 2,
+    bottom: 0,
+    zIndex: 10,
     padding: scale(4),
   },
 });

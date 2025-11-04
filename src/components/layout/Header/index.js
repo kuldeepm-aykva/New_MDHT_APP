@@ -7,9 +7,11 @@ import Row from '../Row/Row';
 import {truncateText} from '../../../utils/common';
 import {DynamicIcon} from '../../common/Icon';
 import {COLORS} from '../../../constants';
+import {useNavigation} from '@react-navigation/native';
 
-const Header = ({user, title}) => {
+const Header = ({user, title, SearchPress, NotificationPress}) => {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
   return (
     <>
       <StatusBar
@@ -42,7 +44,11 @@ const Header = ({user, title}) => {
               </View>
             </View>
           ) : (
-            <View style={[styles.back_container]}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}
+              style={[styles.back_container]}>
               <DynamicIcon
                 type="MaterialIcons"
                 color={COLORS.white}
@@ -50,26 +56,35 @@ const Header = ({user, title}) => {
                 size={scale(30)}
               />
               <Text style={[styles.screen_title]}>{title}</Text>
-            </View>
+            </TouchableOpacity>
           )}
 
           <Row align="center" justify="center">
-            <TouchableOpacity style={styles.icon_wrapper}>
-              <DynamicIcon
-                name="search"
-                type="Feather"
-                size={scale(20)}
-                color={COLORS.white}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.icon_wrapper}>
-              <DynamicIcon
-                name="notifications"
-                type="Ionicons"
-                size={scale(20)}
-                color={COLORS.white}
-              />
-            </TouchableOpacity>
+            {SearchPress && (
+              <TouchableOpacity
+                onPress={SearchPress}
+                style={styles.icon_wrapper}>
+                <DynamicIcon
+                  name="search"
+                  type="Feather"
+                  size={scale(20)}
+                  color={COLORS.white}
+                />
+              </TouchableOpacity>
+            )}
+
+            {NotificationPress && (
+              <TouchableOpacity
+                onPress={NotificationPress}
+                style={styles.icon_wrapper}>
+                <DynamicIcon
+                  name="notifications"
+                  type="Ionicons"
+                  size={scale(20)}
+                  color={COLORS.white}
+                />
+              </TouchableOpacity>
+            )}
           </Row>
         </Row>
       </LinearGradient>

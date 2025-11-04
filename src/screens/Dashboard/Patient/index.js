@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  Pressable,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+import {Text, View, ImageBackground, Pressable} from 'react-native';
 import {useState} from 'react';
 import {Column, Container, Row, SafeArea} from '../../../components/layout';
 import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../../constants';
@@ -22,8 +15,13 @@ import RecommendedDoctor from '../common/RecommededDoctor';
 import CustomButton from '../../../components/common/Button';
 import TabsCard from '../common/TabsCard';
 import Footer from '../../../components/layout/Footer';
+import OnBoardingScreens from '../../OnBoardingScreens';
+import {ROUTES} from '../../../navigation/routes';
+import CustomModal from '../../../components/common/Modal';
 
-const PatientDashboard = () => {
+const PatientDashboard = ({navigation}) => {
+  const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
+
   const CarePlaner = [
     {
       title: 'Health Tracker',
@@ -66,10 +64,23 @@ const PatientDashboard = () => {
     },
   ];
   const [activeTab, setactiveTab] = useState('Tracker');
+  const [Islogin, setIslogin] = useState(false);
+  const [OnBoardingSteps, setOnBoardingSteps] = useState(0);
+
+  const handleCompleteProfileModal = () => {
+    setIsProfileModalVisible(false);
+    navigation.navigate(ROUTES.CompleteProfile);
+  };
 
   return (
     <>
-      <Header user />
+      <Header
+        user
+        SearchPress={() => {
+          navigation.navigate(ROUTES.DashboardSearch);
+        }}
+        NotificationPress
+      />
       <SafeArea
         backgroundColor={COLORS.white}
         style={{paddingTop: scale(20)}}
@@ -282,6 +293,29 @@ const PatientDashboard = () => {
         </Container>
       </SafeArea>
       <Footer style={{backgroundColor: COLORS.white}} />
+
+      {!Islogin && !isProfileModalVisible && (
+        <OnBoardingScreens
+          onStepsCountChange={setOnBoardingSteps}
+          onOnboardingComplete={() => setIsProfileModalVisible(true)}
+        />
+      )}
+      <CustomModal
+        visible={isProfileModalVisible}
+        onClose={() => setIsProfileModalVisible(false)}
+        modalContainerStyle={{width: '80%'}}>
+        <Text style={[styles.complete_profile_modal_title]}>
+          Add your details to start tracking and {'\n'} managing your health.
+        </Text>
+        <CustomButton
+          text="Complete My Profile"
+          size="small"
+          variant="primary"
+          fullWidth
+          onPress={handleCompleteProfileModal}
+          textStyle={{fontSize: FONT_SIZE.base}}
+        />
+      </CustomModal>
     </>
   );
 };

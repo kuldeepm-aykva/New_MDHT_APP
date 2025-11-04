@@ -3,19 +3,24 @@ import {scale, SCREEN_HEIGHT, SCREEN_WIDTH} from '../../constants/responsive';
 import {COLORS, RADIUS} from '../../constants';
 
 export default OnBoardingStyles = StyleSheet.create({
-  overlayLayer: {
+  gradientOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(7, 82, 132, 0.8)',
-    zIndex: 10,
-    elevation: 0,
     width: '100%',
     height: '100%',
-    flex: 1,
+    zIndex: 8,
+    elevation: 8,
   },
+
+  blockInteraction: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+
   Zindex: {
     position: 'absolute',
     zIndex: 10,

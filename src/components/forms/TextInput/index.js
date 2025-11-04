@@ -41,7 +41,7 @@ const CustomTextInput = ({
   flex = 1,
 }) => {
   return (
-    <View style={[styles.container,{flex}, containerStyle]}>
+    <View style={[styles.container, {flex}, containerStyle]}>
       {/* Label + Verify Section */}
       <Row
         align="center"
@@ -73,11 +73,11 @@ const CustomTextInput = ({
       </Row>
 
       {/* Input + Icons */}
-      <View style={styles.inputContainer}>
+      <Row align='center' style={styles.inputContainer}>
         {leftIcon && (
           <TouchableOpacity
             onPress={handleLeftIconClick}
-            style={[styles.iconContainer, {left: scale(12), right: undefined}]}>
+            style={[styles.iconContainer, {left: scale(12)}]}>
             <DynamicIcon
               type={leftIconType || 'Feather'}
               name={leftIconSource}
@@ -98,6 +98,7 @@ const CustomTextInput = ({
             !editable && disableTextInputStyle,
           ]}
           placeholder={placeholder}
+          readOnly={readonly}
           value={value}
           onChangeText={onChangeText}
           secureTextEntry={secureTextEntry}
@@ -120,7 +121,7 @@ const CustomTextInput = ({
             />
           </TouchableOpacity>
         )}
-      </View>
+      </Row>
 
       {/* Error Message */}
       {error && <ErrorMessage errorMessage={error} />}

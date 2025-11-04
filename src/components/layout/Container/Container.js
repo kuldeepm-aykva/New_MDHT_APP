@@ -5,7 +5,7 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
-import { styles } from './Container.styles';
+import {styles} from './Container.styles';
 
 export const Container = ({
   children,
@@ -18,6 +18,7 @@ export const Container = ({
   contentContainerStyle,
   refreshControl,
   showsVerticalScrollIndicator = false,
+  flex = 1,
 }) => {
   const getPadding = () => {
     switch (padding) {
@@ -36,8 +37,8 @@ export const Container = ({
     }
   };
   const containerStyle = [
-    styles.container,
-    {
+    styles.container,{flex}
+    ,{
       padding: getPadding(),
       backgroundColor: backgroundColor,
     },
@@ -55,8 +56,7 @@ export const Container = ({
       <KeyboardAvoidingView
         style={containerStyle}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-      >
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
         {children}
       </KeyboardAvoidingView>
     );
@@ -75,8 +75,7 @@ export const Container = ({
           contentContainerStyle,
         ]}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-        refreshControl={refreshControl}
-      >
+        refreshControl={refreshControl}>
         {children}
       </ScrollView>
     );
@@ -85,10 +84,9 @@ export const Container = ({
   // Scrollable and keyboard aware container
   return (
     <KeyboardAvoidingView
-      style={[styles.container, { flex: 1 }]}
+      style={[styles.container, {flex: 1}]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-    >
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
       <ScrollView
         style={[styles.container, style]}
         contentContainerStyle={[
@@ -100,8 +98,7 @@ export const Container = ({
           contentContainerStyle,
         ]}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-        refreshControl={refreshControl}
-      >
+        refreshControl={refreshControl}>
         {children}
       </ScrollView>
     </KeyboardAvoidingView>

@@ -131,4 +131,14 @@ export default styles = StyleSheet.create({
     fontSize: FONT_SIZE.sm,
   },
   // tabs
+
+  // complete_profile_
+  complete_profile_modal_title: {
+    textAlign: 'center',
+    color: COLORS.textPrimary,
+    fontSize: FONT_SIZE.base,
+    fontWeight: FONT_WEIGHT.medium,
+    marginBottom: verticalScale(15),
+  },
+  // complete_profile_
 });
