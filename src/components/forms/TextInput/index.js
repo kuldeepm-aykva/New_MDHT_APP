@@ -11,8 +11,12 @@ const CustomTextInput = ({
   placeholder,
   value,
   verifiedConfirm,
-  verifiedConfirmColor,
+  verifiedConfirmStyle,
   confirmIcon,
+  verifiedIcontype,
+  verifiedIconColor,
+  verifiedIconSize,
+  verifiedConfirmContainerStyle,
   onChangeText,
   secureTextEntry,
   keyboardType,
@@ -26,6 +30,7 @@ const CustomTextInput = ({
   leftIconType,
   iconColor,
   leftIconColor,
+  IconSize,
   editable = true,
   handleIconClick,
   handleLeftIconClick,
@@ -39,6 +44,7 @@ const CustomTextInput = ({
   containerStyle,
   error,
   flex = 1,
+  RightIconContainerStyle,
 }) => {
   return (
     <View style={[styles.container, {flex}, containerStyle]}>
@@ -54,26 +60,30 @@ const CustomTextInput = ({
         ) : null}
 
         {verifiedConfirm && (
-          <TouchableOpacity
-            onPress={verifyOnPress}
-            style={styles.verifiedContainer}>
-            <Text style={[styles.verifiedConfirm, verifiedConfirmColor]}>
-              {verifiedConfirm}
-            </Text>
-            {confirmIcon && (
-              <DynamicIcon
-                type="FontAwesome"
-                name={confirmIcon}
-                size={scale(14)}
-                color={COLORS.success}
-              />
-            )}
+          <TouchableOpacity onPress={verifyOnPress}>
+            <Row
+              align="center"
+              justify="center"
+              style={[verifiedConfirmContainerStyle]}
+              spacing={scale(5)}>
+              <Text style={[styles.verifiedConfirm, verifiedConfirmStyle]}>
+                {verifiedConfirm}
+              </Text>
+              {confirmIcon && (
+                <DynamicIcon
+                  type={verifiedIcontype}
+                  name={confirmIcon}
+                  size={scale(verifiedIconSize || 14)}
+                  color={verifiedIconColor || COLORS.success}
+                />
+              )}
+            </Row>
           </TouchableOpacity>
         )}
       </Row>
 
       {/* Input + Icons */}
-      <Row align='center' style={styles.inputContainer}>
+      <Row align="center" justify='space-between' style={styles.inputContainer}>
         {leftIcon && (
           <TouchableOpacity
             onPress={handleLeftIconClick}
@@ -111,12 +121,12 @@ const CustomTextInput = ({
         {icon && (
           <TouchableOpacity
             onPress={handleIconClick}
-            style={styles.iconContainer}
+            style={[styles.RightIconContainer,RightIconContainerStyle]}
             disabled={!handleIconClick}>
             <DynamicIcon
               type={iconType || 'Feather'}
               name={iconSource}
-              size={scale(20)}
+              size={scale(IconSize | 15)}
               color={iconColor || COLORS.textPrimary}
             />
           </TouchableOpacity>

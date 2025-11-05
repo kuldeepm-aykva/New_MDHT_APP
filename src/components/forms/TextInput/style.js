@@ -30,8 +30,8 @@ export default styles = StyleSheet.create({
   },
   verifiedConfirm: {
     color: COLORS.success,
-    fontFamily: FONT_FAMILY.medium,
-    fontSize: FONT_SIZE.xs,
+    fontSize: FONT_SIZE.sm,
+    fontWeight:FONT_WEIGHT.semiBold,
   },
   inputContainer: {
     position: 'relative',
@@ -48,11 +48,11 @@ export default styles = StyleSheet.create({
     paddingVertical: verticalScale(14),
     backgroundColor: COLORS.white,
     fontFamily: FONT_FAMILY.regular,
-    height: verticalScale(55),
+    height: verticalScale(50),
   },
   disabledInput: {
-    backgroundColor: '#F5F5F5',
-    color: COLORS.textDisabled,
+    backgroundColor: "rgba(110, 110, 110, 0.07)",
+    color: COLORS.textDark,
   },
   errorInput: {
     borderColor: COLORS.error,
@@ -64,6 +64,14 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     top: 2,
     bottom: 0,
+    zIndex: 10,
+    padding: scale(4),
+  },
+  RightIconContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    right:10,
     zIndex: 10,
     padding: scale(4),
   },

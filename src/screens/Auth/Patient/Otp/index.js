@@ -58,13 +58,16 @@ const OTPVerification = ({navigation}) => {
     seterror('');
 
     if (from === 'Forget') {
+      seterror('');
       navigation.navigate(ROUTES.ResetPassword);
     }
     if (from === 'login') {
+      seterror('');
       navigation.navigate(ROUTES.PatientDashboard);
       // Alert.alert('Dashboard');
     }
     if (from === 'signup') {
+      seterror('');
       navigation.navigate(ROUTES.PasswordVerification);
     }
 
@@ -83,7 +86,7 @@ const OTPVerification = ({navigation}) => {
           number{' '}
           <Text style={[commonstyles.fontSemiBold, commonstyles.textPrimary]}>
             {type === 'Phone'
-              ? '+91 900499xxxx'
+              ? '+91 9004991231'
               : type === 'Email'
               ? 'karandesai@gmail.com'
               : ''}

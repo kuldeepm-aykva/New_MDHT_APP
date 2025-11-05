@@ -99,6 +99,11 @@ const PasswordVerification = ({navigation}) => {
               icon
               iconSource={showPassword.PasswordShow ? 'eye' : 'eye-off'}
               iconType="Feather"
+              iconColor={
+                showPassword.PasswordShow
+                  ? COLORS.textPrimary
+                  : COLORS.borderSecondary
+              }
               secureTextEntry={!showPassword.PasswordShow}
               value={Password.Password}
               onChangeText={text => handleInputChange('Password', text)}
@@ -113,6 +118,11 @@ const PasswordVerification = ({navigation}) => {
               icon
               iconSource={showPassword.ConfirmPasswordShow ? 'eye' : 'eye-off'}
               iconType="Feather"
+              iconColor={
+                showPassword.ConfirmPasswordShow
+                  ? COLORS.textPrimary
+                  : COLORS.borderSecondary
+              }
               secureTextEntry={!showPassword.ConfirmPasswordShow}
               value={Password.ConfirmPassword}
               onChangeText={text => handleInputChange('ConfirmPassword', text)}

@@ -108,6 +108,11 @@ const EmailLogin = ({navigation}) => {
               onChangeText={text => handleInputChange('Password', text)}
               handleIconClick={() => togglePasswordVisibility('PasswordShow')}
               error={Error.PasswordError}
+              iconColor={
+                showPassword.PasswordShow
+                  ? COLORS.textPrimary
+                  : COLORS.borderSecondary
+              }
             />
           </Column>
           <Row

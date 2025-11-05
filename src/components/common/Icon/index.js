@@ -7,6 +7,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 // Dynamic icons
 export const DynamicIcon = ({
@@ -44,6 +45,9 @@ export const DynamicIcon = ({
       break;
     case 'FontAwesome6':
       IconComponent = FontAwesome6;
+      break;
+    case 'Fontisto':
+      IconComponent = Fontisto;
       break;
     default:
       IconComponent = AntDesign;

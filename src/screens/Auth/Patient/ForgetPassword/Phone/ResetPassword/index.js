@@ -101,6 +101,11 @@ const ResetPassword = ({navigation}) => {
               onChangeText={text => handleInputChange('Password', text)}
               handleIconClick={() => togglePasswordVisibility('PasswordShow')}
               error={Error.PasswordError}
+              iconColor={
+                showPassword.PasswordShow
+                  ? COLORS.textPrimary
+                  : COLORS.borderSecondary
+              }
             />
 
             {/*  Confirm Password field */}
@@ -117,6 +122,11 @@ const ResetPassword = ({navigation}) => {
                 togglePasswordVisibility('ConfirmPasswordShow')
               }
               error={Error.ConfirmPasswordError}
+              iconColor={
+                showPassword.ConfirmPasswordShow
+                  ? COLORS.textPrimary
+                  : COLORS.borderSecondary
+              }
             />
           </Column>
         </View>
@@ -147,7 +157,7 @@ const ResetPassword = ({navigation}) => {
 
         <Center style={[CommonAuthStyles.Already_acc_container]}>
           <Text style={[CommonAuthStyles.policy_text]}>
-            Back to{" "}
+            Back to{' '}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(ROUTES.LoginPhoneNumber);

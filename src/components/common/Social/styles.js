@@ -1,19 +1,22 @@
 import {StyleSheet} from 'react-native';
-import {scale, verticalScale} from '../../../constants/responsive';
-import {COLORS} from '../../../constants';
+import {
+  scale,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  verticalScale,
+} from '../../../constants/responsive';
+import {COLORS, RADIUS} from '../../../constants';
 
 export default styles = StyleSheet.create({
   socialBtn: {
-    borderRadius: scale(25),
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal:scale(45),
-    paddingVertical:verticalScale(10),
+    borderRadius: RADIUS.full,
+    width: SCREEN_WIDTH * 0.26,
+    height:SCREEN_HEIGHT * 0.048,
   },
   googleBtn: {
     backgroundColor: COLORS.white,
     borderRadius: scale(25),
-    height: verticalScale(45),
+    height: verticalScale(55),
     justifyContent: 'center',
     alignItems: 'center',
   },
