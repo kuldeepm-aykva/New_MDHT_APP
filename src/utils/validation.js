@@ -1,5 +1,5 @@
 import {parsePhoneNumberFromString} from 'libphonenumber-js';
-
+import dayjs from 'dayjs';
 import {getExampleNumber} from 'libphonenumber-js';
 import examples from 'libphonenumber-js/mobile/examples';
 
@@ -37,4 +37,10 @@ export const validatePassword = password => {
   const regex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
   return regex.test(password);
+};
+
+// date formate 
+export const formatDate = date => {
+  if (!date || !dayjs(date).isValid()) return '';
+  return dayjs(date).format('DD/MM/YYYY');
 };

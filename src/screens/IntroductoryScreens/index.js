@@ -20,7 +20,7 @@ import CustomButton from '../../components/common/Button';
 import {Column, Row} from '../../components/layout';
 import {scale} from '../../constants/responsive';
 import {useNavigation} from '@react-navigation/native';
-import { ROUTES } from '../../navigation/routes';
+import {ROUTES} from '../../navigation/routes';
 
 const InfoScreen1 = () => {
   const navigation = useNavigation();
@@ -119,9 +119,11 @@ const InfoScreen1 = () => {
             <CustomButton
               text="Create Your Account"
               fullWidth
-              btnStyle={{backgroundColor: COLORS.teritary}}
-              textStyle={{fontWeight: FONT_WEIGHT.regular}}
               variant="outline"
+              TextColor={COLORS.white}
+              fontSize="base"
+              BorderColor={COLORS.white}
+              BgColor={COLORS.teritary}
               onPress={() => navigation.navigate(ROUTES.RolSelection)}
             />
 
@@ -129,11 +131,9 @@ const InfoScreen1 = () => {
               text="Log In"
               fullWidth
               size="medium"
+              TextColor={COLORS.secondary}
               variant="white"
-              textStyle={{
-                color: COLORS.secondary,
-                fontWeight: FONT_WEIGHT.medium,
-              }}
+              fontSize="base"
               onPress={() => navigation.navigate(ROUTES.LoginPhoneNumber)}
             />
           </Column>

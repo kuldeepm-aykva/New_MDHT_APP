@@ -1,7 +1,11 @@
 import {StyleSheet} from 'react-native';
 import {scale, verticalScale} from '../../../../constants/responsive';
 import {COLORS, RADIUS} from '../../../../constants';
-import {FONT_SIZE, FONT_WEIGHT} from '../../../../constants/typography';
+import {
+  FONT_SIZE,
+  FONT_WEIGHT,
+  LINE_HEIGHT,
+} from '../../../../constants/typography';
 
 export default styles = StyleSheet.create({
   main_card: {
@@ -51,7 +55,7 @@ export default styles = StyleSheet.create({
     // marginBottom: verticalScale(10),
   },
   TextInputcontainerStyle: {
-    marginBottom: verticalScale(10),
+    marginBottom: verticalScale(12),
   },
   lablestyle: {
     marginBottom: verticalScale(5),
@@ -66,37 +70,48 @@ export default styles = StyleSheet.create({
   genderContainer: {
     marginBottom: verticalScale(16),
   },
-  label: {
-    color: COLORS.textPrimary,
-    fontSize: FONT_SIZE.sm,
-    marginBottom: scale(10),
+  // gender
+
+  // Email verification modal
+  modal_title: {
+    fontSize: FONT_SIZE.xl,
+    color: COLORS.textDark,
     fontWeight: FONT_WEIGHT.semiBold,
   },
-  optionsContainer: {
-    gap: 10,
-  },
-  optionButton: {
-    flex: 1,
-    padding: scale(11),
-    borderWidth: 1,
-    borderColor: 'rgba(110, 110, 110, 0.25)',
-    borderRadius: RADIUS.md,
-    textAlign: 'center',
-  },
-  optionText: {
+  modal_subtitle: {
+    fontSize: FONT_SIZE.base,
     color: COLORS.textPrimary,
     textAlign: 'center',
-    fontWeight: FONT_WEIGHT.light,
-    fontSize: FONT_SIZE.sm,
+    marginTop: verticalScale(7),
   },
-  selectedText: {
-    color: COLORS.primary,
-    fontWeight: FONT_WEIGHT.regular,
-  },
-  selectedButton: {
-    borderColor: COLORS.primary,
-    borderWidth: 1,
+  EmailVerfiedModalStyle: {
+    width: '85%',
+    paddingVertical: verticalScale(20),
   },
 
-  // gender
+  // profile_ modal
+  profile_modal_title: {
+    fontWeight: FONT_WEIGHT.bold,
+    fontSize: FONT_SIZE.lg,
+    color: COLORS.textDark,
+  },
+  profile_modal_subtitle: {
+    lineHeight: 22,
+    marginTop: verticalScale(10),
+  },
+  // profile modal
+
+  // bottom modal
+  BottomModal_btn: {
+    // borderWidth:0.5,
+    borderBottomColor: 'rgba(110, 110, 110, 0.40)',
+    borderBottomWidth: 0.5,
+    paddingBottom: verticalScale(10),
+    marginVertical: verticalScale(10),
+  },
+  BottomModal_btn_text: {
+    fontSize: FONT_SIZE.base,
+    color: COLORS.textDark,
+  },
+  // bottom modal
 });

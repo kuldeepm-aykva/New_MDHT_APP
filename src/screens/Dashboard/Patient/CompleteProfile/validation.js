@@ -4,9 +4,9 @@ export const CompleteProfileValidation = data => {
   let errors = {};
 
   // --- Profile Image ---
-  if (!data.UserProfile) {
-    errors.UserProfile = 'Please upload your profile image';
-  }
+  // if (!data.UserProfile) {
+  //   errors.UserProfile = 'Please upload your profile image';
+  // }
 
   // --- First Name ---
   if (!data.fname || data.fname.trim().length === 0) {
@@ -29,7 +29,7 @@ export const CompleteProfileValidation = data => {
   }
 
   // --- Date of Birth ---
-  if (!data.DOB || data.DOB.trim().length === 0) {
+  if (!data.DOB || data.DOB.length === 0) {
     errors.DOB = 'Date of birth is required';
   }
 

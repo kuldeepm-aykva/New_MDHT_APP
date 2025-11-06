@@ -77,6 +77,7 @@ const PasswordVerification = ({navigation}) => {
     }
   };
 
+  const ButtonDisable = !Password.Password || !Password.ConfirmPassword;
   return (
     <SafeArea backgroundColor={COLORS.white} statusBarStyle="dark-content">
       <Container centered keyboardAware>
@@ -137,24 +138,13 @@ const PasswordVerification = ({navigation}) => {
         <CustomButton
           text="SIGN UP"
           fullWidth
-          variant={
-            Password.Password.length === 0 ||
-            Password.ConfirmPassword.length === 0
-              ? 'outline'
-              : 'primary'
-          }
+          variant={ButtonDisable ? 'outline' : 'primary'}
           btnStyle={{
-            borderColor: COLORS.borderSecondary,
             marginTop: verticalScale(20),
           }}
-          textStyle={{
-            fontSize: FONT_SIZE.sm,
-            color:
-              Password.Password.length === 0 ||
-              Password.ConfirmPassword.length === 0
-                ? COLORS.textPrimary
-                : COLORS.white,
-          }}
+          BorderColor={COLORS.borderSecondary}
+          TextColor={ButtonDisable ? COLORS.textPrimary : COLORS.white}
+          fontSize="sm"
           onPress={handleSetPassword}
         />
 

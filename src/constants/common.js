@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {COLORS} from './colors';
 import {scale, verticalScale} from './responsive';
-import {FONT_FAMILY, FONT_SIZE, FONT_WEIGHT} from './typography';
-import {SPACING} from './spacing';
+import {FONT_FAMILY, FONT_SIZE, FONT_WEIGHT, LINE_HEIGHT} from './typography';
+import {RADIUS, SPACING} from './spacing';
 
 export default commonstyles = StyleSheet.create({
   // color
@@ -151,3 +151,118 @@ export default commonstyles = StyleSheet.create({
     borderColor: COLORS.borderSecondary,
   },
 });
+
+export const getVariantStyle = ({variant, selected, BorderColor, BgColor}) => {
+  let baseStyle = {};
+
+  if (selected && variant === 'outline') {
+    baseStyle = {
+      backgroundColor: COLORS.primary,
+      borderColor: COLORS.primary,
+    };
+  } else {
+    switch (variant) {
+      case 'primary':
+        baseStyle = {backgroundColor: COLORS.primary};
+        break;
+      case 'secondary':
+        baseStyle = {backgroundColor: COLORS.secondary};
+        break;
+      case 'white':
+        baseStyle = {backgroundColor: COLORS.white};
+        break;
+      case 'black':
+        baseStyle = {backgroundColor: COLORS.black};
+        break;
+      case 'outline':
+        baseStyle = {
+          backgroundColor: COLORS.transparent,
+          borderWidth: scale(1),
+          borderColor: 'rgba(110, 110, 110, 0.25)',
+        };
+        break;
+      case 'transparent':
+        baseStyle = {backgroundColor: COLORS.transparent};
+        break;
+      default:
+        baseStyle = {backgroundColor: COLORS.primary};
+    }
+  }
+
+  // ✅ Custom overrides
+  if (BgColor) {
+    baseStyle.backgroundColor = COLORS[BgColor] || BgColor;
+  }
+
+  if (BorderColor) {
+    baseStyle.borderWidth = scale(1);
+    baseStyle.borderColor = COLORS[BorderColor] || BorderColor;
+  }
+
+  return baseStyle;
+};
+
+// -------- TEXT COLOR --------
+export const getTextVariantStyle = ({variant, selected, TextColor}) => {
+  if (selected && variant === 'outline') {
+    return {color: COLORS.white};
+  }
+
+  let color = COLORS.white;
+  switch (variant) {
+    case 'primary':
+    case 'secondary':
+    case 'black':
+      color = COLORS.white;
+      break;
+    case 'white':
+      color = COLORS.primary;
+      break;
+    case 'outline':
+      color = COLORS.textPrimary;
+      break;
+    case 'error':
+      color = COLORS.error;
+      break;
+    case 'success':
+      color = COLORS.success;
+      break;
+    default:
+      color = COLORS.white;
+  }
+
+  if (TextColor) color = COLORS[TextColor] || TextColor;
+  return {color};
+};
+
+// -------- RADIUS STYLES --------
+export const getRadiusStyle = ({Radius, CustomRadius}) => {
+  if (CustomRadius !== undefined) {
+    return {borderRadius: CustomRadius};
+  }
+
+  switch (Radius) {
+    case 'xs':
+      return {borderRadius: RADIUS.xs};
+    case 'sm':
+      return {borderRadius: RADIUS.sm};
+    case 'md':
+      return {borderRadius: RADIUS.md};
+    case 'lg':
+      return {borderRadius: RADIUS.lg};
+    case 'xl':
+      return {borderRadius: RADIUS.xl};
+    case 'xxl':
+      return {borderRadius: RADIUS.xxl};
+    case 'full':
+      return {borderRadius: RADIUS.full};
+    default:
+      return {borderRadius: RADIUS.full};
+  }
+};
+
+// -------- FONT SIZE STYLE --------
+export const getFontSizeStyle = ({fontSize}) => {
+  if (!fontSize) return {};
+  return {fontSize: FONT_SIZE[fontSize] || FONT_SIZE.base};
+};

@@ -1,15 +1,13 @@
-import {
-  View,
-  Text,
-  Image,
-  Pressable,
-  TouchableOpacity,
-  Button,
-  Alert,
-} from 'react-native';
+import {Text, View, Pressable, TouchableOpacity, Image} from 'react-native';
 import {useState} from 'react';
-import {Column, Container, Row, SafeArea} from '../../../../components/layout';
-import {COLORS, FONT_SIZE, FONT_WEIGHT, RADIUS} from '../../../../constants';
+import {
+  Center,
+  Column,
+  Container,
+  Row,
+  SafeArea,
+} from '../../../../components/layout';
+import {COLORS} from '../../../../constants';
 import {scale, verticalScale} from '../../../../constants/responsive';
 import Header from '../../../../components/layout/Header';
 import {ROUTES} from '../../../../navigation/routes';
@@ -20,16 +18,52 @@ import CustomButton from '../../../../components/common/Button';
 import {CompleteProfileValidation} from './validation';
 import ErrorMessage from '../../../../components/common/ErrorMessage';
 import OptionSelector from '../../../../components/common/OptionSelector';
+import CustomModal from '../../../../components/common/Modal';
+import OtpInput from '../../../../components/forms/Otp';
+import commonstyles from '../../../../constants/common';
+import CommonAuthStyles from '../../../Auth/styles';
+import {OTpValidation} from '../../../Auth/Patient/Otp/validation';
+import {formatDate} from '../../../../utils/validation';
+import DatePickerModal from '../../../../components/common/DatePickerModal';
+import BottomModal from '../../../../components/common/BottomModal';
 
 const CompleteProfile = ({navigation}) => {
   const [ImageModal, setImageModal] = useState(false);
+  const [EmailVerfied, setEmailVerfied] = useState(false);
+  const [modalDatePicker, setModalDatePicker] = useState(false);
+  const [ProfileSubmitted, setProfileSubmitted] = useState(false);
+
+  // otp state
+  const [otp, setOtp] = useState('');
+  // error state
+  const [otpError, setotpError] = useState('');
+
+  // otp handler
+  const handleOtpChange = value => {
+    setOtp(value);
+  };
+
+  // handle button handler
+  const handleVerify = () => {
+    // error
+    const errors = OTpValidation({
+      otp,
+    });
+
+    if (Object.keys(errors).length > 0) {
+      setotpError(errors.otp);
+      return;
+    }
+    setotpError('');
+    setEmailVerfied(!EmailVerfied);
+  };
 
   const [Profiledata, setProfiledata] = useState({
     UserProfile: '',
     fname: '',
     mname: '',
     lname: '',
-    phone: '',
+    phone: '+91 9004991391',
     gender: '',
     DOB: '',
     email: '',
@@ -53,20 +87,22 @@ const CompleteProfile = ({navigation}) => {
     seterrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      Alert.alert('Success', 'Profile submitted successfully!');
+      setProfileSubmitted(!ProfileSubmitted);
     }
   };
 
-  const ButtonDisable =
-    Object.keys(CompleteProfileValidation(Profiledata)).length === 0 &&
+  const allFieldsFilled =
     Profiledata.UserProfile &&
     Profiledata.fname &&
     Profiledata.mname &&
     Profiledata.lname &&
+    Profiledata.phone &&
     Profiledata.gender &&
     Profiledata.DOB &&
     Profiledata.email &&
     Profiledata.country;
+
+  const ButtonDisable = !allFieldsFilled;
 
   return (
     <>
@@ -107,7 +143,7 @@ const CompleteProfile = ({navigation}) => {
                   )}
                   <Pressable
                     style={[styles.profile_upload_icon]}
-                    onPress={() => setImageModal(!ImageModal)}>
+                    onPress={() => setImageModal(true)}>
                     <DynamicIcon
                       name="edit"
                       type="Entypo"
@@ -117,7 +153,10 @@ const CompleteProfile = ({navigation}) => {
                   </Pressable>
                 </View>
               </Row>
-              <Row align="center" justify="center" style={{marginTop:verticalScale(12)}}>
+              <Row
+                align="center"
+                justify="center"
+                style={{marginTop: verticalScale(12)}}>
                 {errors.UserProfile ? (
                   <ErrorMessage errorMessage={errors.UserProfile} />
                 ) : null}
@@ -224,10 +263,8 @@ const CompleteProfile = ({navigation}) => {
                 }}
                 iconColor={COLORS.primary}
                 error={errors.DOB}
-                value={Profiledata.DOB}
-                onChangeText={text =>
-                  setProfiledata(prev => ({...prev, DOB: text}))
-                }
+                handleIconClick={() => setModalDatePicker(true)}
+                value={formatDate(Profiledata.DOB)}
               />
               <CustomTextInput
                 label="Active Email Address"
@@ -241,6 +278,9 @@ const CompleteProfile = ({navigation}) => {
                 verifiedConfirm="Verify"
                 verifiedConfirmStyle={{
                   color: COLORS.textPrimary,
+                }}
+                verifyOnPress={() => {
+                  setEmailVerfied(!EmailVerfied);
                 }}
                 value={Profiledata.email}
                 onChangeText={text =>
@@ -277,23 +317,144 @@ const CompleteProfile = ({navigation}) => {
           <Column align="center" justify="center">
             <CustomButton
               text="Submit"
-              onPress={handleSubmit}
-              fullWidth
               variant={ButtonDisable ? 'outline' : 'primary'}
-              btnStyle={{
-                borderColor: 'rgba(110, 110, 110, 0.25)',
-                borderRadius: RADIUS.lg,
-                borderWidth: 1,
-              }}
-              textStyle={{
-                // fontSize: FONT_SIZE.base,
-                color: ButtonDisable ? COLORS.white : COLORS.primary,
-                fontWeight: FONT_WEIGHT.semiBold,
-              }}
+              fullWidth
+              Radius="lg"
+              fontSize="md"
+              onPress={handleSubmit}
             />
           </Column>
         </Container>
       </SafeArea>
+
+      {/* emnail otp verfication modal  */}
+      <CustomModal
+        visible={EmailVerfied}
+        onClose={() => setEmailVerfied(false)}
+        modalContainerStyle={[styles.EmailVerfiedModalStyle]}>
+        <View>
+          <Column align="center" justify="center">
+            <Text style={styles.modal_title}>Verify Your Email</Text>
+            <Text style={styles.modal_subtitle}>
+              We have sent a verification code to
+            </Text>
+            <Text style={[commonstyles.fontSemiBold, commonstyles.font14]}>
+              {Profiledata.email || 'abc@gmail.com'}
+            </Text>
+          </Column>
+          <View>
+            <OtpInput
+              length={4}
+              onOtpChange={handleOtpChange}
+              OtpInputStyle={{
+                width: scale(48),
+                height: verticalScale(42),
+                marginTop: verticalScale(20),
+                borderRadius: scale(10),
+              }}
+            />
+
+            {otpError ? (
+              <ErrorMessage
+                error_container_style={{
+                  marginTop: verticalScale(10),
+                  paddingRight: scale(33),
+                }}
+                errorMessage={otpError}
+              />
+            ) : null}
+          </View>
+
+          <Center style={[CommonAuthStyles.dividerContainer]}>
+            <Text style={[CommonAuthStyles.policy_text]}>
+              Did not receive OTP?{' '}
+              <TouchableOpacity>
+                <Text
+                  style={[
+                    CommonAuthStyles.policy_text,
+                    commonstyles.primary,
+                    commonstyles.fontSemiBold,
+                    {top: verticalScale(4)},
+                  ]}>
+                  Resend
+                </Text>
+              </TouchableOpacity>
+            </Text>
+          </Center>
+
+          <CustomButton
+            text="Verify OTP"
+            fullWidth
+            size="medium"
+            variant={otp.length === 0 ? 'outline' : 'primary'}
+            BorderColor={COLORS.borderSecondary}
+            fontSize="sm"
+            TextColor={otp.length === 0 ? COLORS.textPrimary : COLORS.white}
+            onPress={handleVerify}
+          />
+        </View>
+      </CustomModal>
+
+      {/* Date Picker Modal */}
+      <DatePickerModal
+        visible={modalDatePicker}
+        onClose={() => setModalDatePicker(false)}
+        date={Profiledata.DOB}
+        onDateChange={date => setProfiledata(prev => ({...prev, DOB: date}))}
+      />
+      {/* email otp verfication modal  */}
+
+      {/* profile updated modal  */}
+      <CustomModal
+        visible={ProfileSubmitted}
+        onClose={() => setProfileSubmitted(false)}
+        modalContainerStyle={[styles.EmailVerfiedModalStyle]}>
+        <Column align="center" justify="center">
+          <Row align="center" justify="center" spacing={10}>
+            <DynamicIcon
+              type="Ionicons"
+              name="checkmark-circle"
+              size={scale(22)}
+              color={COLORS.success}
+            />
+            <Text style={styles.profile_modal_title}>Profile Updated!</Text>
+          </Row>
+          <Text
+            style={[
+              commonstyles.fontRegular,
+              commonstyles.textPrimary,
+              commonstyles.font12,
+              styles.profile_modal_subtitle,
+              {textAlign: 'center'},
+            ]}>
+            Thanks for updating your details. You are now a {'\n'}Verified
+            MDHealthTrak User!
+          </Text>
+        </Column>
+      </CustomModal>
+      {/* profile updated modal  */}
+
+      <BottomModal visible={ImageModal} onClose={() => setImageModal(false)}>
+        <>
+          <TouchableOpacity
+            style={[styles.BottomModal_btn]}
+          >
+            <Text style={[styles.BottomModal_btn_text]}>Take Photo</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.BottomModal_btn]}
+            >
+            <Text style={[styles.BottomModal_btn_text]}>
+              Upload from Gallery
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.BottomModal_btn]}
+            onPress={() => setImageModal(false)}>
+            <Text style={[styles.BottomModal_btn_text]}>Cancel</Text>
+          </TouchableOpacity>
+        </>
+      </BottomModal>
     </>
   );
 };

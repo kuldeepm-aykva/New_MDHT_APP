@@ -313,7 +313,7 @@ const PatientDashboard = ({navigation}) => {
           variant="primary"
           fullWidth
           onPress={handleCompleteProfileModal}
-          textStyle={{fontSize: FONT_SIZE.base}}
+          fontSize="base"
         />
       </CustomModal>
     </>

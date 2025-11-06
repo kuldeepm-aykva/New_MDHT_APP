@@ -27,7 +27,7 @@ const CountryPickerModal = ({
       }}
       style={{
         modal: {
-          height: '60%',
+          height: '62%',
           bottom: 0,
           position: 'absolute',
           borderTopLeftRadius: 20,

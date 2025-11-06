@@ -36,6 +36,7 @@ export default Styles = StyleSheet.create({
   },
   login_email_phone_container: {
     marginTop: verticalScale(8),
+    paddingHorizontal:scale(10),
   },
 
   divider_text: {

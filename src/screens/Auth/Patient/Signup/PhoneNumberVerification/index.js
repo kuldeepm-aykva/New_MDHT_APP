@@ -136,14 +136,13 @@ const PhoneNumberVerification = ({navigation}) => {
             fullWidth
             variant={phoneNumber.length === 0 ? 'outline' : 'primary'}
             btnStyle={{
-              borderColor: COLORS.borderSecondary,
               marginTop: verticalScale(20),
             }}
-            textStyle={{
-              fontSize: FONT_SIZE.base,
-              color:
-                phoneNumber.length === 0 ? COLORS.textPrimary : COLORS.white,
-            }}
+            BorderColor={COLORS.borderSecondary}
+            fontSize="sm"
+            TextColor={
+              phoneNumber.length === 0 ? COLORS.textPrimary : COLORS.white
+            }
             onPress={handleSendOTP}
           />
         </View>

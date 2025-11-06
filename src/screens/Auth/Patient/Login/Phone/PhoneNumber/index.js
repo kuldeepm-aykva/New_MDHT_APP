@@ -25,7 +25,7 @@ import {MDLogo} from '../../../../../../assets/svgImage';
 import commonstyles from '../../../../../../constants/common';
 import CommonAuthStyles from '../../../../styles';
 import {COLORS, FONT_SIZE} from '../../../../../../constants';
-import {verticalScale} from '../../../../../../constants/responsive';
+import {scale, verticalScale} from '../../../../../../constants/responsive';
 
 // routes
 import {ROUTES} from '../../../../../../navigation/routes';
@@ -70,7 +70,7 @@ const LoginPhoneNumber = ({navigation}) => {
     <SafeArea backgroundColor={COLORS.white} statusBarStyle="dark-content">
       <Container centered keyboardAware>
         <Center style={[CommonAuthStyles.img_container]}>
-          <MDLogo width={180} height={110} margin={5} />
+          <MDLogo width={scale(180)} height={verticalScale(120)} margin={5} />
         </Center>
 
         <Text style={[commonstyles.title]}>Login To Your Account</Text>
@@ -157,14 +157,13 @@ const LoginPhoneNumber = ({navigation}) => {
             fullWidth
             variant={phoneNumber.length === 0 ? 'outline' : 'primary'}
             btnStyle={{
-              borderColor: COLORS.borderSecondary,
               marginTop: verticalScale(35),
             }}
-            textStyle={{
-              fontSize: FONT_SIZE.sm,
-              color:
-                phoneNumber.length === 0 ? COLORS.textPrimary : COLORS.white,
-            }}
+            BorderColor={COLORS.borderSecondary}
+            fontSize="sm"
+            TextColor={
+              phoneNumber.length === 0 ? COLORS.textPrimary : COLORS.white
+            }
             onPress={handleSendOTP}
           />
         </View>

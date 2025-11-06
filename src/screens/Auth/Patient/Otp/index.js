@@ -125,13 +125,11 @@ const OTPVerification = ({navigation}) => {
           text="Verify OTP"
           fullWidth
           variant={otp.length === 0 ? 'outline' : 'primary'}
-          btnStyle={{
-            borderColor: COLORS.borderSecondary,
-          }}
-          textStyle={{
-            fontSize: FONT_SIZE.base,
-            color: otp.length === 0 ? COLORS.textPrimary : COLORS.white,
-          }}
+          BorderColor={COLORS.borderSecondary}
+          fontSize="sm"
+          TextColor={
+            otp.length === 0 ? COLORS.textPrimary : COLORS.white
+          }
           onPress={handleVerify}
         />
         {name === 'ForgetPhone' ? (

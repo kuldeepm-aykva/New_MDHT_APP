@@ -30,11 +30,21 @@ const RoleSelection = ({navigation}) => {
     }
   };
 
+  const roleText = {
+    patient: 'Pick a role to get started.',
+    doctor:
+      'Pick a role to access tailored tools.\nCare made simple for everyone.',
+    family:
+      'Pick a role to access tailored tools.\nCare made simple for everyone.',
+  };
+
   return (
     <SafeArea backgroundColor={COLORS.white} statusBarStyle="dark-content">
       <Container padding="large" centered>
         <Text style={[commonstyles.title]}>Welcome!</Text>
-        <Text style={[commonstyles.subtitle]}>Pick a role to get started</Text>
+        <Text style={[commonstyles.subtitle]}>
+          {roleText[selectedRole] || 'Pick a role to get started.'}
+        </Text>
 
         <Row align="center" justify="center" style={styles.logo_container}>
           {selectedRole === 'patient' ? (
@@ -57,16 +67,13 @@ const RoleSelection = ({navigation}) => {
           <CustomButton
             text="I’m a Patient"
             fullWidth={true}
-            variant="outline"
+            variant={selectedRole === 'patient' ? 'primary' : 'outline'}
             selected={selectedRole === 'patient'}
-            btnStyle={{
-              borderColor: COLORS.borderSecondary,
-            }}
-            textStyle={{
-              fontSize: FONT_SIZE.sm,
-              color:
-                selectedRole === 'patient' ? COLORS.white : COLORS.textPrimary,
-            }}
+            BorderColor={COLORS.borderSecondary}
+            fontSize="sm"
+            TextColor={
+              selectedRole === 'patient' ? COLORS.white : COLORS.textPrimary
+            }
             onPress={() => {
               setselectedRole('patient');
               handleNavigate();
@@ -77,16 +84,13 @@ const RoleSelection = ({navigation}) => {
           <CustomButton
             text="I’m a Doctor"
             fullWidth={true}
-            variant="outline"
+            variant={selectedRole === 'doctor' ? 'primary' : 'outline'}
             selected={selectedRole === 'doctor'}
-            btnStyle={{
-              borderColor: COLORS.borderSecondary,
-            }}
-            textStyle={{
-              fontSize: FONT_SIZE.sm,
-              color:
-                selectedRole === 'doctor' ? COLORS.white : COLORS.textPrimary,
-            }}
+            BorderColor={COLORS.borderSecondary}
+            fontSize="sm"
+            TextColor={
+              selectedRole === 'doctor' ? COLORS.white : COLORS.textPrimary
+            }
             onPress={() => {
               setselectedRole('doctor');
               handleNavigate();
@@ -97,16 +101,13 @@ const RoleSelection = ({navigation}) => {
           <CustomButton
             text="I’m a Family"
             fullWidth={true}
-            variant="outline"
+            variant={selectedRole === 'family' ? 'primary' : 'outline'}
             selected={selectedRole === 'family'}
-            btnStyle={{
-              borderColor: COLORS.borderSecondary,
-            }}
-            textStyle={{
-              fontSize: FONT_SIZE.sm,
-              color:
-                selectedRole === 'family' ? COLORS.white : COLORS.textPrimary,
-            }}
+            BorderColor={COLORS.borderSecondary}
+            fontSize="sm"
+            TextColor={
+              selectedRole === 'family' ? COLORS.white : COLORS.textPrimary
+            }
             onPress={() => {
               setselectedRole('family');
               handleNavigate();
@@ -175,7 +176,7 @@ const RoleSelection = ({navigation}) => {
                   Terms of Use{' '}
                 </Text>
               </TouchableOpacity>
-              and{" "}
+              and{' '}
               <TouchableOpacity
                 style={[commonstyles.paddingzero, commonstyles.marginZero]}>
                 <Text

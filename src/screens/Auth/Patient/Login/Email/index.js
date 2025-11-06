@@ -24,7 +24,7 @@ import {EmailLoginValidation} from './validation';
 // styles
 import CommonAuthStyles from '../../../styles';
 import commonstyles from '../../../../../constants/common';
-import {verticalScale} from '../../../../../constants/responsive';
+import {scale, verticalScale} from '../../../../../constants/responsive';
 import {COLORS, FONT_SIZE} from '../../../../../constants';
 import styles from './styles';
 
@@ -74,7 +74,7 @@ const EmailLogin = ({navigation}) => {
     <SafeArea backgroundColor={COLORS.white} statusBarStyle="dark-content">
       <Container centered keyboardAware>
         <Center style={[CommonAuthStyles.img_container]}>
-          <MDLogo width={180} height={110} margin={5} />
+          <MDLogo width={scale(180)} height={verticalScale(120)} />
         </Center>
 
         <Text style={[commonstyles.title]}>Login To Your Account</Text>
@@ -155,16 +155,15 @@ const EmailLogin = ({navigation}) => {
                 : 'primary'
             }
             btnStyle={{
-              borderColor: COLORS.borderSecondary,
               marginTop: verticalScale(40),
             }}
-            textStyle={{
-              fontSize: FONT_SIZE.sm,
-              color:
-                Data.Email.length === 0 || Data.Password.length === 0
-                  ? COLORS.textPrimary
-                  : COLORS.white,
-            }}
+            BorderColor={COLORS.borderSecondary}
+            fontSize="sm"
+            TextColor={
+              Data.Email.length === 0 || Data.Password.length === 0
+                ? COLORS.textPrimary
+                : COLORS.white
+            }
             onPress={handleSetPassword}
           />
         </View>

@@ -13,13 +13,13 @@ import CustomTextInput from '../../../../../../components/forms/TextInput';
 import CustomButton from '../../../../../../components/common/Button';
 
 // icon
-import {PatientIcon} from '../../../../../../assets/svgImage';
+import {MDLogo, PatientIcon} from '../../../../../../assets/svgImage';
 
 // styles
 import {COLORS, FONT_SIZE} from '../../../../../../constants/index';
 import CommonAuthStyles from '../../../../styles';
 import commonstyles from '../../../../../../constants/common';
-import {verticalScale} from '../../../../../../constants/responsive';
+import {scale, verticalScale} from '../../../../../../constants/responsive';
 
 // validation
 import {PasswordValidation} from '../../../Signup/PasswordVerification/validation';
@@ -74,11 +74,13 @@ const ResetPassword = ({navigation}) => {
     }
   };
 
+  const ButttonDisable = !Password.Password || !Password.ConfirmPassword;
+
   return (
     <SafeArea backgroundColor={COLORS.white} statusBarStyle="dark-content">
       <Container centered keyboardAware>
         <Center style={[CommonAuthStyles.img_container]}>
-          <PatientIcon width={180} height={110} margin={5} />
+          <MDLogo width={scale(180)} height={verticalScale(120)} margin={5} />
         </Center>
 
         <Text style={[commonstyles.title]}>Reset Password</Text>
@@ -134,24 +136,13 @@ const ResetPassword = ({navigation}) => {
         <CustomButton
           text="Reset Password"
           fullWidth
-          variant={
-            Password.Password.length === 0 ||
-            Password.ConfirmPassword.length === 0
-              ? 'outline'
-              : 'primary'
-          }
+          variant={ButttonDisable ? 'outline' : 'primary'}
           btnStyle={{
-            borderColor: COLORS.borderSecondary,
             marginTop: verticalScale(20),
           }}
-          textStyle={{
-            fontSize: FONT_SIZE.sm,
-            color:
-              Password.Password.length === 0 ||
-              Password.ConfirmPassword.length === 0
-                ? COLORS.textPrimary
-                : COLORS.white,
-          }}
+          BorderColor={COLORS.borderSecondary}
+          fontSize="sm"
+          TextColor={ButttonDisable ? COLORS.textPrimary : COLORS.white}
           onPress={handleSetPassword}
         />
 

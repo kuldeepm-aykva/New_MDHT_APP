@@ -15,6 +15,7 @@ export const RADIUS = {
   md: scale(8),
   10:scale(10),
   lg: scale(12),
+  14:scale(14),
   xl: scale(16),
   xxl: scale(20),
   full: 9999,
