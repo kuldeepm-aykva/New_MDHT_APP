@@ -1,4 +1,10 @@
-import {Text, View, ImageBackground, Pressable} from 'react-native';
+import {
+  Text,
+  View,
+  ImageBackground,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 import {useState} from 'react';
 import {Column, Container, Row, SafeArea} from '../../../components/layout';
 import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../../constants';
@@ -18,9 +24,11 @@ import Footer from '../../../components/layout/Footer';
 import OnBoardingScreens from '../../OnBoardingScreens';
 import {ROUTES} from '../../../navigation/routes';
 import CustomModal from '../../../components/common/Modal';
+import commonstyles from '../../../constants/common';
 
 const PatientDashboard = ({navigation}) => {
   const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
+  const [IsConditionModal, setIsConditionModal] = useState(false);
 
   const CarePlaner = [
     {
@@ -70,6 +78,15 @@ const PatientDashboard = ({navigation}) => {
   const handleCompleteProfileModal = () => {
     setIsProfileModalVisible(false);
     navigation.navigate(ROUTES.CompleteProfile);
+  };
+
+  const hanldeSkipBoarding = () => {
+    setIslogin(!Islogin);
+    navigation.navigate(ROUTES.PatientDashboard);
+  };
+
+  const handleHealthCondition = () => {
+    setIsConditionModal(!IsConditionModal);
   };
 
   return (
@@ -189,7 +206,7 @@ const PatientDashboard = ({navigation}) => {
               </Pressable>
             </Row>
             <View style={[styles.tab_cards_container]}>
-              {/* <Column
+              <Column
                 align="center"
                 justify="center"
                 style={[styles.no_condition_added_container]}>
@@ -202,21 +219,22 @@ const PatientDashboard = ({navigation}) => {
                 </Text>
                 <CustomButton
                   text="+ Add New Condition"
+                  onPress={handleHealthCondition}
                   size="small"
+                  BorderColor={COLORS.transparent}
                   btnStyle={{
-                    borderColor: COLORS.borderSecondary,
                     backgroundColor: 'rgba(20, 146, 230, 0.15)',
                     width: '65%',
                   }}
+                  fontSize="sm"
+                  TextColor={COLORS.primary}
                   textStyle={{
-                    fontSize: FONT_SIZE.sm,
-                    color: COLORS.primary,
                     fontWeight: FONT_WEIGHT.medium,
                   }}
                 />
-              </Column> */}
+              </Column>
 
-              <View>
+              {/* <View>
                 {activeTab === 'Tracker' && (
                   <>
                     <TabsCard
@@ -267,7 +285,7 @@ const PatientDashboard = ({navigation}) => {
                     }}
                   />
                 </Row>
-              </View>
+              </View> */}
             </View>
           </View>
 
@@ -296,6 +314,7 @@ const PatientDashboard = ({navigation}) => {
 
       {!Islogin && !isProfileModalVisible && (
         <OnBoardingScreens
+          onSkip={hanldeSkipBoarding}
           onStepsCountChange={setOnBoardingSteps}
           onOnboardingComplete={() => setIsProfileModalVisible(true)}
         />
@@ -315,6 +334,33 @@ const PatientDashboard = ({navigation}) => {
           onPress={handleCompleteProfileModal}
           fontSize="base"
         />
+      </CustomModal>
+
+      <CustomModal
+        visible={IsConditionModal}
+        onClose={() => setIsConditionModal(false)}
+        modalContainerStyle={{width: '80%'}}>
+        <Text style={[styles.complete_profile_modal_title]}>
+          Begin with symptom tracking for healthier{'\n'} outcomes.
+        </Text>
+        <CustomButton
+          text="Track My Symptoms"
+          size="small"
+          variant="primary"
+          fullWidth
+          onPress={handleCompleteProfileModal}
+          fontSize="sm"
+        />
+        <Row align="center" justify="center" style={{marginTop: 10}}>
+          <TouchableOpacity
+            onPress={() => {
+              setIsConditionModal(!IsConditionModal);
+            }}>
+            <Text style={[commonstyles.textPrimary, commonstyles.fontMedium]}>
+              Skip
+            </Text>
+          </TouchableOpacity>
+        </Row>
       </CustomModal>
     </>
   );

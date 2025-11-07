@@ -10,7 +10,7 @@ import {
 export default styles = StyleSheet.create({
   main_card: {
     paddingVertical: verticalScale(20),
-    paddingHorizontal: scale(16),
+    paddingHorizontal: scale(12),
     borderWidth: 0.5,
     borderColor: COLORS.borderSecondary,
     borderRadius: scale(15),
@@ -49,10 +49,7 @@ export default styles = StyleSheet.create({
     marginTop: verticalScale(25),
   },
   textInput: {
-    height: verticalScale(45),
-    // borderWidth: 1,
-    // borderColor: 'rgba(110, 110, 110, 0.25)',
-    // marginBottom: verticalScale(10),
+    // height: verticalScale(50),
   },
   TextInputcontainerStyle: {
     marginBottom: verticalScale(12),
@@ -68,7 +65,7 @@ export default styles = StyleSheet.create({
   // gender
 
   genderContainer: {
-    marginBottom: verticalScale(16),
+    marginBottom: verticalScale(14),
   },
   // gender
 
@@ -85,8 +82,7 @@ export default styles = StyleSheet.create({
     marginTop: verticalScale(7),
   },
   EmailVerfiedModalStyle: {
-    width: '85%',
-    paddingVertical: verticalScale(20),
+    width: '90%',
   },
 
   // profile_ modal

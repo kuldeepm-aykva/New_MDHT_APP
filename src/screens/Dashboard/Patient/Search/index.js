@@ -8,6 +8,7 @@ import CustomTextInput from '../../../../components/forms/TextInput';
 import {scale} from '../../../../constants/responsive';
 import ListCard from '../../common/ListCard';
 import styles from './styles';
+import commonstyles from '../../../../constants/common';
 
 const DashboardSearch = () => {
   const data = [
@@ -54,7 +55,10 @@ const DashboardSearch = () => {
           <Column style={[styles.ListCardContainer]}>
             {data.map((item, index) => {
               return (
-                <ListCard key={index} style={[styles.ListCardStyle]}>
+                <ListCard
+                  key={index}
+                  list_item_style={[commonstyles.bgWhite]}
+                  Conatinerstyle={[styles.ListCardStyle]}>
                   <Text style={[styles.text]}>{item}</Text>
                 </ListCard>
               );

@@ -33,6 +33,9 @@ export const  COLORS = {
   textDark: '#1E1E1E',
   textDisabled: '#AEAEAE',
   textInverse: '#FFFFFF',
+  textTeritary:"#333333",
+  textTeritaryLight:"rgba(51, 51, 51, 0.8)",
+  textTeritaryHalfLight:"rgba(51, 51, 51, 0.4)",
 
   // Border colors
   borderPrimary: '#075284',

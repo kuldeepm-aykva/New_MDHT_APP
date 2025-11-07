@@ -18,7 +18,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import InfoCards from './InfoCards';
 import {useNavigation} from '@react-navigation/native';
 
-const OnBoardingScreens = ({onStepsCountChange, onOnboardingComplete}) => {
+const OnBoardingScreens = ({onStepsCountChange, onOnboardingComplete,onSkip}) => {
   const navigation = useNavigation();
   const CarePlaner = [
     {
@@ -150,7 +150,7 @@ const OnBoardingScreens = ({onStepsCountChange, onOnboardingComplete}) => {
         subtitle={onboardingSteps[currentStep].subtitle}
         currentStep={currentStep}
         totalSteps={onboardingSteps.length}
-        onSkip={handleSkip}
+        onSkip={onSkip}
         onNext={handleNext}
         onDotPress={handleDotPress}
       />

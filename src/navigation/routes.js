@@ -20,4 +20,9 @@ export const ROUTES = {
   PatientDashboard: 'PatientDashboard',
   DashboardSearch: 'DashboardSearch',
   CompleteProfile: 'CompleteProfile',
+
+  // Health tracker
+  AddHealthTrackerCondition: 'AddHealthTrackerCondition',
+  SearchHealthTracker:"SearchHealthTracker",
+  SingleHealthTracker:"SingleHealthTracker",
 };

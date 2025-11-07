@@ -66,7 +66,7 @@ export default Footer;
 const styles = StyleSheet.create({
   main_container: {
     position: 'relative',
-    // backgroundColor: 'red', 
+    backgroundColor: COLORS.white, 
     paddingBottom:
       Platform.OS === 'ios' ? verticalScale(30) : verticalScale(20),
   },

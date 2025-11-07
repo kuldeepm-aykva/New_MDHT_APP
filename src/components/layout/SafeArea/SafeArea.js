@@ -1,12 +1,13 @@
-import { View, Text, StatusBar } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {View, Text, StatusBar} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {COLORS} from '../../../constants';
 
 export const SafeArea = ({
   children,
   backgroundColor = '#fff',
   edges = ['top', 'bottom', 'left', 'right'],
-  statusBarStyle = 'dark-content',
-  statusBarColor,
+  statusBarStyle = 'light-content',
+  statusBarColor = COLORS.transparent,
   style,
 }) => {
   const insets = useSafeAreaInsets();
@@ -19,8 +20,7 @@ export const SafeArea = ({
     <>
       <StatusBar
         barStyle={statusBarStyle}
-        backgroundColor={statusBarColor || backgroundColor}
-      ></StatusBar>
+        backgroundColor={statusBarColor || backgroundColor}></StatusBar>
 
       <View
         style={[
@@ -33,8 +33,7 @@ export const SafeArea = ({
             backgroundColor: backgroundColor,
           },
           style,
-        ]}
-      >
+        ]}>
         {children}
       </View>
     </>

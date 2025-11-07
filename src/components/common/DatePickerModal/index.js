@@ -98,6 +98,16 @@ const DatePickerModal = ({
               borderRadius: RADIUS.lg,
               marginBottom: verticalScale(10),
             },
+            year: {
+              borderColor: COLORS.borderSecondary,
+              borderWidth: 0.5,
+              borderRadius: RADIUS.md,
+            },
+            month: {
+              borderColor: COLORS.borderSecondary,
+              borderWidth: 0.5,
+              borderRadius: RADIUS.md,
+            },
           }}
           components={{
             IconPrev: (

@@ -1,5 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { scale, verticalScale } from '../../../constants/responsive';
+import {StyleSheet} from 'react-native';
+import {scale, verticalScale} from '../../../constants/responsive';
+import { COLORS } from '../../../constants';
 
 export default styles = StyleSheet.create({
   backdrop: {
@@ -13,8 +14,16 @@ export default styles = StyleSheet.create({
     borderTopLeftRadius: scale(24),
     borderTopRightRadius: scale(24),
   },
-  content_container:{
-    paddingVertical:verticalScale(40),
-    paddingHorizontal:scale(20),
-  }
+  content_container: {
+    paddingVertical: verticalScale(30),
+    paddingHorizontal: scale(20),
+  },
+  dragIndicator: {
+    alignSelf: 'center',
+    width: 60,
+    height: 3,
+    borderRadius: 10,
+    backgroundColor: COLORS.textPrimary,
+    marginTop:verticalScale(10),
+  },
 });

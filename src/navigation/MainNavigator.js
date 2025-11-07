@@ -4,6 +4,9 @@ import PatientDashboard from '../screens/Dashboard/Patient';
 import OnBoardingScreens from '../screens/OnBoardingScreens';
 import DashboardSearch from '../screens/Dashboard/Patient/Search';
 import CompleteProfile from '../screens/Dashboard/Patient/CompleteProfile';
+import AddHealthTrackerCondition from '../screens/HealthTracker/AddCondition';
+import SearchHealthTracker from '../screens/HealthTracker/Search';
+import SingleHealthTracker from '../screens/HealthTracker/SingleHealthTracker';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +24,15 @@ const MainNavigator = () => {
       <Stack.Screen
         name={ROUTES.CompleteProfile}
         component={CompleteProfile}></Stack.Screen>
+      <Stack.Screen
+        name={ROUTES.AddHealthTrackerCondition}
+        component={AddHealthTrackerCondition}></Stack.Screen>
+      <Stack.Screen
+        name={ROUTES.SearchHealthTracker}
+        component={SearchHealthTracker}></Stack.Screen>
+      <Stack.Screen
+        name={ROUTES.SingleHealthTracker}
+        component={SingleHealthTracker}></Stack.Screen>
     </Stack.Navigator>
   );
 };

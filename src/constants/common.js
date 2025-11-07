@@ -185,7 +185,7 @@ export const getVariantStyle = ({variant, selected, BorderColor, BgColor}) => {
         baseStyle = {backgroundColor: COLORS.transparent};
         break;
       default:
-        baseStyle = {backgroundColor: COLORS.primary};
+        // baseStyle = {backgroundColor: COLORS.primary};
     }
   }
 
@@ -257,7 +257,7 @@ export const getRadiusStyle = ({Radius, CustomRadius}) => {
     case 'full':
       return {borderRadius: RADIUS.full};
     default:
-      return {borderRadius: RADIUS.full};
+      // return {borderRadius: RADIUS.full};
   }
 };
 

@@ -949,7 +949,7 @@ PODS:
     - React-debug
   - react-native-date-picker (5.0.13):
     - React-Core
-  - react-native-image-picker (7.2.3):
+  - react-native-image-picker (7.1.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1396,7 +1396,7 @@ SPEC CHECKSUMS:
   React-logger: 55764cd993880c6f887505854581c9faf68feff2
   React-Mapbuffer: 15dfcfeb4428d8799cce75e7fe85b18b706029e0
   react-native-date-picker: 2eca217a8fb09c517f5bb6b23978718c6cec59ec
-  react-native-image-picker: 03e0207e0c3caf5d79e4a47b425156f37a9c7ab0
+  react-native-image-picker: 16b817ac5df3f835fc9d187349e7d9ce8836a260
   react-native-safe-area-context: 758e894ca5a9bd1868d2a9cfbca7326a2b6bf9dc
   React-nativeconfig: b4d4e9901d4cabb57be63053fd2aa6086eb3c85f
   React-NativeModulesApple: 541d64309a3037060cc416db5c8a63ee5884048e

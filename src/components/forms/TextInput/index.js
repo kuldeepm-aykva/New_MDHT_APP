@@ -5,6 +5,12 @@ import {Row} from '../../layout';
 import {COLORS} from '../../../constants';
 import {DynamicIcon} from '../../common/Icon';
 import {scale} from '../../../constants/responsive';
+import {
+  getTextVariantStyle,
+  getRadiusStyle,
+  getFontSizeStyle,
+  getVariantStyle,
+} from '../../../constants/common';
 
 const CustomTextInput = ({
   label,
@@ -45,6 +51,14 @@ const CustomTextInput = ({
   error,
   flex = 1,
   RightIconContainerStyle,
+  fontSize,
+  TextColor,
+  BorderColor,
+  BgColor,
+  CustomRadius,
+  variant,
+  selected = false,
+  Radius,
 }) => {
   return (
     <View style={[styles.container, {flex}, containerStyle]}>
@@ -83,7 +97,7 @@ const CustomTextInput = ({
       </Row>
 
       {/* Input + Icons */}
-      <Row align="center" justify='space-between' style={styles.inputContainer}>
+      <Row align="center" justify="space-between" style={styles.inputContainer}>
         {leftIcon && (
           <TouchableOpacity
             onPress={handleLeftIconClick}
@@ -100,6 +114,10 @@ const CustomTextInput = ({
         <TextInput
           style={[
             styles.input,
+            getRadiusStyle({Radius, CustomRadius}),
+            getFontSizeStyle({fontSize}),
+            getTextVariantStyle({variant, selected, TextColor}),
+            getVariantStyle({variant, selected, BorderColor, BgColor}),
             icon ? {paddingRight: scale(40)} : null,
             leftIcon ? {paddingLeft: scale(40)} : null,
             !editable && styles.disabledInput,
@@ -121,7 +139,7 @@ const CustomTextInput = ({
         {icon && (
           <TouchableOpacity
             onPress={handleIconClick}
-            style={[styles.RightIconContainer,RightIconContainerStyle]}
+            style={[styles.RightIconContainer, RightIconContainerStyle]}
             disabled={!handleIconClick}>
             <DynamicIcon
               type={iconType || 'Feather'}

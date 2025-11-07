@@ -54,10 +54,10 @@ export default styles = StyleSheet.create({
   btnTextDisabled: {
     opacity: 0.6,
   },
-  iconLeft: {
-    marginRight: scale(8),
-  },
-  iconRight: {
-    marginLeft: scale(8),
-  },
+  // iconLeft: {
+  //   marginRight: scale(8),
+  // },
+  // iconRight: {
+  //   marginLeft: scale(8),
+  // },
 });

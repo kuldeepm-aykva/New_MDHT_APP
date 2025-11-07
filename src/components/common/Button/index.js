@@ -28,7 +28,7 @@ const CustomButton = ({
   iconSize,
   iconPosition = 'left',
   selected = false,
-  Radius = 'full',
+  Radius,
   fontSize,
   TextColor,
   BorderColor,
@@ -71,7 +71,7 @@ const CustomButton = ({
           {children ? (
             children
           ) : (
-            <Row align="center" justify="center">
+            <Row align="center" justify="center" spacing={3}>
               {icon && iconPosition === 'left' && (
                 <DynamicIcon
                   type={icontype}

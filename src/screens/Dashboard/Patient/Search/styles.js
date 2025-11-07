@@ -13,9 +13,9 @@ export default styles = StyleSheet.create({
     fontSize: FONT_SIZE.base,
     fontWeight: FONT_WEIGHT.medium,
   },
-  NoResult:{
+  NoResult: {
     color: COLORS.textPrimary,
     fontSize: FONT_SIZE.base,
     fontWeight: FONT_WEIGHT.medium,
-  }
+  },
 });

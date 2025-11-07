@@ -47,7 +47,7 @@ const InfoCards = ({
           }}
         />
         <CustomButton
-          text={currentStep === totalSteps - 1 ? 'Next' : 'Next'}
+          text={currentStep === totalSteps - 1 ? 'Done' : 'Next'}
           size="small"
           onPress={onNext}
           btnStyle={{

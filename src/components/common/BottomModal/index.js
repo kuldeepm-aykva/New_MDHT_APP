@@ -1,9 +1,9 @@
 import {
   View,
-  Modal,
-  TouchableWithoutFeedback,
   Dimensions,
   Animated,
+  Modal,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {useEffect, useRef, useState} from 'react';
 const {height: screenHeight} = Dimensions.get('window');
@@ -23,7 +23,7 @@ const BottomModal = ({
     if (visible) {
       Animated.timing(slideAnim, {
         toValue: screenHeight - contentHeight,
-        duration: 1000,
+        duration: 250,
         useNativeDriver: false,
       }).start();
     } else {
@@ -53,9 +53,12 @@ const BottomModal = ({
             backgroundColor,
           },
         ]}>
+        <View style={styles.dragIndicator} />
+
         <View
           style={[styles.content_container]}
           onLayout={event => setContentHeight(event.nativeEvent.layout.height)}>
+
           {children}
         </View>
       </Animated.View>

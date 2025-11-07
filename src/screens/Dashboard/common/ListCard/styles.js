@@ -11,14 +11,11 @@ export default styles = StyleSheet.create({
   },
   list_item: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.transparent,
     paddingVertical: scale(17),
     paddingHorizontal: scale(17),
     borderRadius: scale(15),
     marginLeft: scale(7),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   leftCurve: {
     position: 'absolute',

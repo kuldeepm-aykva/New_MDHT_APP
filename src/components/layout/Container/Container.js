@@ -1,11 +1,6 @@
-import {
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Keyboard,
-} from 'react-native';
+import {View, KeyboardAvoidingView, ScrollView, Keyboard} from 'react-native';
 import {styles} from './Container.styles';
+import {SCREEN_HEIGHT} from '../../../constants/responsive';
 
 export const Container = ({
   children,
@@ -37,8 +32,9 @@ export const Container = ({
     }
   };
   const containerStyle = [
-    styles.container,{flex}
-    ,{
+    styles.container,
+    {flex},
+    {
       padding: getPadding(),
       backgroundColor: backgroundColor,
     },
@@ -80,8 +76,29 @@ export const Container = ({
       </ScrollView>
     );
   }
+  // if (scrollable && !keyboardAware) {
+  //   return (
+  //     <ScrollView
+  //       style={[styles.container, style]}
+  //       contentContainerStyle={[
+  //         {
+  //           padding: getPadding(),
+  //           backgroundColor: backgroundColor,
+  //           minHeight: SCREEN_HEIGHT,
+  //         },
+  //         centered && {justifyContent: 'center', alignItems: 'center'},
+  //         contentContainerStyle,
+  //       ]}
+  //       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+  //       refreshControl={refreshControl}>
+  //       {children}
+  //     </ScrollView>
+  //   );
+  // }
 
   // Scrollable and keyboard aware container
+
+  
   return (
     <KeyboardAvoidingView
       style={[styles.container, {flex: 1}]}

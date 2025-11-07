@@ -26,6 +26,7 @@ import {OTpValidation} from '../../../Auth/Patient/Otp/validation';
 import {formatDate} from '../../../../utils/validation';
 import DatePickerModal from '../../../../components/common/DatePickerModal';
 import BottomModal from '../../../../components/common/BottomModal';
+import {handleTakePhoto, handleUploadFromGallery} from '../../../../utils/imagePicker';
 
 const CompleteProfile = ({navigation}) => {
   const [ImageModal, setImageModal] = useState(false);
@@ -91,6 +92,23 @@ const CompleteProfile = ({navigation}) => {
     }
   };
 
+  const handleGallery = () => {
+    handleUploadFromGallery({
+      setImage: setProfiledata,
+      setErrors: seterrors,
+      setModal: setImageModal,
+      key: 'UserProfile',
+    });
+  };
+
+  const handleCamera = () => {
+    handleTakePhoto({
+      setImage: setProfiledata,
+      setErrors: seterrors,
+      setModal: setImageModal,
+      key: 'UserProfile',
+    });
+  };
   const allFieldsFilled =
     Profiledata.UserProfile &&
     Profiledata.fname &&
@@ -118,7 +136,7 @@ const CompleteProfile = ({navigation}) => {
         style={{paddingTop: scale(5)}}
         statusBarColor={COLORS.transparent}
         statusBarStyle="light-content">
-        <Container scrollable backgroundColor={COLORS.white}>
+        <Container scrollable keyboardAware backgroundColor={COLORS.white}>
           <View style={[styles.main_card]}>
             {/* Profile Picture */}
             <View>
@@ -174,6 +192,7 @@ const CompleteProfile = ({navigation}) => {
                 labelStyle={[styles.labeltextstyle]}
                 keyboardType="default"
                 value={Profiledata.fname}
+                Radius="lg"
                 onChangeText={text =>
                   setProfiledata(prev => ({...prev, fname: text}))
                 }
@@ -338,7 +357,12 @@ const CompleteProfile = ({navigation}) => {
             <Text style={styles.modal_subtitle}>
               We have sent a verification code to
             </Text>
-            <Text style={[commonstyles.fontSemiBold, commonstyles.font14]}>
+            <Text
+              style={[
+                commonstyles.fontSemiBold,
+                commonstyles.font14,
+                commonstyles.textPrimary,
+              ]}>
               {Profiledata.email || 'abc@gmail.com'}
             </Text>
           </Column>
@@ -347,9 +371,9 @@ const CompleteProfile = ({navigation}) => {
               length={4}
               onOtpChange={handleOtpChange}
               OtpInputStyle={{
-                width: scale(48),
-                height: verticalScale(42),
-                marginTop: verticalScale(20),
+                width: scale(50),
+                height: verticalScale(50),
+                marginTop: verticalScale(35),
                 borderRadius: scale(10),
               }}
             />
@@ -394,6 +418,7 @@ const CompleteProfile = ({navigation}) => {
           />
         </View>
       </CustomModal>
+      {/* email otp verfication modal  */}
 
       {/* Date Picker Modal */}
       <DatePickerModal
@@ -402,7 +427,6 @@ const CompleteProfile = ({navigation}) => {
         date={Profiledata.DOB}
         onDateChange={date => setProfiledata(prev => ({...prev, DOB: date}))}
       />
-      {/* email otp verfication modal  */}
 
       {/* profile updated modal  */}
       <CustomModal
@@ -438,12 +462,12 @@ const CompleteProfile = ({navigation}) => {
         <>
           <TouchableOpacity
             style={[styles.BottomModal_btn]}
-          >
+            onPress={handleCamera}>
             <Text style={[styles.BottomModal_btn_text]}>Take Photo</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.BottomModal_btn]}
-            >
+            onPress={handleGallery}
+            style={[styles.BottomModal_btn]}>
             <Text style={[styles.BottomModal_btn_text]}>
               Upload from Gallery
             </Text>
