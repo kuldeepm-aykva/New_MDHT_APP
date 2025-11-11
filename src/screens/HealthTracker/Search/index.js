@@ -67,13 +67,13 @@ const SearchHealthTracker = ({navigation}) => {
                   list_item_style={[styles.list_item_style]}
                   Conatinerstyle={[styles.ListCardStyle]}>
                   <Row align="center" justify="space-between">
-                    <HighlightedText
+                    {/* <HighlightedText
                       text={item}
                       highlight={search}
                       textStyle={styles.text}
                       highlightStyle={[styles.HighlightedText]}
-                    />
-                    {/* <Text style={[styles.text]}>{item}</Text> */}
+                    /> */}
+                    <Text style={[styles.text]}>{item}</Text>
                     <DynamicIcon
                       size={scale(15)}
                       color={COLORS.textTeritary}

@@ -22,7 +22,6 @@ const AddHealthTrackerCondition = ({navigation}) => {
     'Allergies',
     'Other Disease',
     'Other Symptom',
-    
   ];
   return (
     <>
@@ -48,7 +47,12 @@ const AddHealthTrackerCondition = ({navigation}) => {
           <Column align="center">
             <Row justify="center" style={[styles.diease_container]}>
               {data.map((item, index) => (
-                <TouchableOpacity key={index} style={[styles.diease]}>
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate(ROUTES.SearchHealthTracker);
+                  }}
+                  style={[styles.diease]}>
                   <Text style={[styles.diease_text]}>{item}</Text>
                 </TouchableOpacity>
               ))}

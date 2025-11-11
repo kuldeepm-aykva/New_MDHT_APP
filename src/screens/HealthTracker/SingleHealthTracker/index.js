@@ -7,7 +7,9 @@ import {Column, Container, SafeArea} from '../../../components/layout';
 import {scale} from '../../../constants/responsive';
 import styles from './styles';
 import CustomButton from '../../../components/common/Button';
-import {RADIUS} from '../../../constants';
+import {COLORS, FONT_SIZE, FONT_WEIGHT, SPACING} from '../../../constants';
+import commonstyles from '../../../constants/common';
+import CustomText from '../../../components/common/CustomText/CustomText';
 
 const SingleHealthTracker = ({navigation}) => {
   return (
@@ -20,29 +22,43 @@ const SingleHealthTracker = ({navigation}) => {
         NotificationPress
       />
       <SafeArea style={{paddingTop: scale(0)}}>
-        <Container scrollable style={{paddingVertical: 10}}>
-          <Column
-            align="center"
-            justify="space-between"
-            style={[styles.main_card]}>
-            <View>
-              <Text>Acyanotic Heart Disease</Text>
-              <Text>
-                Acyanotic heart disease refers to a group of congenital heart
-                defects where oxygen-rich blood continues to circulate through
-                the body, so the skin doesn't turn blue (no cyanosis). Common
-                types include ventricular septal defect (VSD) and atrial septal
-                defect (ASD). It may cause symptoms like fatigue, rapid
-                breathing, or poor growth in children.
-              </Text>
-            </View>
-            <CustomButton
-              fullWidth
-              Radius="xl"
-              variant='primary'
-              text="Start Symptom Tracking"
-            />
-          </Column>
+        <Container>
+          <View style={[styles.main_card]}>
+            <Container scrollable padding="none">
+              <Column>
+                <CustomText
+                  TextColor={COLORS.black}
+                  fontWeight={FONT_WEIGHT.medium}
+                  BgColor={COLORS.transparent}
+                  mb="sm">
+                  Acyanotic Heart Disease
+                </CustomText>
+                <CustomText
+                  TextColor={COLORS.textPrimary}
+                  BgColor={COLORS.transparent}
+                  fontSize={FONT_SIZE.sm}
+                  fontWeight={FONT_WEIGHT.light}>
+                
+                   Acyanotic heart disease refers to a group of congenital heart
+                  defects where oxygen-rich blood continues to circulate through
+                  the body, so the skin doesn't turn blue (no cyanosis). Common
+                  types include ventricular septal defect (VSD) and atrial
+                  septal defect (ASD). It may cause symptoms like fatigue, rapid
+                  breathing, or poor growth in children.
+                </CustomText>
+              </Column>
+            </Container>
+            <Container padding='none' style={[styles.btn_container]} flex={0}>
+              <CustomButton
+                fullWidth
+                Radius="lg"
+                variant="primary"
+                fontSize="sm"
+                TextColor={COLORS.white}
+                text="Start Symptom Tracking"
+              />
+            </Container>
+          </View>
         </Container>
       </SafeArea>
 

@@ -36,7 +36,7 @@ const PatientDashboard = ({navigation}) => {
       subtitle: `Today's\nRecords`,
       value: 3,
       Icon: HealthTracker_Icon,
-      onPress: () => console.log('Health Tracker pressed'),
+      onPress: () => navigation.navigate(ROUTES.HealthTracker),
     },
     {
       title: 'Appointments',

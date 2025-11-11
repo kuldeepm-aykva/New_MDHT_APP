@@ -22,7 +22,8 @@ export const ROUTES = {
   CompleteProfile: 'CompleteProfile',
 
   // Health tracker
+  HealthTracker: 'HealthTracker',
   AddHealthTrackerCondition: 'AddHealthTrackerCondition',
-  SearchHealthTracker:"SearchHealthTracker",
-  SingleHealthTracker:"SingleHealthTracker",
+  SearchHealthTracker: 'SearchHealthTracker',
+  SingleHealthTracker: 'SingleHealthTracker',
 };
