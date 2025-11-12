@@ -1,11 +1,4 @@
-import {
-  Animated,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Button,
-} from 'react-native';
+import {Text, Animated, Image, TouchableOpacity} from 'react-native';
 import {useState, useEffect, useRef} from 'react';
 import {styles} from './styles';
 import Intro1 from '../../assets/svgImage/common/Intro1.png';
@@ -14,13 +7,21 @@ import Intro3 from '../../assets/svgImage/common/Intro3.png';
 import Intro4 from '../../assets/svgImage/common/Intro4.png';
 import SafeArea from '../../components/layout/SafeArea/SafeArea';
 import Container from '../../components/layout/Container/Container';
-import {COLORS, FONT_WEIGHT} from '../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  LINE_HEIGHT,
+  SPACING,
+} from '../../constants';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomButton from '../../components/common/Button';
 import {Column, Row} from '../../components/layout';
 import {scale} from '../../constants/responsive';
 import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../../navigation/routes';
+import CustomText from '../../components/common/CustomText/CustomText';
 
 const InfoScreen1 = () => {
   const navigation = useNavigation();
@@ -94,8 +95,25 @@ const InfoScreen1 = () => {
           start={{x: 0.1, y: 0}}
           end={{x: 0.6, y: 1}}
           style={styles.bottom_container}>
-          <Text style={styles.heading}>{headings[InfoScreen]}</Text>
-          <Text style={styles.subtext}>{subtexts[InfoScreen]}</Text>
+          <CustomText
+            fontWeight={FONT_WEIGHT.bold}
+            TextColor={COLORS.white}
+            textAlign="center"
+            mb={SPACING.sm}
+            fontSize={FONT_SIZE.lg}
+            fontFamily={FONT_FAMILY.primary}>
+            {headings[InfoScreen]}
+          </CustomText>
+          <CustomText
+            fontWeight={FONT_WEIGHT.regular}
+            TextColor={COLORS.white}
+            textAlign="center"
+            lineHeight={LINE_HEIGHT.md}
+            fontSize={FONT_SIZE.base}
+            mb={SPACING.lg}
+            fontFamily={FONT_FAMILY.primary}>
+            {subtexts[InfoScreen]}
+          </CustomText>
 
           {/* Dots indicator */}
           <Row

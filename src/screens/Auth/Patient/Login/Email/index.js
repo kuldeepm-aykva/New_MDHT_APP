@@ -25,8 +25,15 @@ import {EmailLoginValidation} from './validation';
 import CommonAuthStyles from '../../../styles';
 import commonstyles from '../../../../../constants/common';
 import {scale, verticalScale} from '../../../../../constants/responsive';
-import {COLORS, FONT_SIZE} from '../../../../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../../../../constants';
 import styles from './styles';
+import CustomText from '../../../../../components/common/CustomText/CustomText';
 
 const EmailLogin = ({navigation}) => {
   // email / password data store usestate
@@ -77,11 +84,23 @@ const EmailLogin = ({navigation}) => {
           <MDLogo width={scale(180)} height={verticalScale(120)} />
         </Center>
 
-        <Text style={[commonstyles.title]}>Login To Your Account</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Login To Your Account
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.regular}>
           Login with your details or with your{'\n'} Facebook, Google or Apple
           account.
-        </Text>
+        </CustomText>
 
         {/* textinput  */}
         <View style={[styles.form_container]}>
@@ -91,6 +110,7 @@ const EmailLogin = ({navigation}) => {
               flex={0}
               placeholder="Enter Your Email Address *"
               value={Data.Email}
+              TextColor={COLORS.textDark}
               onChangeText={text => handleInputChange('Email', text)}
               handleIconClick={() => togglePasswordVisibility('PasswordShow')}
               error={Error.EmailError}
@@ -105,6 +125,7 @@ const EmailLogin = ({navigation}) => {
               iconType="Feather"
               secureTextEntry={!showPassword.PasswordShow}
               value={Data.Password}
+              TextColor={COLORS.textDark}
               onChangeText={text => handleInputChange('Password', text)}
               handleIconClick={() => togglePasswordVisibility('PasswordShow')}
               error={Error.PasswordError}
@@ -123,27 +144,25 @@ const EmailLogin = ({navigation}) => {
               onPress={() => {
                 navigation.navigate(ROUTES.LoginPhoneNumber);
               }}>
-              <Text
-                style={[
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  commonstyles.font12,
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Use Phone Number Instead
-              </Text>
+              </CustomText>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(ROUTES.ForgetPhone);
               }}>
-              <Text
-                style={[
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  commonstyles.font12,
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Forget Password ?
-              </Text>
+              </CustomText>
             </TouchableOpacity>
           </Row>
           <CustomButton
@@ -154,9 +173,7 @@ const EmailLogin = ({navigation}) => {
                 ? 'outline'
                 : 'primary'
             }
-            btnStyle={{
-              marginTop: verticalScale(40),
-            }}
+            mt={SPACING.xxl}
             BorderColor={COLORS.borderSecondary}
             fontSize="sm"
             TextColor={
@@ -181,23 +198,24 @@ const EmailLogin = ({navigation}) => {
         <SocialLogin />
 
         <Center style={[CommonAuthStyles.Already_acc_container]}>
-          <Text style={[CommonAuthStyles.policy_text]}>
+          <CustomText
+            TextColor={COLORS.textPrimary}
+            fontSize={FONT_SIZE.sm}
+            fontFamily={FONT_FAMILY.primary}>
             New to MDHealthTrak?{' '}
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate(ROUTES.PhoneNumberVerification);
+                navigation.navigate(ROUTES.RolSelection);
               }}>
-              <Text
-                style={[
-                  CommonAuthStyles.policy_text,
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  {top: verticalScale(4)},
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Sign Up
-              </Text>
+              </CustomText>
             </TouchableOpacity>
-          </Text>
+          </CustomText>
         </Center>
       </Container>
     </SafeArea>

@@ -24,11 +24,18 @@ import {MDLogo} from '../../../../../../assets/svgImage';
 // styles
 import commonstyles from '../../../../../../constants/common';
 import CommonAuthStyles from '../../../../styles';
-import {COLORS, FONT_SIZE} from '../../../../../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../../../../../constants';
 import {scale, verticalScale} from '../../../../../../constants/responsive';
 
 // routes
 import {ROUTES} from '../../../../../../navigation/routes';
+import CustomText from '../../../../../../components/common/CustomText/CustomText';
 
 const ForgetPhone = ({navigation}) => {
   // phone state
@@ -73,11 +80,23 @@ const ForgetPhone = ({navigation}) => {
           <MDLogo width={scale(180)} height={verticalScale(120)} margin={5} />
         </Center>
 
-        <Text style={[commonstyles.title]}>Forgot Password?</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Forgot Password?
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.light}>
           Don't worry! Reset your password {'\n'}and get back to your account.
-        </Text>
-
+        </CustomText>
+        
         {/* text input  */}
         <View style={[CommonAuthStyles.form_container]}>
           <Row align="center" justify="center" spacing={6}>
@@ -125,6 +144,7 @@ const ForgetPhone = ({navigation}) => {
               placeholder="Enter Your Phone Number *"
               keyboardType="number-pad"
               isRequired
+              TextColor={COLORS.textDark}
               placeholderTextColor={COLORS.textPrimary}
               value={phoneNumber}
               maxLength={getMaxLengthForCountry(selectedCode.iso_code) || 15}
@@ -140,14 +160,12 @@ const ForgetPhone = ({navigation}) => {
               onPress={() => {
                 navigation.navigate(ROUTES.ForgetEmail);
               }}>
-              <Text
-                style={[
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  commonstyles.font12,
-                ]}>
+              <CustomText
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Use Email Instead
-              </Text>
+              </CustomText>
             </TouchableOpacity>
           </Row>
 
@@ -155,9 +173,7 @@ const ForgetPhone = ({navigation}) => {
             text="Continue"
             fullWidth
             variant={phoneNumber.length === 0 ? 'outline' : 'primary'}
-            btnStyle={{
-              marginTop: verticalScale(35),
-            }}
+            mt={SPACING.xl}
             BorderColor={COLORS.borderSecondary}
             fontSize="sm"
             TextColor={
@@ -168,23 +184,24 @@ const ForgetPhone = ({navigation}) => {
         </View>
 
         <Center style={[CommonAuthStyles.Already_acc_container]}>
-          <Text style={[CommonAuthStyles.policy_text]}>
-            Back to{' '}
+          <CustomText
+            TextColor={COLORS.textPrimary}
+            fontSize={FONT_SIZE.sm}
+            fontFamily={FONT_FAMILY.primary}>
+            Back to {""}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(ROUTES.LoginPhoneNumber);
               }}>
-              <Text
-                style={[
-                  CommonAuthStyles.policy_text,
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  {top: verticalScale(4)},
-                ]}>
+              <CustomText
+                style={{top:verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Login
-              </Text>
+              </CustomText>
             </TouchableOpacity>
-          </Text>
+          </CustomText>
         </Center>
 
         {/* country modal picker  */}

@@ -7,7 +7,13 @@ import {
   Row,
   SafeArea,
 } from '../../components/layout';
-import {COLORS, FONT_SIZE} from '../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../constants';
 import Styles from './styles';
 import commonstyles from '../../constants/common';
 import {Doctor, FamilyIcon, MDLogo, PatientIcon} from '../../assets/svgImage';
@@ -16,6 +22,7 @@ import CustomButton from '../../components/common/Button';
 import styles from './styles';
 import {DynamicIcon} from '../../components/common/Icon';
 import {ROUTES} from '../../navigation/routes';
+import CustomText from '../../components/common/CustomText/CustomText';
 
 const RoleSelection = ({navigation}) => {
   const [selectedRole, setselectedRole] = useState('');
@@ -41,10 +48,22 @@ const RoleSelection = ({navigation}) => {
   return (
     <SafeArea backgroundColor={COLORS.white} statusBarStyle="dark-content">
       <Container padding="large" centered>
-        <Text style={[commonstyles.title]}>Welcome!</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Welcome!
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.regular}>
           {roleText[selectedRole] || 'Pick a role to get started.'}
-        </Text>
+        </CustomText>
 
         <Row align="center" justify="center" style={styles.logo_container}>
           {selectedRole === 'patient' ? (
@@ -134,64 +153,59 @@ const RoleSelection = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={[styles.login_container]}>
-            <Text style={[styles.policy_text]}>
+            <CustomText
+              TextColor={COLORS.textPrimary}
+              fontSize={FONT_SIZE.sm}
+              fontFamily={FONT_FAMILY.primary}>
               Already Have an Account ?
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate(ROUTES.LoginPhoneNumber);
-                }}
-                style={[commonstyles.paddingzero, commonstyles.marginZero]}>
-                <Text
-                  style={[
-                    styles.policy_text,
-                    commonstyles.primary,
-                    commonstyles.fontSemiBold,
-                    {
-                      top: verticalScale(4),
-                    },
-                  ]}>
-                  {' '}
+                }}>
+                <CustomText
+                  style={{top: verticalScale(3)}}
+                  fontWeight={FONT_WEIGHT.semiBold}
+                  fontSize={FONT_SIZE.sm}
+                  TextColor={COLORS.primary}>
                   Login
-                </Text>
+                </CustomText>
               </TouchableOpacity>
-            </Text>
+            </CustomText>
           </View>
 
           <View style={[styles.policy_terms]}>
-            <Text style={[styles.policy_text]}>
-              By continuing you agree to our{' '}
-            </Text>
-            <Text style={[styles.login_text]}>
+            <CustomText
+              TextColor={COLORS.textPrimary}
+              fontSize={FONT_SIZE.sm}
+              textAlign="center"
+              fontFamily={FONT_FAMILY.primary}>
+              By continuing you agree to our{'\n'}
               <TouchableOpacity
-                style={[commonstyles.paddingzero, commonstyles.marginZero]}>
-                <Text
-                  style={[
-                    styles.policy_text,
-                    commonstyles.primary,
-                    commonstyles.fontSemiBold,
-                    {
-                      top: verticalScale(4),
-                    },
-                  ]}>
+                onPress={() => {
+                  navigation.navigate(ROUTES);
+                }}>
+                <CustomText
+                  style={{top: verticalScale(3)}}
+                  fontWeight={FONT_WEIGHT.semiBold}
+                  fontSize={FONT_SIZE.sm}
+                  TextColor={COLORS.primary}>
                   Terms of Use{' '}
-                </Text>
+                </CustomText>
               </TouchableOpacity>
               and{' '}
               <TouchableOpacity
-                style={[commonstyles.paddingzero, commonstyles.marginZero]}>
-                <Text
-                  style={[
-                    styles.policy_text,
-                    commonstyles.primary,
-                    commonstyles.fontSemiBold,
-                    {
-                      top: verticalScale(4),
-                    },
-                  ]}>
+                onPress={() => {
+                  navigation.navigate(ROUTES);
+                }}>
+                <CustomText
+                  style={{top: verticalScale(3)}}
+                  fontWeight={FONT_WEIGHT.semiBold}
+                  fontSize={FONT_SIZE.sm}
+                  TextColor={COLORS.primary}>
                   Privacy Policy
-                </Text>
+                </CustomText>
               </TouchableOpacity>
-            </Text>
+            </CustomText>
           </View>
         </Center>
       </Container>

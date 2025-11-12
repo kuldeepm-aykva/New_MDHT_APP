@@ -16,7 +16,13 @@ import CustomButton from '../../../../../../components/common/Button';
 import {MDLogo, PatientIcon} from '../../../../../../assets/svgImage';
 
 // styles
-import {COLORS, FONT_SIZE} from '../../../../../../constants/index';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../../../../../constants/index';
 import CommonAuthStyles from '../../../../styles';
 import commonstyles from '../../../../../../constants/common';
 import {scale, verticalScale} from '../../../../../../constants/responsive';
@@ -24,6 +30,7 @@ import {scale, verticalScale} from '../../../../../../constants/responsive';
 // validation
 import {PasswordValidation} from '../../../Signup/PasswordVerification/validation';
 import {ROUTES} from '../../../../../../navigation/routes';
+import CustomText from '../../../../../../components/common/CustomText/CustomText';
 
 // routes
 
@@ -83,11 +90,23 @@ const ResetPassword = ({navigation}) => {
           <MDLogo width={scale(180)} height={verticalScale(120)} margin={5} />
         </Center>
 
-        <Text style={[commonstyles.title]}>Reset Password</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Reset Password
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.light}>
           Use 8+ characters with a capital letter,{'\n'} number, & special
-          symbol
-        </Text>
+          symbol.
+        </CustomText>
 
         <View style={[CommonAuthStyles.form_container]}>
           <Column align="center" justify="center" spacing={12}>
@@ -96,6 +115,7 @@ const ResetPassword = ({navigation}) => {
               flex={0}
               placeholder="Enter New Password *"
               icon
+              TextColor={COLORS.textDark}
               iconSource={showPassword.PasswordShow ? 'eye' : 'eye-off'}
               iconType="Feather"
               secureTextEntry={!showPassword.PasswordShow}
@@ -115,6 +135,7 @@ const ResetPassword = ({navigation}) => {
               flex={0}
               placeholder="Confirm New Password *"
               icon
+              TextColor={COLORS.textDark}
               iconSource={showPassword.ConfirmPasswordShow ? 'eye' : 'eye-off'}
               iconType="Feather"
               secureTextEntry={!showPassword.ConfirmPasswordShow}
@@ -137,9 +158,7 @@ const ResetPassword = ({navigation}) => {
           text="Reset Password"
           fullWidth
           variant={ButttonDisable ? 'outline' : 'primary'}
-          btnStyle={{
-            marginTop: verticalScale(20),
-          }}
+          mt={SPACING.lg}
           BorderColor={COLORS.borderSecondary}
           fontSize="sm"
           TextColor={ButttonDisable ? COLORS.textPrimary : COLORS.white}
@@ -147,23 +166,24 @@ const ResetPassword = ({navigation}) => {
         />
 
         <Center style={[CommonAuthStyles.Already_acc_container]}>
-          <Text style={[CommonAuthStyles.policy_text]}>
-            Back to{' '}
+          <CustomText
+            TextColor={COLORS.textPrimary}
+            fontSize={FONT_SIZE.sm}
+            fontFamily={FONT_FAMILY.primary}>
+            Back to {''}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(ROUTES.LoginPhoneNumber);
               }}>
-              <Text
-                style={[
-                  CommonAuthStyles.policy_text,
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  {top: verticalScale(4)},
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Login
-              </Text>
+              </CustomText>
             </TouchableOpacity>
-          </Text>
+          </CustomText>
         </Center>
       </Container>
     </SafeArea>

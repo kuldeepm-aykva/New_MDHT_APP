@@ -1,8 +1,9 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import CustomButton from '../../components/common/Button';
 import {scale, verticalScale} from '../../constants/responsive';
-import {COLORS, FONT_SIZE, FONT_WEIGHT, RADIUS} from '../../constants';
+import {COLORS, FONT_SIZE, FONT_WEIGHT, RADIUS, SPACING} from '../../constants';
 import {Row} from '../../components/layout';
+import CustomText from '../../components/common/CustomText/CustomText';
 
 const InfoCards = ({
   title,
@@ -16,8 +17,19 @@ const InfoCards = ({
   return (
     <View style={[Styles.info_container]}>
       <View style={Styles.info_cards}>
-        <Text style={Styles.info_cards_title}>{title}</Text>
-        <Text style={Styles.info_cards_Subtitle}>{subtitle}</Text>
+        <CustomText
+          fontSize={FONT_SIZE.base}
+          TextColor={COLORS.textDark}
+          mb={SPACING.sm}
+          fontWeight={FONT_WEIGHT.semiBold}>
+          {title}
+        </CustomText>
+        <CustomText
+          fontSize={FONT_SIZE.sm}
+          TextColor={COLORS.textPrimary}
+          fontWeight={FONT_WEIGHT.regular}>
+          {subtitle}
+        </CustomText>
       </View>
 
       <Row align="center" justify="center" style={Styles.dotsContainer}>
@@ -38,26 +50,22 @@ const InfoCards = ({
           text="Skip"
           size="small"
           onPress={onSkip}
-          btnStyle={{
-            backgroundColor: COLORS.secondary,
-            borderRadius: 13,
-            paddingHorizontal: scale(30),
-            borderWidth: 1,
-            borderColor: COLORS.white,
-          }}
+          BgColor={COLORS.secondary}
+          CustomRadius={RADIUS.lg}
+          BorderColor={COLORS.white}
+          BorderWidth={1}
+          px={SPACING.xl}
         />
         <CustomButton
           text={currentStep === totalSteps - 1 ? 'Done' : 'Next'}
           size="small"
           onPress={onNext}
-          btnStyle={{
-            backgroundColor: COLORS.white,
-            borderRadius: 13,
-            paddingHorizontal: scale(30),
-            borderWidth: 1,
-            borderColor: COLORS.white,
-          }}
-          textStyle={{color: COLORS.primary}}
+          BgColor={COLORS.white}
+          CustomRadius={RADIUS.lg}
+          BorderColor={COLORS.white}
+          px={SPACING.xl}
+          BorderWidth={1}
+          TextColor={COLORS.primary}
         />
       </Row>
     </View>
@@ -80,18 +88,6 @@ const Styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: scale(16),
     padding: scale(20),
-  },
-  info_cards_title: {
-    fontSize: FONT_SIZE.base,
-    color: COLORS.textDark,
-    marginBottom: verticalScale(8),
-    fontWeight: FONT_WEIGHT.semiBold,
-  },
-  info_cards_Subtitle: {
-    fontSize: FONT_SIZE.sm,
-    color: COLORS.textPrimary,
-    fontWeight: FONT_WEIGHT.regular,
-    textAlign: 'left',
   },
   dotsContainer: {
     backgroundColor: COLORS.white,

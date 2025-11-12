@@ -17,7 +17,13 @@ import CountryPickerModal from '../../../../../components/common/CountryPickerMo
 import ErrorMessage from '../../../../../components/common/ErrorMessage';
 
 // styles
-import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../../../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../../../../constants';
 import commonstyles from '../../../../../constants/common';
 import CommonAuthStyles from '../../../styles';
 import {scale, verticalScale} from '../../../../../constants/responsive';
@@ -29,6 +35,7 @@ import {SignUpValidation} from './validation';
 
 // routes
 import {ROUTES} from '../../../../../navigation/routes';
+import CustomText from '../../../../../components/common/CustomText/CustomText';
 
 const PhoneNumberVerification = ({navigation}) => {
   // phone state
@@ -69,12 +76,23 @@ const PhoneNumberVerification = ({navigation}) => {
         <Center style={[CommonAuthStyles.img_container]}>
           <PatientIcon width={180} height={110} margin={5} />
         </Center>
-
-        <Text style={[commonstyles.title]}>Create Your Account</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Create Your Account
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.regular}>
           Verify your phone number to ensure {'\n'} secure access to health
           data.
-        </Text>
+        </CustomText>
 
         {/* textinput  */}
         <View style={[styles.form_container]}>
@@ -123,6 +141,7 @@ const PhoneNumberVerification = ({navigation}) => {
               placeholder="Enter Your Phone Number *"
               keyboardType="number-pad"
               isRequired
+              TextColor={COLORS.textDark}
               placeholderTextColor={COLORS.textPrimary}
               value={phoneNumber}
               maxLength={getMaxLengthForCountry(selectedCode.iso_code) || 15}
@@ -135,9 +154,7 @@ const PhoneNumberVerification = ({navigation}) => {
             text="Send OTP"
             fullWidth
             variant={phoneNumber.length === 0 ? 'outline' : 'primary'}
-            btnStyle={{
-              marginTop: verticalScale(20),
-            }}
+            mt={SPACING.lg}
             BorderColor={COLORS.borderSecondary}
             fontSize="sm"
             TextColor={
@@ -148,23 +165,24 @@ const PhoneNumberVerification = ({navigation}) => {
         </View>
 
         <Center style={[styles.Already_acc_container]}>
-          <Text style={[CommonAuthStyles.policy_text]}>
+          <CustomText
+            TextColor={COLORS.textPrimary}
+            fontSize={FONT_SIZE.sm}
+            fontFamily={FONT_FAMILY.primary}>
             Already Have an Account?{' '}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(ROUTES.LoginPhoneNumber);
               }}>
-              <Text
-                style={[
-                  CommonAuthStyles.policy_text,
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  {top: verticalScale(4)},
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Login
-              </Text>
+              </CustomText>
             </TouchableOpacity>
-          </Text>
+          </CustomText>
         </Center>
 
         {/* country modal picker  */}

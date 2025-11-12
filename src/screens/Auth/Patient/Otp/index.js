@@ -15,7 +15,13 @@ import ErrorMessage from '../../../../components/common/ErrorMessage';
 import OtpInput from '../../../../components/forms/Otp';
 
 // style
-import {COLORS, FONT_SIZE} from '../../../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../../../constants';
 import CommonAuthStyles from '../../styles';
 import commonstyles from '../../../../constants/common';
 import {verticalScale} from '../../../../constants/responsive';
@@ -29,6 +35,7 @@ import {PatientIcon} from '../../../../assets/svgImage';
 import {ROUTES} from '../../../../navigation/routes';
 import {useRoute} from '@react-navigation/native';
 import {OTpValidation} from './validation';
+import CustomText from '../../../../components/common/CustomText/CustomText';
 
 const OTPVerification = ({navigation}) => {
   const route = useRoute();
@@ -79,19 +86,32 @@ const OTPVerification = ({navigation}) => {
         <Center style={[CommonAuthStyles.img_container]}>
           <PatientIcon width={180} height={110} margin={5} />
         </Center>
-
-        <Text style={[commonstyles.title]}>Verify Your Number</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Verify Your Number
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.regular}>
           We have sent a verification code to your {'\n'} registered mobile
           number{' '}
-          <Text style={[commonstyles.fontSemiBold, commonstyles.textPrimary]}>
+          <CustomText
+            fontWeight={FONT_WEIGHT.semiBold}
+            TextColor={COLORS.textPrimary}>
             {type === 'Phone'
               ? '+91 9004991231'
               : type === 'Email'
               ? 'karandesai@gmail.com'
               : ''}
-          </Text>
-        </Text>
+          </CustomText>
+        </CustomText>
 
         {/* otp textinput  */}
         <Column align="center" justify="center">
@@ -106,20 +126,24 @@ const OTPVerification = ({navigation}) => {
         </Column>
 
         <Center style={[CommonAuthStyles.dividerContainer]}>
-          <Text style={[CommonAuthStyles.policy_text]}>
+          <CustomText
+            TextColor={COLORS.textPrimary}
+            fontSize={FONT_SIZE.sm}
+            fontFamily={FONT_FAMILY.primary}>
             Did not receive OTP?{' '}
-            <TouchableOpacity>
-              <Text
-                style={[
-                  CommonAuthStyles.policy_text,
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  {top: verticalScale(4)},
-                ]}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(ROUTES.LoginPhoneNumber);
+              }}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Resend
-              </Text>
+              </CustomText>
             </TouchableOpacity>
-          </Text>
+          </CustomText>
         </Center>
         <CustomButton
           text="Verify OTP"
@@ -127,32 +151,31 @@ const OTPVerification = ({navigation}) => {
           variant={otp.length === 0 ? 'outline' : 'primary'}
           BorderColor={COLORS.borderSecondary}
           fontSize="sm"
-          TextColor={
-            otp.length === 0 ? COLORS.textPrimary : COLORS.white
-          }
+          TextColor={otp.length === 0 ? COLORS.textPrimary : COLORS.white}
           onPress={handleVerify}
         />
         {name === 'ForgetPhone' ? (
           ''
         ) : (
           <Center style={[CommonAuthStyles.Already_acc_container]}>
-            <Text style={[CommonAuthStyles.policy_text]}>
+            <CustomText
+              TextColor={COLORS.textPrimary}
+              fontSize={FONT_SIZE.sm}
+              fontFamily={FONT_FAMILY.primary}>
               Already Have an Account?{' '}
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate(ROUTES.LoginPhoneNumber);
                 }}>
-                <Text
-                  style={[
-                    CommonAuthStyles.policy_text,
-                    commonstyles.primary,
-                    commonstyles.fontSemiBold,
-                    {top: verticalScale(4)},
-                  ]}>
+                <CustomText
+                  style={{top: verticalScale(3)}}
+                  fontWeight={FONT_WEIGHT.semiBold}
+                  fontSize={FONT_SIZE.sm}
+                  TextColor={COLORS.primary}>
                   Login
-                </Text>
+                </CustomText>
               </TouchableOpacity>
-            </Text>
+            </CustomText>
           </Center>
         )}
       </Container>

@@ -1,7 +1,7 @@
 import {normalizeFont} from './responsive';
 
 export const FONT_SIZE = {
-  8:normalizeFont(8),
+  8: normalizeFont(8),
   xs: normalizeFont(10),
   sm: normalizeFont(12),
   base: normalizeFont(14),
@@ -26,25 +26,14 @@ export const LINE_HEIGHT = {
 };
 
 export const FONT_WEIGHT = {
-  light: "300",
-  regular: "400",
-  medium: "500",
-  semiBold: "600",
-  bold: "700",
-  extraBold: "800",
+  light: '300',
+  regular: '400',
+  medium: '500',
+  semiBold: '600',
+  bold: '700',
+  extraBold: '800',
 };
 
 export const FONT_FAMILY = {
-  regular: Platform.select({
-    ios: 'Roboto-Regular',
-    android: 'Roboto-Regular',
-  }),
-  medium: Platform.select({
-    ios: 'Roboto-Regular',
-    android: 'Roboto-Medium',
-  }),
-  bold: Platform.select({
-    ios: 'Roboto-Regular',
-    android: 'Roboto-Bold',
-  }),
+  primary: {},
 };

@@ -19,7 +19,13 @@ import SocialLogin from '../../../../../components/common/Social';
 import {PatientIcon} from '../../../../../assets/svgImage';
 
 // styles
-import {COLORS, FONT_SIZE} from '../../../../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../../../../constants';
 import CommonAuthStyles from '../../../styles';
 import commonstyles from '../../../../../constants/common';
 import {verticalScale} from '../../../../../constants/responsive';
@@ -29,6 +35,7 @@ import styles from './styles';
 import {PasswordValidation} from './validation';
 // routes
 import {ROUTES} from '../../../../../navigation/routes';
+import CustomText from '../../../../../components/common/CustomText/CustomText';
 
 const PasswordVerification = ({navigation}) => {
   // state for password and ConfirmPassword
@@ -85,11 +92,23 @@ const PasswordVerification = ({navigation}) => {
           <PatientIcon width={180} height={110} margin={5} />
         </Center>
 
-        <Text style={[commonstyles.title]}>Create Your Account</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Create Your Account
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.regular}>
           Use 8+ characters with a capital letter, {'\n'} number, & special
           symbol
-        </Text>
+        </CustomText>
 
         <View style={[styles.form_container]}>
           <Column align="center" justify="center" spacing={12}>
@@ -98,6 +117,7 @@ const PasswordVerification = ({navigation}) => {
               flex={0}
               placeholder="Enter Password *"
               icon
+              TextColor={COLORS.textDark}
               iconSource={showPassword.PasswordShow ? 'eye' : 'eye-off'}
               iconType="Feather"
               iconColor={
@@ -115,6 +135,7 @@ const PasswordVerification = ({navigation}) => {
             {/*  Confirm Password field */}
             <CustomTextInput
               flex={0}
+              TextColor={COLORS.textDark}
               placeholder="Confirm Password *"
               icon
               iconSource={showPassword.ConfirmPasswordShow ? 'eye' : 'eye-off'}
@@ -139,9 +160,7 @@ const PasswordVerification = ({navigation}) => {
           text="SIGN UP"
           fullWidth
           variant={ButtonDisable ? 'outline' : 'primary'}
-          btnStyle={{
-            marginTop: verticalScale(20),
-          }}
+          mt={SPACING.lg}
           BorderColor={COLORS.borderSecondary}
           TextColor={ButtonDisable ? COLORS.textPrimary : COLORS.white}
           fontSize="sm"
@@ -158,23 +177,24 @@ const PasswordVerification = ({navigation}) => {
         <SocialLogin />
 
         <Center style={[styles.Already_acc_container]}>
-          <Text style={[CommonAuthStyles.policy_text]}>
+          <CustomText
+            TextColor={COLORS.textPrimary}
+            fontSize={FONT_SIZE.sm}
+            fontFamily={FONT_FAMILY.primary}>
             Already Have an Account?{' '}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(ROUTES.LoginPhoneNumber);
               }}>
-              <Text
-                style={[
-                  CommonAuthStyles.policy_text,
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  {top: verticalScale(4)},
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Login
-              </Text>
+              </CustomText>
             </TouchableOpacity>
-          </Text>
+          </CustomText>
         </Center>
       </Container>
     </SafeArea>

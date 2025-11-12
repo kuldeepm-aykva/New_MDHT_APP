@@ -24,11 +24,18 @@ import {MDLogo} from '../../../../../../assets/svgImage';
 // styles
 import commonstyles from '../../../../../../constants/common';
 import CommonAuthStyles from '../../../../styles';
-import {COLORS, FONT_SIZE} from '../../../../../../constants';
+import {
+  COLORS,
+  FONT_FAMILY,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  SPACING,
+} from '../../../../../../constants';
 import {scale, verticalScale} from '../../../../../../constants/responsive';
 
 // routes
 import {ROUTES} from '../../../../../../navigation/routes';
+import CustomText from '../../../../../../components/common/CustomText/CustomText';
 
 const LoginPhoneNumber = ({navigation}) => {
   // phone state
@@ -73,11 +80,23 @@ const LoginPhoneNumber = ({navigation}) => {
           <MDLogo width={scale(180)} height={verticalScale(120)} margin={5} />
         </Center>
 
-        <Text style={[commonstyles.title]}>Login To Your Account</Text>
-        <Text style={[commonstyles.subtitle]}>
+        <CustomText
+          TextColor={COLORS.primary}
+          fontFamily={FONT_FAMILY.primary}
+          fontSize={FONT_SIZE.xl}
+          fontWeight={FONT_WEIGHT.bold}>
+          Login To Your Account
+        </CustomText>
+        <CustomText
+          TextColor={COLORS.textPrimary}
+          textAlign="center"
+          my={SPACING.xs}
+          fontFamily={FONT_FAMILY.primary}
+          lineHeight={SPACING.xl}
+          fontWeight={FONT_WEIGHT.regular}>
           Login with your details or with your {'\n'}Facebook, Google or Apple
-          account.
-        </Text>
+          account.{' '}
+        </CustomText>
 
         {/* text input  */}
         <View style={[CommonAuthStyles.form_container]}>
@@ -127,6 +146,7 @@ const LoginPhoneNumber = ({navigation}) => {
               keyboardType="number-pad"
               isRequired
               placeholderTextColor={COLORS.textPrimary}
+              TextColor={COLORS.textDark}
               value={phoneNumber}
               maxLength={getMaxLengthForCountry(selectedCode.iso_code) || 15}
               onChangeText={setPhoneNumber}
@@ -141,14 +161,13 @@ const LoginPhoneNumber = ({navigation}) => {
               onPress={() => {
                 navigation.navigate(ROUTES.EmailLogin);
               }}>
-              <Text
-                style={[
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  commonstyles.font12,
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Use Email Instead
-              </Text>
+              </CustomText>
             </TouchableOpacity>
           </Row>
 
@@ -156,9 +175,7 @@ const LoginPhoneNumber = ({navigation}) => {
             text="Login"
             fullWidth
             variant={phoneNumber.length === 0 ? 'outline' : 'primary'}
-            btnStyle={{
-              marginTop: verticalScale(35),
-            }}
+            mt={SPACING.xl}
             BorderColor={COLORS.borderSecondary}
             fontSize="sm"
             TextColor={
@@ -181,23 +198,24 @@ const LoginPhoneNumber = ({navigation}) => {
         <SocialLogin />
 
         <Center style={[CommonAuthStyles.Already_acc_container]}>
-          <Text style={[CommonAuthStyles.policy_text]}>
+          <CustomText
+            TextColor={COLORS.textPrimary}
+            fontSize={FONT_SIZE.sm}
+            fontFamily={FONT_FAMILY.primary}>
             New to MDHealthTrak?{' '}
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(ROUTES.RolSelection);
               }}>
-              <Text
-                style={[
-                  CommonAuthStyles.policy_text,
-                  commonstyles.primary,
-                  commonstyles.fontSemiBold,
-                  {top: verticalScale(4)},
-                ]}>
+              <CustomText
+                style={{top: verticalScale(3)}}
+                fontWeight={FONT_WEIGHT.semiBold}
+                fontSize={FONT_SIZE.sm}
+                TextColor={COLORS.primary}>
                 Sign Up
-              </Text>
+              </CustomText>
             </TouchableOpacity>
-          </Text>
+          </CustomText>
         </Center>
 
         {/* country modal picker  */}

@@ -5,11 +5,22 @@ import {Row} from '../../layout';
 import {DynamicIcon} from '../Icon';
 import styles from './styles';
 import {
-  getVariantStyle,
-  getTextVariantStyle,
-  getRadiusStyle,
+  getButtonStyle,
+  getFontFamilyStyle,
   getFontSizeStyle,
-} from '../../../constants/common';
+  getFontWeightStyle,
+  getMarginStyle,
+  getPaddingStyle,
+  getRadiusStyle,
+  getTextVariantStyle,
+  getVariantStyle,
+} from '../../../utils/styleHelpers';
+// import {
+//   getVariantStyle,
+//   getTextVariantStyle,
+//   getRadiusStyle,
+//   getFontSizeStyle,
+// } from '../../../constants/common';
 
 const CustomButton = ({
   text,
@@ -34,9 +45,28 @@ const CustomButton = ({
   BorderColor,
   BgColor,
   CustomRadius,
+  BorderWidth,
+  fontWeight,
+  fontFamily,
+
+  // spacing
+  p,
+  px,
+  py,
+  pt,
+  pb,
+  pl,
+  pr,
+  m,
+  mx,
+  my,
+  mt,
+  mb,
+  ml,
+  mr,
 }) => {
   // -------- SIZE STYLES --------
-  const getSizeStyle = () => {
+  const getButtonStyle = () => {
     switch (size) {
       case 'small':
         return styles.btnSmall;
@@ -55,9 +85,11 @@ const CustomButton = ({
       disabled={disabled || loading}
       style={({pressed}) => [
         styles.btn,
-        getVariantStyle({variant, selected, BorderColor, BgColor}),
-        getSizeStyle(),
+        getVariantStyle({variant, selected, BorderColor, BgColor, BorderWidth}),
+        getButtonStyle({size}),
         getRadiusStyle({Radius, CustomRadius}),
+        getPaddingStyle({p, px, py, pt, pb, pl, pr}),
+        getMarginStyle({m, mx, my, mt, mb, ml, mr}),
         fullWidth && styles.btnFullWidth,
         (disabled || loading) && styles.btnDisabled,
         pressed && styles.btnPressed,
@@ -86,6 +118,8 @@ const CustomButton = ({
                   styles.btnText,
                   getTextVariantStyle({variant, selected, TextColor}),
                   getFontSizeStyle({fontSize}),
+                  getFontWeightStyle({fontWeight}),
+                  getFontFamilyStyle({fontFamily}),
                   (disabled || loading) && styles.btnTextDisabled,
                   textStyle,
                 ]}>

@@ -64,6 +64,9 @@ const SearchHealthTracker = ({navigation}) => {
               return (
                 <ListCard
                   key={index}
+                  onPress={()=>{
+                    navigation.navigate(ROUTES.SingleHealthTracker)
+                  }}
                   list_item_style={[styles.list_item_style]}
                   Conatinerstyle={[styles.ListCardStyle]}>
                   <Row align="center" justify="space-between">

@@ -60,7 +60,7 @@ export const getVariantStyle = ({
 
   return {
     backgroundColor: selected
-      ? COLORS.primaryDark || COLORS.primary
+      ? COLORS.primary || COLORS.primary
       : backgroundColor,
     borderColor,
     borderWidth,
@@ -194,18 +194,4 @@ export const getMarginStyle = ({m, mx, my, mt, mb, ml, mr}) => {
   return style;
 };
 
-//  SIZE (Button or input etc.)
-export const getSizeStyle = ({size}) => {
-  switch (size) {
-    case 'small':
-      return {paddingVertical: SPACING.xs, paddingHorizontal: SPACING.sm};
-    case 'medium':
-      return {paddingVertical: SPACING.sm, paddingHorizontal: SPACING.md};
-    case 'large':
-      return {paddingVertical: SPACING.md, paddingHorizontal: SPACING.lg};
-    case 'icon':
-      return {padding: SPACING.sm, aspectRatio: 1};
-    default:
-      return {paddingVertical: SPACING.sm, paddingHorizontal: SPACING.md};
-  }
-};
+
