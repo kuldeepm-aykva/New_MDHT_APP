@@ -14,7 +14,8 @@ export default styles = StyleSheet.create({
     paddingVertical: verticalScale(14),
   },
   last_condition: {
-    marginVertical: verticalScale(10),
+    marginTop: verticalScale(20),
+    marginBottom: verticalScale(10),
   },
   section_header: {
     marginVertical: verticalScale(12),

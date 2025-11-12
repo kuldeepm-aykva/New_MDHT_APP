@@ -9,8 +9,14 @@ import {
 } from '../constants';
 
 //  VARIANT STYLE (Background, Border)
-export const getVariantStyle = ({variant, selected, BorderColor, BgColor}) => {
-  let backgroundColor, borderColor;
+export const getVariantStyle = ({
+  variant,
+  selected,
+  BgColor,
+  BorderColor,
+  BorderWidth,
+}) => {
+  let backgroundColor, borderColor, borderWidth;
 
   switch (variant) {
     case 'primary':
@@ -46,15 +52,18 @@ export const getVariantStyle = ({variant, selected, BorderColor, BgColor}) => {
       // borderColor = COLORS.primary;
   }
 
+  // ✅ Allow full customization from props
   if (BgColor) backgroundColor = COLORS[BgColor] || BgColor;
   if (BorderColor) borderColor = COLORS[BorderColor] || BorderColor;
+  borderWidth =
+    BorderWidth !== undefined ? BorderWidth : variant === 'outline' ? 1 : 0;
 
   return {
     backgroundColor: selected
       ? COLORS.primaryDark || COLORS.primary
       : backgroundColor,
     borderColor,
-    borderWidth: variant === 'outline' ? 1 : 0,
+    borderWidth,
   };
 };
 

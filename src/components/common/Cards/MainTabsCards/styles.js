@@ -5,12 +5,8 @@ import {COLORS, RADIUS} from '../../../../constants';
 export default styles = StyleSheet.create({
   card: {
     flex: 1,
-    padding: scale(15),
-    borderRadius: RADIUS.xl,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    // padding: scale(12),
+    borderRadius: RADIUS.lg,
+    backgroundColor: COLORS.bg_light,
   },
 });

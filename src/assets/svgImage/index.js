@@ -11,6 +11,8 @@ import Profile_Icon from '../svgImage/Patient/Dashboard/profile.svg';
 import Md_logo_Icon from '../svgImage/Patient/Dashboard/md_logo_1.svg';
 import Health_Tracker from '../svgImage/common/healthTracker.svg';
 import Vitals_Icon from '../svgImage/common/vitals.svg';
+import Health_Tracker_Inactive from '../svgImage/common/health_Tracker_Inactive.svg';
+import Vitals_Active from '../svgImage/common/vitals_Active.svg';
 
 export {
   MDLogo,
@@ -26,4 +28,6 @@ export {
   Profile_Icon,
   Health_Tracker,
   Vitals_Icon,
+  Health_Tracker_Inactive,
+  Vitals_Active,
 };
