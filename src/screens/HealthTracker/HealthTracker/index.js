@@ -24,7 +24,7 @@ import {
   Vitals_Icon,
 } from '../../../assets/svgImage';
 import TabCard from '../../../components/common/Cards/MainTabsCards';
-import { ROUTES } from '../../../navigation/routes';
+import {ROUTES} from '../../../navigation/routes';
 const HealthTracker = ({navigation}) => {
   const healthRecords = [
     {
@@ -48,6 +48,7 @@ const HealthTracker = ({navigation}) => {
       issue: 'Fever',
       type: 'Symptom',
     },
+    
   ];
   const [activeTab, setActiveTab] = useState('health');
 
@@ -131,8 +132,8 @@ const HealthTracker = ({navigation}) => {
               TextColor={COLORS.textPrimary}
               fontSize="sm"
               CustomRadius={RADIUS.md}
-              onPress={()=>{
-                navigation.navigate(ROUTES.AddHealthTrackerCondition)
+              onPress={() => {
+                navigation.navigate(ROUTES.AddHealthTrackerCondition);
               }}
             />
           </Row>
@@ -152,6 +153,9 @@ const HealthTracker = ({navigation}) => {
               <CustomButton
                 text="View All"
                 variant="outline"
+                onPress={() => {
+                  navigation.navigate(ROUTES.MyHealthRecords);
+                }}
                 size="small"
                 TextColor={COLORS.textPrimary}
                 fontSize="sm"

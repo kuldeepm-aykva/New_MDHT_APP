@@ -8,13 +8,15 @@ import AddHealthTrackerCondition from '../screens/HealthTracker/AddCondition';
 import SearchHealthTracker from '../screens/HealthTracker/Search';
 import SingleHealthTracker from '../screens/HealthTracker/SingleHealthTracker';
 import HealthTracker from '../screens/HealthTracker/HealthTracker';
+import MyHealthRecords from '../screens/HealthTracker/MyHealthRecords';
+import SingleHealthDisease from '../screens/HealthTracker/SingleHealthDisease';
 
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={ROUTES.SingleHealthTracker}
+      initialRouteName={ROUTES.MyHealthRecords}
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name={ROUTES.PatientDashboard}
@@ -37,6 +39,12 @@ const MainNavigator = () => {
       <Stack.Screen
         name={ROUTES.HealthTracker}
         component={HealthTracker}></Stack.Screen>
+      <Stack.Screen
+        name={ROUTES.MyHealthRecords}
+        component={MyHealthRecords}></Stack.Screen>
+      <Stack.Screen
+        name={ROUTES.SingleHealthDisease}
+        component={SingleHealthDisease}></Stack.Screen>
     </Stack.Navigator>
   );
 };

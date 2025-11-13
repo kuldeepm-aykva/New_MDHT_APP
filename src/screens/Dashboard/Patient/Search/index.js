@@ -5,10 +5,11 @@ import Footer from '../../../../components/layout/Footer';
 import {Column, Container, Row, SafeArea} from '../../../../components/layout';
 import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../../../constants';
 import CustomTextInput from '../../../../components/forms/TextInput';
-import {scale} from '../../../../constants/responsive';
+import {scale, verticalScale} from '../../../../constants/responsive';
 import ListCard from '../../common/ListCard';
 import styles from './styles';
 import commonstyles from '../../../../constants/common';
+import CustomText from '../../../../components/common/CustomText/CustomText';
 
 const DashboardSearch = () => {
   const data = [
@@ -30,28 +31,32 @@ const DashboardSearch = () => {
     <>
       <Header title="Search" NotificationPress />
       <SafeArea
-        backgroundColor={COLORS.white}
         statusBarColor={COLORS.transparent}
-        style={{paddingTop: scale(20)}}
+        style={{paddingTop: scale(0)}}
         statusBarStyle="light-content">
-        <Container keyboardAware style={{paddingVertical: 0}} flex={0}>
+        <Container keyboardAware style={{paddingBottom: 7}} flex={0}>
           <CustomTextInput
             flex={0}
             placeholder="Search here..."
             leftIcon
             leftIconType="MaterialIcons"
             leftIconSource="search"
+            leftIconColor={
+              Search.length > 0 ? COLORS.textPrimary : COLORS.textPrimaryLight
+            }
             value={Search}
+            TextColor={COLORS.textPrimary}
+            BorderColor={COLORS.textPrimaryLight}
             onChangeText={text => SetSearch(text)}
             textInputStyle={{
-              fontWeight: FONT_WEIGHT.semiBold,
-              color: COLORS.textPrimary,
+              fontWeight: FONT_WEIGHT.medium,
               borderRadius: scale(15),
+              height: verticalScale(55),
             }}
-            placeholderTextColor={COLORS.textPrimary}
+            placeholderTextColor={COLORS.textPrimaryLight}
           />
         </Container>
-        <Container scrollable backgroundColor={COLORS.white}>
+        <Container scrollable>
           <Column style={[styles.ListCardContainer]}>
             {data.map((item, index) => {
               return (
@@ -65,7 +70,12 @@ const DashboardSearch = () => {
             })}
           </Column>
           {/* <Row align="center" justify="center">
-            <Text style={[styles.NoResult]}>No results found for your search.</Text>
+            <CustomText
+              TextColor={COLORS.textDark}
+              fontWeight={FONT_WEIGHT.regular}
+              fontSize={FONT_SIZE.base}>
+              No results found for your search
+            </CustomText>
           </Row> */}
         </Container>
       </SafeArea>

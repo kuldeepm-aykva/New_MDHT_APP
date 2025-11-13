@@ -4,7 +4,7 @@ import {COLORS} from '../../../../constants';
 
 export default styles = StyleSheet.create({
   list_single_container: {
-    marginVertical: verticalScale(6),
+    marginBottom: verticalScale(12),
     backgroundColor: COLORS.primary,
     borderRadius: scale(15),
     overflow: 'hidden',

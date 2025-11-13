@@ -1,18 +1,19 @@
 import {
+  View,
+  Text,
   TouchableOpacity,
   Dimensions,
-  View,
-  StyleSheet,
-  Animated,
   PanResponder,
+  Animated,
 } from 'react-native';
 import {useRef, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomText from '../CustomText/CustomText';
 import {DynamicIcon} from '../Icon';
 import {Row} from '../../layout';
-import {COLORS, FONT_SIZE, FONT_WEIGHT, RADIUS} from '../../../constants';
-import {scale, verticalScale} from '../../../constants/responsive';
+import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../../constants';
+import {scale} from '../../../constants/responsive';
+import styles from './styles';
 
 const {width} = Dimensions.get('window');
 
@@ -36,10 +37,10 @@ const SeveritySlider = ({
   onInfoPress,
   onSkipPress,
   showSkip = true,
-  skipLabel ,
+  skipLabel,
   thumbSize = scale(25),
   trackHeight = 8,
-  gapPadding = scale(12), // small space between track edge and thumb
+  gapPadding = scale(0),
 }) => {
   const [value, setValue] = useState(initialValue);
   const sliderWidth = width - scale(90) - gapPadding * 2;
@@ -152,7 +153,15 @@ const SeveritySlider = ({
               fontWeight={FONT_WEIGHT.semiBold}>
               {value.toString().padStart(2, '0')}
             </CustomText>
-            <View style={[styles.arrow, {borderTopColor: currentColor}]} />
+            <View
+              style={[
+                styles.arrow,
+                {
+                  borderBottomColor: currentColor,
+                  borderRightColor: currentColor,
+                },
+              ]}
+            />
           </Animated.View>
         )}
 
@@ -214,64 +223,3 @@ const SeveritySlider = ({
 };
 
 export default SeveritySlider;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: COLORS.white,
-    borderRadius: 16,
-    paddingHorizontal: verticalScale(15),
-    paddingVertical: scale(15),
-    marginVertical: 10,
-    borderWidth: 0.4,
-    borderColor: COLORS.borderSecondary,
-  },
-  sliderWrapper: {
-    justifyContent: 'center',
-    marginTop: verticalScale(60),
-  },
-  trackContainer: {
-    position: 'relative',
-    justifyContent: 'center',
-  },
-  gradientTrack: {
-    width: '100%',
-  },
-  thumbContainer: {
-    position: 'absolute',
-    top: -scale(10),
-    left: 0,
-  },
-  thumb: {
-    borderWidth: scale(3),
-  },
-  valueBox: {
-    position: 'absolute',
-    top: -verticalScale(55),
-    left: -scale(10),
-    backgroundColor: COLORS.white,
-    borderWidth: 1.2,
-    borderRadius: scale(8),
-    paddingHorizontal: verticalScale(10),
-    paddingVertical: scale(8),
-    alignItems: 'center',
-    zIndex: 10,
-  },
-  arrow: {
-    position: 'absolute',
-    bottom: -8,
-    right: '40%',
-    marginLeft: -5,
-    width: 10,
-    height: 0,
-    borderStyle: 'solid',
-    borderLeftWidth: 5,
-    borderRightWidth: 5,
-    borderTopWidth: 8,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-  },
-  labelRow: {
-    marginTop: verticalScale(25),
-    paddingHorizontal: 4,
-  },
-});

@@ -70,7 +70,9 @@ const SingleHealthTracker = ({navigation}) => {
                 minValue={0}
                 onInfoPress
                 showSkip={true}
+                skipLabel="Skip"
                 maxValue={10}
+                 
                 colors={['#6CC884', '#FFD242', '#FF6B7A']}
               />
               <Row align="center" justify="space-between">

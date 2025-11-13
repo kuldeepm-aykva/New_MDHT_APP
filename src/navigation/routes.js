@@ -26,4 +26,6 @@ export const ROUTES = {
   AddHealthTrackerCondition: 'AddHealthTrackerCondition',
   SearchHealthTracker: 'SearchHealthTracker',
   SingleHealthTracker: 'SingleHealthTracker',
+  MyHealthRecords:"MyHealthRecords",
+  SingleHealthDisease:"SingleHealthDisease",
 };
