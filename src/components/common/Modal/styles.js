@@ -17,5 +17,9 @@ export default styles = StyleSheet.create({
     paddingHorizontal: scale(20),
     elevation: 10,
   },
-  footer: {alignItems: 'flex-end'},
+  closebtn:{
+    position:"absolute",
+    right:20,
+    top:20,
+  }
 });

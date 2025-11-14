@@ -1,6 +1,13 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Modal, Alert} from 'react-native';
+import {useState} from 'react';
 import {Column, Container, Row, SafeArea} from '../../../components/layout';
-import {COLORS, FONT_SIZE, FONT_WEIGHT, RADIUS} from '../../../constants';
+import {
+  COLORS,
+  FONT_SIZE,
+  FONT_WEIGHT,
+  RADIUS,
+  SPACING,
+} from '../../../constants';
 import {ROUTES} from '../../../navigation/routes';
 import Header from '../../../components/layout/Header';
 import {scale} from '../../../constants/responsive';
@@ -8,8 +15,16 @@ import styles from './styles';
 import CustomTextInput from '../../../components/forms/TextInput';
 import CustomButton from '../../../components/common/Button';
 import Footer from '../../../components/layout/Footer';
+import DatePickerModal from '../../../components/common/DatePickerModal';
 
 const AddHealthTrackerCondition = ({navigation}) => {
+  const [modalDatePicker, setModalDatePicker] = useState(false);
+  const [pasteDate, setPastDate] = useState();
+  const handlePastDate = () => {
+    date => setPastDate(prev => ({...prev, pasteDate: date}));
+    Alert.alert(pasteDate);
+  };
+
   const data = [
     'Thyroid',
     'Heart Disease',
@@ -32,18 +47,14 @@ const AddHealthTrackerCondition = ({navigation}) => {
         }}
         NotificationPress
       />
-      <SafeArea style={{flex: 1, backgroundColor: COLORS.white}}>
-        <Container padding="medium" flex={0}>
+      <SafeArea>
+        <Container py={0} pb={SPACING.sm} flex={0}>
           <Text style={[styles.heading]}>
             Which Disease/Symptom is bothering {'\n'}you the most right now?
           </Text>
         </Container>
 
-        <Container
-          scrollable
-          padding="large"
-          flex={0}
-          backgroundColor={COLORS.white}>
+        <Container scrollable flex={1} backgroundColor={COLORS.white}>
           <Column align="center">
             <Row justify="center" style={[styles.diease_container]}>
               {data.map((item, index) => (
@@ -60,12 +71,13 @@ const AddHealthTrackerCondition = ({navigation}) => {
           </Column>
         </Container>
 
-        <Container padding="large" flex={0}>
+        <Container flex={0}>
           <CustomTextInput
             flex={0}
             placeholder="Search your Disease/Symptom"
             leftIcon
             leftIconType="MaterialIcons"
+            iconColor={COLORS.textPrimaryLight}
             leftIconSource="search"
             placeholderTextColor={COLORS.textTeritaryHalfLight}
             CustomRadius={RADIUS[14]}
@@ -82,6 +94,9 @@ const AddHealthTrackerCondition = ({navigation}) => {
               variant="outline"
               icon="plus"
               iconSize={scale(16)}
+              onPress={() => {
+                setModalDatePicker(!modalDatePicker);
+              }}
               iconcolor={COLORS.textPrimary}
               icontype="Entypo"
               size="small"
@@ -94,6 +109,14 @@ const AddHealthTrackerCondition = ({navigation}) => {
       </SafeArea>
 
       <Footer />
+      {/* Date Picker Modal */}
+      <DatePickerModal
+        title="Select Past Date"
+        visible={modalDatePicker}
+        onClose={() => setModalDatePicker(!modalDatePicker)}
+        date={pasteDate}
+        onDateChange={handlePastDate}
+      />
     </>
   );
 };

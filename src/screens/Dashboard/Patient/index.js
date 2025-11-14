@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import {useState} from 'react';
 import {Column, Container, Row, SafeArea} from '../../../components/layout';
-import {COLORS, FONT_SIZE, FONT_WEIGHT} from '../../../constants';
+import {COLORS, FONT_SIZE, FONT_WEIGHT, SPACING} from '../../../constants';
 import Header from '../../../components/layout/Header';
 import {
   Appointment_Icon,
@@ -100,10 +100,10 @@ const PatientDashboard = ({navigation}) => {
       />
       <SafeArea
         backgroundColor={COLORS.white}
-        style={{paddingTop: scale(20)}}
+        style={{paddingTop: scale(0)}}
         statusBarColor={COLORS.transparent}
         statusBarStyle="light-content">
-        <Container padding="none" scrollable backgroundColor={COLORS.white}>
+        <Container py={SPACING.md} px={0} scrollable backgroundColor={COLORS.white}>
           {/* care planning and banner  */}
           <View style={[styles.care_conatiner]}>
             <View>
@@ -310,7 +310,7 @@ const PatientDashboard = ({navigation}) => {
           </View>
         </Container>
       </SafeArea>
-      <Footer style={{backgroundColor: COLORS.white}} />
+      <Footer />
 
       {!Islogin && !isProfileModalVisible && (
         <OnBoardingScreens

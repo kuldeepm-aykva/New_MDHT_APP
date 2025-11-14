@@ -88,8 +88,8 @@ const MyHealthRecords = ({navigation}) => {
         }}
         NotificationPress
       />
-      <SafeArea style={{paddingTop: scale(5)}}>
-        <Container keyboardAware style={{paddingBottom: 7}} flex={0}>
+      <SafeArea style={{paddingTop: scale(0)}}>
+        <Container keyboardAware  flex={0}>
           <CustomTextInput
             flex={0}
             placeholder="Search Disease/Symptom"
@@ -113,7 +113,7 @@ const MyHealthRecords = ({navigation}) => {
             }}
           />
         </Container>
-        <Container scrollable>
+        <Container scrollable py={0}>
           <Column>
             {healthRecords.map((item, index) => {
               return (

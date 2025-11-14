@@ -12,11 +12,10 @@ import MyHealthRecords from '../screens/HealthTracker/MyHealthRecords';
 import SingleHealthDisease from '../screens/HealthTracker/SingleHealthDisease';
 
 const Stack = createNativeStackNavigator();
-
 const MainNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={ROUTES.MyHealthRecords}
+      initialRouteName={ROUTES.PatientDashboard}
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name={ROUTES.PatientDashboard}

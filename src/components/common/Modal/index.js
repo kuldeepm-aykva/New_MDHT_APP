@@ -6,12 +6,16 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import styles from './styles';
+import {DynamicIcon} from '../Icon';
+import {COLORS} from '../../../constants';
+import {scale} from '../../../constants/responsive';
 const CustomModal = ({
   visible,
   onClose,
   children,
   footer,
   modalContainerStyle,
+  OnclosePress,
 }) => {
   return (
     <Modal
@@ -26,7 +30,18 @@ const CustomModal = ({
           <TouchableWithoutFeedback>
             <View style={[styles.modalContainer, modalContainerStyle]}>
               <View style={styles.content}>{children}</View>
-              <View style={styles.footer}>{footer}</View>
+              {OnclosePress && (
+                <TouchableOpacity
+                  style={[styles.closebtn]}
+                  onPress={OnclosePress}>
+                  <DynamicIcon
+                    name="close-sharp"
+                    type="Ionicons"
+                    color={COLORS.textPrimary}
+                    size={scale(16)}
+                  />
+                </TouchableOpacity>
+              )}
             </View>
           </TouchableWithoutFeedback>
         </View>

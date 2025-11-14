@@ -5,9 +5,9 @@ import {RADIUS} from '../../../constants';
 export default styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: '#F9FAFB',
+    // backgroundColor: 'red',
     padding: scale(20),
-    marginVertical: verticalScale(20),
-    borderRadius: RADIUS.md,
+    borderRadius: RADIUS.lg,
   },
   CircularIcon: {
     padding: scale(10),

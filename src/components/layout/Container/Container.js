@@ -1,52 +1,86 @@
-import {View, KeyboardAvoidingView, ScrollView, Keyboard} from 'react-native';
+import { View, KeyboardAvoidingView, ScrollView } from 'react-native';
 import {styles} from './Container.styles';
-import {SCREEN_HEIGHT} from '../../../constants/responsive';
+import { getMarginStyle, getPaddingStyle } from '../../../utils/styleHelpers';
+import { SPACING } from '../../../constants';
+
+// Your helper imports
 
 export const Container = ({
   children,
+
+  // behavior
   scrollable = false,
   keyboardAware = false,
-  padding = 'medium',
-  backgroundColor = 'transparent',
   centered = false,
+  flex = 1,
+
+  // spacing helpers
+  p,
+  px = 16,     
+  py = 16,  
+  pt,
+  pb,
+  pl,
+  pr,
+
+  m,
+  mx,
+  my,
+  mt,
+  mb,
+  ml,
+  mr,
+
+  backgroundColor = 'transparent',
   style,
   contentContainerStyle,
   refreshControl,
   showsVerticalScrollIndicator = false,
-  flex = 1,
 }) => {
-  const getPadding = () => {
-    switch (padding) {
-      case 'none':
-        return 0;
-      case 'small':
-        return 8;
-      case 'medium':
-        return 16;
-      case 'large':
-        return 24;
-      case 'xlarge':
-        return 32;
-      default:
-        return typeof padding === 'number' ? padding : 16;
-    }
-  };
+  // FINAL FULL PADDING STYLE
+  const paddingStyle = getPaddingStyle({
+    p,
+    px,
+    py,
+    pt,
+    pb,
+    pl,
+    pr,
+  });
+
+  // FINAL FULL MARGIN STYLE
+  const marginStyle = getMarginStyle({
+    m,
+    mx,
+    my,
+    mt,
+    mb,
+    ml,
+    mr,
+  });
+
+  // MAIN OUTER STYLE
   const containerStyle = [
-    styles.container,
-    {flex},
-    {
-      padding: getPadding(),
-      backgroundColor: backgroundColor,
-    },
+    {flex, backgroundColor},
+    paddingStyle,
+    marginStyle,
     centered && styles.centered,
     style,
   ];
 
-  // Non-scrollable container
+  // SCROLLVIEW INNER CONTENT STYLE
+  const scrollContentStyle = [
+    paddingStyle,
+    centered && styles.centered,
+    contentContainerStyle,
+  ];
+
+  // ------------ NON SCROLLABLE + NON KEYBOARD -------------
   if (!scrollable && !keyboardAware) {
     return <View style={containerStyle}>{children}</View>;
   }
-  // Keyboard aware container
+
+  // ------------ KEYBOARD ONLY -------------
   if (keyboardAware && !scrollable) {
     return (
       <KeyboardAvoidingView
@@ -57,63 +91,29 @@ export const Container = ({
       </KeyboardAvoidingView>
     );
   }
-  // Scrollable container
+
+  // ------------ SCROLLABLE ONLY -------------
   if (scrollable && !keyboardAware) {
     return (
       <ScrollView
-        style={[styles.container, style]}
-        contentContainerStyle={[
-          {
-            padding: getPadding(),
-            backgroundColor: backgroundColor,
-          },
-          centered && styles.centered,
-          contentContainerStyle,
-        ]}
+        style={[{flex: 1, backgroundColor}, style]} // FIXED: removed flex forcing
+        contentContainerStyle={scrollContentStyle}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         refreshControl={refreshControl}>
         {children}
       </ScrollView>
     );
   }
-  // if (scrollable && !keyboardAware) {
-  //   return (
-  //     <ScrollView
-  //       style={[styles.container, style]}
-  //       contentContainerStyle={[
-  //         {
-  //           padding: getPadding(),
-  //           backgroundColor: backgroundColor,
-  //           minHeight: SCREEN_HEIGHT,
-  //         },
-  //         centered && {justifyContent: 'center', alignItems: 'center'},
-  //         contentContainerStyle,
-  //       ]}
-  //       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-  //       refreshControl={refreshControl}>
-  //       {children}
-  //     </ScrollView>
-  //   );
-  // }
 
-  // Scrollable and keyboard aware container
-
-  
+  // ------------ SCROLLABLE + KEYBOARD AWARE -------------
   return (
     <KeyboardAvoidingView
-      style={[styles.container, {flex: 1}]}
+      style={[{flex: 1, backgroundColor}]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
       <ScrollView
-        style={[styles.container, style]}
-        contentContainerStyle={[
-          {
-            padding: getPadding(),
-            backgroundColor: backgroundColor,
-          },
-          centered && styles.centered,
-          contentContainerStyle,
-        ]}
+        style={[{flex: 1, backgroundColor}, style]}
+        contentContainerStyle={scrollContentStyle}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         refreshControl={refreshControl}>
         {children}

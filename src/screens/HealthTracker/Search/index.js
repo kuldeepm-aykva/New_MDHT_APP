@@ -35,8 +35,8 @@ const SearchHealthTracker = ({navigation}) => {
         }}
         NotificationPress
       />
-      <SafeArea style={{paddingTop: scale(20)}}>
-        <Container keyboardAware style={{paddingVertical: 10}} flex={0}>
+      <SafeArea style={{paddingTop: scale(0)}}>
+        <Container keyboardAware  flex={0}>
           <CustomTextInput
             flex={0}
             placeholder="Search here ..."
@@ -58,7 +58,7 @@ const SearchHealthTracker = ({navigation}) => {
             }}
           />
         </Container>
-        <Container scrollable backgroundColor={COLORS.white}>
+        <Container scrollable py={0}>
           <Column style={[styles.ListCardContainer]}>
             {data.map((item, index) => {
               return (

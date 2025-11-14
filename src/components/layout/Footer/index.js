@@ -13,10 +13,11 @@ import {scale, verticalScale} from '../../../constants/responsive';
 import {COLORS, FONT_SIZE} from '../../../constants';
 import Row from '../Row/Row';
 import Column from '../Column/Column';
+import { ROUTES } from '../../../navigation/routes';
 
 const {width} = Dimensions.get('window');
 
-const Footer = ({style, ...props}) => {
+const Footer = ({style,navigation, ...prop}) => {
   return (
     <View style={[styles.main_container, style]}>
       <ImageBackground
@@ -29,7 +30,9 @@ const Footer = ({style, ...props}) => {
           justify="space-between"
           style={styles.footer_content}>
           {/* Left Tab */}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{
+            navigation.navigate(ROUTES.PatientDashboard)
+          }}>
             <Column align="center" justify="center">
               <Md_logo_Icon width={38} height={32} />
               <Text style={[styles.footer_tab_text, styles.active_text]}>

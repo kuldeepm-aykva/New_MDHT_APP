@@ -61,7 +61,7 @@ const HealthTracker = ({navigation}) => {
         }}
         NotificationPress
       />
-      <SafeArea style={{paddingTop: 6}}>
+      <SafeArea style={{paddingTop: 0}}>
         <Container scrollable>
           <Row align="center" spacing={8}>
             <TabCard
