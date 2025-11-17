@@ -48,7 +48,6 @@ const HealthTracker = ({navigation}) => {
       issue: 'Fever',
       type: 'Symptom',
     },
-    
   ];
   const [activeTab, setActiveTab] = useState('health');
 
@@ -128,6 +127,7 @@ const HealthTracker = ({navigation}) => {
               iconSize={scale(16)}
               iconcolor={COLORS.textPrimary}
               icontype="Entypo"
+              BorderColor={COLORS.borderSecondary}
               size="small"
               TextColor={COLORS.textPrimary}
               fontSize="sm"
@@ -153,6 +153,7 @@ const HealthTracker = ({navigation}) => {
               <CustomButton
                 text="View All"
                 variant="outline"
+                BorderColor={COLORS.borderSecondary}
                 onPress={() => {
                   navigation.navigate(ROUTES.MyHealthRecords);
                 }}
@@ -215,6 +216,7 @@ const HealthTracker = ({navigation}) => {
               <CustomButton
                 text="View All"
                 variant="outline"
+                BorderColor={COLORS.borderSecondary}
                 size="small"
                 TextColor={COLORS.textPrimary}
                 fontSize="sm"

@@ -1,6 +1,4 @@
 import {Pressable, View, Text, ActivityIndicator} from 'react-native';
-import {scale} from '../../../constants/responsive';
-import {COLORS, FONT_SIZE, RADIUS} from '../../../constants';
 import {Row} from '../../layout';
 import {DynamicIcon} from '../Icon';
 import styles from './styles';
@@ -12,6 +10,7 @@ import {
   getMarginStyle,
   getPaddingStyle,
   getRadiusStyle,
+  getTextAlignStyle,
   getTextVariantStyle,
   getVariantStyle,
 } from '../../../utils/styleHelpers';

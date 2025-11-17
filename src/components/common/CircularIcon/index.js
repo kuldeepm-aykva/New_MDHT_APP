@@ -1,8 +1,14 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-import { RADIUS } from '../../../constants';
-import { DynamicIcon } from '../Icon';
-import { getMarginStyle, getPaddingStyle, getRadiusStyle, getVariantStyle } from '../../../utils/styleHelpers';
+import {COLORS, RADIUS} from '../../../constants';
+import {DynamicIcon} from '../Icon';
+import {
+  getMarginStyle,
+  getPaddingStyle,
+  getRadiusStyle,
+  getVariantStyle,
+} from '../../../utils/styleHelpers';
+import {scale} from '../../../constants/responsive';
 
 const CircularIcon = ({
   name,
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
   base: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(20,146,230,0.1)', 
+    backgroundColor: 'rgba(20,146,230,0.1)',
     borderRadius: RADIUS.full,
   },
 });

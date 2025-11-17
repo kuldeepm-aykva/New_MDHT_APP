@@ -17,7 +17,7 @@ import styles from './styles';
 
 const {width} = Dimensions.get('window');
 
-const SeveritySlider = ({
+const Slider = ({
   initialValue = 0,
   minValue = 0,
   maxValue = 10,
@@ -211,7 +211,10 @@ const SeveritySlider = ({
                 fontSize={FONT_SIZE.sm}
                 fontWeight={FONT_WEIGHT.regular}
                 TextColor={COLORS.textPrimary}
-                style={labelTextStyle}>
+                style={labelTextStyle}
+               
+                numberOfLines={2}
+                >
                 {label}
               </CustomText>
             ))}
@@ -222,4 +225,4 @@ const SeveritySlider = ({
   );
 };
 
-export default SeveritySlider;
+export default Slider;

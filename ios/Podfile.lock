@@ -949,6 +949,10 @@ PODS:
     - React-debug
   - react-native-date-picker (5.0.13):
     - React-Core
+  - react-native-document-picker (9.3.1):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - react-native-image-picker (7.1.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1197,6 +1201,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - react-native-date-picker (from `../node_modules/react-native-date-picker`)
+  - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
@@ -1303,6 +1308,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   react-native-date-picker:
     :path: "../node_modules/react-native-date-picker"
+  react-native-document-picker:
+    :path: "../node_modules/react-native-document-picker"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-safe-area-context:
@@ -1403,6 +1410,7 @@ SPEC CHECKSUMS:
   React-logger: 55764cd993880c6f887505854581c9faf68feff2
   React-Mapbuffer: 15dfcfeb4428d8799cce75e7fe85b18b706029e0
   react-native-date-picker: 2eca217a8fb09c517f5bb6b23978718c6cec59ec
+  react-native-document-picker: 4425fea5360a9e3ec5f268681194bf88ae67ec65
   react-native-image-picker: 16b817ac5df3f835fc9d187349e7d9ce8836a260
   react-native-safe-area-context: 758e894ca5a9bd1868d2a9cfbca7326a2b6bf9dc
   react-native-slider: cc0fe54257ea252d278a61b74d0fa2918777d799

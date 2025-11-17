@@ -8,13 +8,14 @@ export default styles = StyleSheet.create({
     borderRadius: 16,
     paddingHorizontal: verticalScale(15),
     paddingVertical: scale(15),
-    marginVertical: 10,
+    width:"100%",
+    // marginVertical: 10,
     borderWidth: 0.4,
     borderColor: COLORS.borderSecondary,
   },
   sliderWrapper: {
     justifyContent: 'center',
-    marginTop: verticalScale(70),
+    marginTop: verticalScale(65),
   },
   trackContainer: {
     position: 'relative',

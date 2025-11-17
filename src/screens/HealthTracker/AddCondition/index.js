@@ -10,7 +10,7 @@ import {
 } from '../../../constants';
 import {ROUTES} from '../../../navigation/routes';
 import Header from '../../../components/layout/Header';
-import {scale} from '../../../constants/responsive';
+import {scale, verticalScale} from '../../../constants/responsive';
 import styles from './styles';
 import CustomTextInput from '../../../components/forms/TextInput';
 import CustomButton from '../../../components/common/Button';
@@ -18,6 +18,8 @@ import Footer from '../../../components/layout/Footer';
 import DatePickerModal from '../../../components/common/DatePickerModal';
 
 const AddHealthTrackerCondition = ({navigation}) => {
+  const [search, setSearch] = useState('');
+
   const [modalDatePicker, setModalDatePicker] = useState(false);
   const [pasteDate, setPastDate] = useState();
   const handlePastDate = () => {
@@ -76,11 +78,23 @@ const AddHealthTrackerCondition = ({navigation}) => {
             flex={0}
             placeholder="Search your Disease/Symptom"
             leftIcon
+            value={search}
+            onChangeText={text => setSearch(text)}
             leftIconType="MaterialIcons"
-            iconColor={COLORS.textPrimaryLight}
+            TextColor={COLORS.textPrimary}
             leftIconSource="search"
-            placeholderTextColor={COLORS.textTeritaryHalfLight}
+            leftIconColor={
+              search.length > 0 ? COLORS.textPrimary : COLORS.textPrimaryLight
+            }
+            placeholderTextColor={COLORS.textPrimaryLight}
             CustomRadius={RADIUS[14]}
+            BorderColor={COLORS.borderSecondary}
+            BgColor={COLORS.white}
+            fontSize={FONT_SIZE.xs}
+            textInputStyle={{
+              borderWidth: 0.5,
+              height: verticalScale(55),
+            }}
           />
           <Row
             align="center"
@@ -94,6 +108,7 @@ const AddHealthTrackerCondition = ({navigation}) => {
               variant="outline"
               icon="plus"
               iconSize={scale(16)}
+              BorderColor={COLORS.borderSecondary}
               onPress={() => {
                 setModalDatePicker(!modalDatePicker);
               }}
