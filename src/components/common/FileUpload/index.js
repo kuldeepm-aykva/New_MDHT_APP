@@ -30,7 +30,7 @@ const FileUploadSection = ({uploads, setUploads, onUpload}) => {
           text="Upload Files"
           variant="outline"
           BorderColor={COLORS.borderSecondary}
-          CustomRadius={RADIUS.md}
+          CustomRadius={RADIUS.lg}
           size="small"
           icon="download"
           iconSize={scale(14)}
