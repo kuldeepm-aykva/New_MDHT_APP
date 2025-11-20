@@ -73,6 +73,8 @@ const CustomButton = ({
         return styles.btnLarge;
       case 'icon':
         return styles.btnIcon;
+      case 'btnOnlyText':
+        return styles.btnOnlyText;
       default:
         return styles.btnMedium;
     }

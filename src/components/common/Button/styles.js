@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import { COLORS, FONT_WEIGHT, RADIUS, SPACING } from '../../../constants';
-import { scale, verticalScale } from '../../../constants/responsive';
+import {COLORS, FONT_WEIGHT, RADIUS, SPACING} from '../../../constants';
+import {scale, verticalScale} from '../../../constants/responsive';
 
 export default styles = StyleSheet.create({
   btn: {
@@ -26,6 +26,11 @@ export default styles = StyleSheet.create({
     paddingVertical: verticalScale(16),
     paddingHorizontal: SPACING.xl,
     minHeight: verticalScale(56),
+  },
+  btnOnlyText: {
+    paddingVertical: verticalScale(0),
+    paddingHorizontal: 0,
+    minHeight: verticalScale(0),
   },
   btnIcon: {
     width: scale(48),

@@ -1,7 +1,7 @@
-import { View, KeyboardAvoidingView, ScrollView } from 'react-native';
+import {View, KeyboardAvoidingView, ScrollView} from 'react-native';
 import {styles} from './Container.styles';
-import { getMarginStyle, getPaddingStyle } from '../../../utils/styleHelpers';
-import { SPACING } from '../../../constants';
+import {getMarginStyle, getPaddingStyle} from '../../../utils/styleHelpers';
+import {SPACING} from '../../../constants';
 
 // Your helper imports
 
@@ -16,8 +16,8 @@ export const Container = ({
 
   // spacing helpers
   p,
-  px = 16,     
-  py = 16,  
+  px = 16,
+  py = 16,
   pt,
   pb,
   pl,
@@ -96,7 +96,7 @@ export const Container = ({
   if (scrollable && !keyboardAware) {
     return (
       <ScrollView
-        style={[{flex: 1, backgroundColor}, style]} // FIXED: removed flex forcing
+        style={[{flex: flex ?? 1, backgroundColor}, style]}
         contentContainerStyle={scrollContentStyle}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         refreshControl={refreshControl}>

@@ -1,3 +1,5 @@
+import Graph from "../screens/HealthTracker/ProgressGraph";
+
 export const ROUTES = {
   SPLASH: 'Splash',
   LOGIN: 'Login',
@@ -28,4 +30,5 @@ export const ROUTES = {
   SingleHealthTracker: 'SingleHealthTracker',
   MyHealthRecords:"MyHealthRecords",
   SingleHealthDisease:"SingleHealthDisease",
+  Graph:"Graph",
 };
