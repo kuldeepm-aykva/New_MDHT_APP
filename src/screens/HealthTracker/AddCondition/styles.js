@@ -32,7 +32,7 @@ export default styles = StyleSheet.create({
 
   past_condition_container: {
     flexWrap: 'wrap',
-    marginTop: Platform.OS=="ios" ? SCREEN_HEIGHT * 0.055 : SCREEN_HEIGHT * 0.10,
+    marginTop: Platform.OS=="ios" ? SCREEN_HEIGHT * 0.055 : SCREEN_HEIGHT * 0.12,
   },
   add_condition: {
     fontWeight: FONT_WEIGHT.semiBold,

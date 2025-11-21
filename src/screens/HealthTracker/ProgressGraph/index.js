@@ -1,8 +1,9 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {useState} from 'react';
 import Header from '../../../components/layout/Header';
 import {ROUTES} from '../../../navigation/routes';
 import {Column, Container, Row, SafeArea} from '../../../components/layout';
+import CustomDropdown from '../../../components/forms/Dropdown/index';
 import TabCard from '../../../components/common/Cards/MainTabsCards';
 import {
   Health_Tracker,
@@ -18,58 +19,131 @@ import {
   SPACING,
 } from '../../../constants';
 import Card from '../../../components/common/Cards/Card';
-import CustomDropdown from '../../../components/forms/Dropdown';
 import CustomText from '../../../components/common/CustomText/CustomText';
 import CustomButton from '../../../components/common/Button';
-import {scale} from '../../../constants/responsive';
+import {
+  scale,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  verticalScale,
+} from '../../../constants/responsive';
 import {DynamicIcon} from '../../../components/common/Icon';
 import Footer from '../../../components/layout/Footer';
 import styles from './styles';
+import CustomModal from '../../../components/common/Modal';
+import CustomTextInput from '../../../components/forms/TextInput';
+import {LineChart} from 'react-native-gifted-charts';
+import {diseaseData, symptoms, Date} from './Data';
+import DatePickerModal from '../../../components/common/DatePickerModal';
 
 const Graph = ({navigation}) => {
   const [activeTab, setActiveTab] = useState('conditions');
   const [Dieases, setDieases] = useState(null);
   const [symptom, setsymptom] = useState(null);
+  const [past, setpast] = useState();
   const [baseline, setBaseline] = useState(null);
-  const [showBaseLineBtn, setshowBaseLineBtn] = useState(false);
+  const [tempBaseline, setTempBaseline] = useState('');
 
-  const diseaseData = [
-    {label: 'Acyanotic Heart Disease', value: 'AHD', type: 'Disease'},
-    {label: 'Feeling Nausea', value: 'NAU', type: 'Symptom'},
-    {label: 'Abnormal Thyroid Function', value: 'ATF', type: 'Symptom'},
-    {label: 'Bladder Cancer', value: 'BLC', type: 'Disease'},
-    {label: 'Allergies', value: 'ALG', type: 'Disease'},
+  const [showBaseLineBtn, setshowBaseLineBtn] = useState(false);
+  const [showBaseLineModal, setshowBaseLineModal] = useState(false);
+  const [selectedPoint, setSelectedPoint] = useState(null);
+  const [pastDateModal, setpastDateModal] = useState(false);
+
+  // Render x-axis label
+  const renderLabel = (day, month) => {
+    return (
+      <Column align="center" justify="center">
+        <CustomText
+          fontSize={FONT_SIZE.xs}
+          TextColor={COLORS.textPrimary}
+          fontWeight={FONT_WEIGHT.regular}>
+          {day}
+        </CustomText>
+        <CustomText
+          fontSize={FONT_SIZE.xs}
+          TextColor={COLORS.textPrimary}
+          fontWeight={FONT_WEIGHT.regular}>
+          {month}
+        </CustomText>
+      </Column>
+    );
+  };
+
+  // Render tooltip on data point click - NOW SHOWS ACTUAL VALUE
+  const renderDataPointLabel = value => {
+    return (
+      <Card
+        shadow={true}
+        py={SPACING.xs}
+        px={SPACING.sm}
+        CustomRadius={RADIUS.sm}
+        BgColor={COLORS.white}>
+        <Text style={{fontSize: 16, color: COLORS.textDark}}>{value}</Text>
+      </Card>
+    );
+  };
+
+  // Chart data - FIXED: Each point now shows its own value
+  const data = [
+    {
+      value: 1,
+      labelComponent: () => renderLabel('30', 'Oct'),
+      dataPointLabelComponent: () => renderDataPointLabel(1),
+    },
+    {
+      value: 2,
+      labelComponent: () => renderLabel('1', 'Nov'),
+      dataPointLabelComponent: () => renderDataPointLabel(2),
+    },
+    {
+      value: 5,
+      labelComponent: () => renderLabel('12', 'Nov'),
+      dataPointLabelComponent: () => renderDataPointLabel(5),
+    },
+    {
+      value: 4,
+      labelComponent: () => renderLabel('22', 'Nov'),
+      dataPointLabelComponent: () => renderDataPointLabel(4),
+    },
+    {
+      value: 3,
+      labelComponent: () => renderLabel('15', 'Nov'),
+      dataPointLabelComponent: () => renderDataPointLabel(3),
+    },
+    {
+      value: 2,
+      labelComponent: () => renderLabel('18', 'Nov'),
+      dataPointLabelComponent: () => renderDataPointLabel(2),
+    },
+    {
+      value: 1,
+      labelComponent: () => renderLabel('16', 'Nov'),
+      dataPointLabelComponent: () => renderDataPointLabel(1),
+    },
   ];
-  const symptoms = [
-    {
-      id: '1',
-      name: 'Heart Murmur Severity?',
-    },
-    {
-      id: '2',
-      name: 'Breathlessness',
-    },
-    {
-      id: '3',
-      name: 'Dizziness',
-    },
-    {
-      id: '4',
-      name: 'Fatigue',
-    },
-    {
-      id: '5',
-      name: 'Fainting',
-    },
-  ];
+
+  const values = data.map(d => d.value);
+  const minValue = Math.min(...values);
+  const maxValue = Math.max(...values);
+
+  // FIXED: Now properly saves baseline
+  const handleSetBaseline = () => {
+    const value = parseFloat(tempBaseline);
+    if (!isNaN(value) && value > 0 && value <= 10) {
+      setBaseline(value);
+      setshowBaseLineModal(false);
+      setTempBaseline('');
+    }
+  };
+
+  // Check if baseline is >= 7 for red color
+  const isBaselineHigh = baseline && baseline >= 7;
 
   return (
     <>
       <Header
         title="My Health Tracker"
-        SearchPress={() => {
-          navigation.navigate(ROUTES.DashboardSearch);
-        }}
+        SearchPress={() => navigation.navigate(ROUTES.DashboardSearch)}
         NotificationPress
       />
       <SafeArea style={{paddingTop: 0}}>
@@ -88,16 +162,11 @@ const Graph = ({navigation}) => {
               TextColor={
                 activeTab === 'conditions' ? COLORS.white : COLORS.textPrimary
               }
-              BorderColor={
-                activeTab === 'conditions'
-                  ? COLORS.transparent
-                  : COLORS.transparent
-              }
+              BorderColor={COLORS.transparent}
               borderWidth={0.4}
               p={SPACING.sm}
               onPress={() => setActiveTab('conditions')}
             />
-
             <TabCard
               title={'Vitals'}
               BgColor={
@@ -107,17 +176,15 @@ const Graph = ({navigation}) => {
                 activeTab === 'vitals' ? COLORS.white : COLORS.textPrimary
               }
               Icon={activeTab === 'vitals' ? Vitals_Active : Vitals_Icon}
-              BorderColor={
-                activeTab === 'conditions'
-                  ? COLORS.transparent
-                  : COLORS.transparent
-              }
+              BorderColor={COLORS.transparent}
               borderWidth={0.4}
               p={SPACING.sm}
               onPress={() => setActiveTab('vitals')}
             />
           </Row>
+
           <Card
+            pb={SPACING.xl}
             shadow={true}
             BorderWidth={1}
             mt={SPACING.md}
@@ -125,8 +192,9 @@ const Graph = ({navigation}) => {
             <CustomDropdown
               data={diseaseData}
               value={Dieases}
+              showType={true}
               onChange={item => setDieases(item.value)}
-              placeholder="Select Disease or Symptom"
+              placeholder="Select Disease"
             />
             <CustomDropdown
               data={symptoms}
@@ -134,12 +202,11 @@ const Graph = ({navigation}) => {
               onChange={item => setsymptom(item.value)}
               placeholder="Select Symptom"
             />
-            <View style={{height: 500}}>
-              <Card
-                px={SPACING.xl}
-                shadow={false}
-                BorderColor={COLORS.transparent}>
+
+            <View>
+              <Card shadow={false} BorderColor={COLORS.transparent}>
                 <Row align="flex-start" justify="space-between">
+                  {/* Range Column */}
                   <Column align="center" justify="center">
                     <CustomText
                       TextColor={COLORS.textPrimary}
@@ -151,60 +218,131 @@ const Graph = ({navigation}) => {
                       TextColor={COLORS.textDark}
                       fontSize={FONT_SIZE.xxl}
                       fontWeight={FONT_WEIGHT.bold}>
-                      3 - 7
+                      {minValue} - {maxValue}
                     </CustomText>
                   </Column>
-                  <Column align="center" justify="center">
-                    <CustomButton
-                      text=" Baseline Record"
-                      TextColor={COLORS.textPrimary}
-                      icon="chevron-small-down"
-                      size='small'
-                      icontype="Entypo"
-                      onPress={()=>{
-                        setshowBaseLineBtn(!showBaseLineBtn);
-                      }}
-                      variant='btnOnlyText'
-                      iconcolor={COLORS.textPrimary}
-                      iconPosition="right"
-                      fontSize={FONT_SIZE.sm}
-                      fontWeight={FONT_WEIGHT.regular}
-                      BorderColor={COLORS.transparent}
-                    />
-                    {showBaseLineBtn && (
-                      <TouchableOpacity>
-                        <Card
-                          py={SPACING.sm}
-                          px={SPACING.md}
-                          BgColor="#F3FAFE"
-                          BorderColor={COLORS.transparent}>
-                          <CustomText
-                            TextColor={COLORS.primary}
-                            fontWeight={FONT_WEIGHT.regular}
-                            fontSize={FONT_SIZE.sm}>
-                            {baseline ? (
-                              <Text style={styles.baselineValue}>
-                                {baseline}
-                              </Text>
-                            ) : (
-                              '+ Set baseline by you'
-                            )}
-                          </CustomText>
-                        </Card>
-                      </TouchableOpacity>
-                    )}
 
-                    <CustomText
-                      TextColor={COLORS.textDark}
-                      fontSize={FONT_SIZE.xxl}
-                      fontWeight={FONT_WEIGHT.bold}>
-                      0
-                    </CustomText>
+                  {/* Baseline Column - FIXED */}
+                  <Column align="center" justify="center">
+                    <TouchableOpacity
+                      onPress={() => setshowBaseLineBtn(!showBaseLineBtn)}>
+                      <Row align="center" justify="center" spacing={scale(3)}>
+                        <CustomText
+                          fontSize={FONT_SIZE.sm}
+                          TextColor={COLORS.textPrimary}>
+                          {baseline ? 'Baseline By Patient' : 'Baseline Record'}
+                        </CustomText>
+                        <DynamicIcon
+                          name={
+                            showBaseLineBtn
+                              ? 'chevron-small-up'
+                              : 'chevron-small-down'
+                          }
+                          type="Entypo"
+                          color={COLORS.textPrimary}
+                          size={scale(14)}
+                        />
+                      </Row>
+                    </TouchableOpacity>
+
+                    {/* Show baseline value OR set button */}
+                    {baseline ? (
+                      // FIXED: Show baseline value in red if >= 7
+                      <TouchableOpacity
+                        onPress={() => setshowBaseLineModal(true)}>
+                        <CustomText
+                          TextColor={
+                            isBaselineHigh ? '#FF5252' : COLORS.textDark
+                          }
+                          fontSize={FONT_SIZE.xxl}
+                          fontWeight={FONT_WEIGHT.bold}
+                          mt={SPACING.xs}>
+                          {baseline}
+                        </CustomText>
+                      </TouchableOpacity>
+                    ) : (
+                      showBaseLineBtn && (
+                        <TouchableOpacity
+                          onPress={() => setshowBaseLineModal(true)}>
+                          <Card
+                            py={SPACING.sm}
+                            px={SPACING.md}
+                            mt={SPACING.xs}
+                            BgColor="#F3FAFE"
+                            BorderColor={COLORS.transparent}>
+                            <CustomText
+                              TextColor={COLORS.primary}
+                              fontWeight={FONT_WEIGHT.regular}
+                              fontSize={FONT_SIZE.sm}>
+                              + Set baseline by you
+                            </CustomText>
+                          </Card>
+                        </TouchableOpacity>
+                      )
+                    )}
                   </Column>
                 </Row>
               </Card>
+
+              {/* Chart */}
+              <Column>
+                <LineChart
+                  data={data}
+                  width={SCREEN_WIDTH * 0.7}
+                  height={SCREEN_HEIGHT * 0.3}
+                  maxValue={10}
+                  // yAxisOffset={1}
+                  noOfSections={9}
+                  stepValue={1}
+                  spacing={scale(45)}
+                  thickness={3}
+                  color={COLORS.primary}
+                  dataPointsColor={COLORS.primary}
+                  dataPointsRadius={scale(6)}
+                  textShiftY={-8}
+                  textShiftX={-10}
+                  textFontSize={12}
+                  textColor={COLORS.textPrimary}
+                  yAxisTextStyle={styles.yAxisText}
+                  xAxisLabelTextStyle={styles.xAxisText}
+                  yAxisColor={COLORS.transparent}
+                  xAxisColor={COLORS.transparent}
+                  rulesColor={COLORS.borderSecondary}
+                  showVerticalLines
+                  verticalLinesColor={COLORS.borderSecondary}
+                  // verticalLinesStrokeDashArray={[5, 5]}
+                  // rulesType="dashed"
+                  // dashWidth={5}
+                  // dashGap={5}
+                  hideDataPoints={false}
+                  curved
+                  focusEnabled
+                  showDataPointLabelOnFocus
+                  focusedDataPointRadius={8}
+                  focusedDataPointColor={COLORS.primary}
+                  focusedDataPointIndex={selectedPoint}
+                  unFocusOnPressOut={false}
+                  dataPointLabelShiftY={-30}
+                  dataPointLabelShiftX={-5}
+                  onPress={(item, index) => {
+                    setSelectedPoint(prev => (prev === index ? null : index));
+                  }}
+                  // FIXED: Baseline reference line - RED DOTTED
+                  referenceLine1Position={
+                    baseline ? Number(baseline) : undefined
+                  }
+                  referenceLine1Config={{
+                    color: '#FF5252',
+                    dashWidth: 6,
+                    dashGap: 4,
+                    thickness: 2,
+                  }}
+                />
+              </Column>
             </View>
           </Card>
+
+          {/* Last Record Card */}
           <Card
             shadow={true}
             BorderWidth={1}
@@ -212,7 +350,7 @@ const Graph = ({navigation}) => {
             BorderColor={COLORS.borderSecondary}>
             <Row
               align="center"
-              style={[styles.last_condition]}
+              style={styles.last_condition}
               justify="space-between">
               <Column>
                 <CustomText
@@ -241,13 +379,35 @@ const Graph = ({navigation}) => {
                 TextColor={COLORS.textPrimary}
                 fontSize="sm"
                 CustomRadius={RADIUS.md}
-                onPress={() => {
-                  navigation.navigate(ROUTES.AddHealthTrackerCondition);
-                }}
+                onPress={() =>
+                  navigation.navigate(ROUTES.AddHealthTrackerCondition)
+                }
               />
             </Row>
+            <CustomDropdown
+              data={Date}
+              value={past}
+              onChange={item => {
+                if (item.value == 'CR') {
+                  setpastDateModal(!pastDateModal);
+                }
+                setpast(item);
+              }}
+              placeholder="Select Date"
+              icon="calendar-month"
+              icontype="MaterialIcons"
+              iconColor={COLORS.textPrimary}
+              iconSize={18}
+              mainTextStyle={{
+                color: COLORS.textPrimary,
+              }}
+              style={{
+                marginTop: scale(20),
+              }}
+            />
+
             <TouchableOpacity>
-              <Card mt={SPACING.lg} py={15} shadow={false}>
+              <Card mt={SPACING.sm} py={15} shadow={false}>
                 <Row align="center" justify="space-between">
                   <CustomText
                     fontSize={FONT_SIZE.sm}
@@ -267,6 +427,67 @@ const Graph = ({navigation}) => {
           </Card>
         </Container>
       </SafeArea>
+
+      <DatePickerModal
+        visible={pastDateModal}
+        onClose={() => setpastDateModal(!pastDateModal)}
+        date={past}
+        title="Select Custom Range"
+        onDateChange={date => setpast(prev => ({...prev, past: date}))}
+      />
+
+      {/* basline modal  */}
+      <CustomModal
+        modalContainerStyle={styles.BaseLineModal}
+        OnclosePress={() => setshowBaseLineModal(false)}
+        visible={showBaseLineModal}
+        onClose={() => setshowBaseLineModal(false)}>
+        <CustomText
+          fontSize={FONT_SIZE.lg}
+          fontWeight={FONT_WEIGHT.semiBold}
+          TextColor={COLORS.textDark}
+          textAlign="center"
+          mb={SPACING.sm}
+          numberOfLines={2}>
+          Baseline Record
+        </CustomText>
+        <CustomText
+          fontSize={FONT_SIZE.sm}
+          textAlign="center"
+          mb={SPACING.md}
+          fontWeight={FONT_WEIGHT.regular}
+          TextColor={COLORS.textPrimary}>
+          Please enter baseline value {'\n'} between 1 and 10.
+        </CustomText>
+        <Row align="center" justify="space-between" spacing={scale(8)}>
+          <CustomTextInput
+            // placeholder="Enter Baseline"
+            placeholderTextColor={COLORS.textPrimaryLight}
+            flex={1}
+            value={tempBaseline}
+            onChangeText={setTempBaseline}
+            keyboardType="numeric"
+            BorderColor={COLORS.borderSecondary}
+            variant="outline"
+            CustomRadius={RADIUS.lg}
+            TextColor={COLORS.textDark}
+            textInputStyle={{
+              height: verticalScale(45),
+              textAlign: 'center',
+            }}
+          />
+          <CustomButton
+            text="Save"
+            variant="primary"
+            CustomRadius={RADIUS.lg}
+            onPress={handleSetBaseline}
+            btnStyle={{
+              minHeight: verticalScale(45),
+            }}
+          />
+        </Row>
+      </CustomModal>
+
       <Footer />
     </>
   );

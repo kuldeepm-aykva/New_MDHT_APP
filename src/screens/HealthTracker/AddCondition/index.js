@@ -88,11 +88,11 @@ const AddHealthTrackerCondition = ({navigation}) => {
             }
             placeholderTextColor={COLORS.textPrimaryLight}
             CustomRadius={RADIUS[14]}
-            BorderColor={COLORS.borderSecondary}
+            BorderColor={COLORS.textTeritary}
             BgColor={COLORS.white}
-            fontSize={FONT_SIZE.xs}
+            fontSize={FONT_SIZE.base}
             textInputStyle={{
-              borderWidth: 0.5,
+              borderWidth: 0.3,
               height: verticalScale(55),
             }}
           />
@@ -114,7 +114,6 @@ const AddHealthTrackerCondition = ({navigation}) => {
               }}
               iconcolor={COLORS.textPrimary}
               icontype="Entypo"
-              size="small"
               TextColor={COLORS.textPrimary}
               fontSize="sm"
               CustomRadius={RADIUS.lg}

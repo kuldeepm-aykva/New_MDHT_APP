@@ -26,7 +26,10 @@ import {OTpValidation} from '../../../Auth/Patient/Otp/validation';
 import {formatDate} from '../../../../utils/validation';
 import DatePickerModal from '../../../../components/common/DatePickerModal';
 import BottomModal from '../../../../components/common/BottomModal';
-import {handleTakePhoto, handleUploadFromGallery} from '../../../../utils/imagePicker';
+import {
+  handleTakePhoto,
+  handleUploadFromGallery,
+} from '../../../../utils/imagePicker';
 
 const CompleteProfile = ({navigation}) => {
   const [ImageModal, setImageModal] = useState(false);
@@ -185,6 +188,8 @@ const CompleteProfile = ({navigation}) => {
                 label="First Name"
                 containerStyle={[styles.TextInputcontainerStyle]}
                 isRequired
+                BorderColor={COLORS.borderSecondary}
+                variant="outline"
                 placeholderTextColor={COLORS.textPrimaryLight}
                 placeholder="Enter Your First Name * "
                 textInputStyle={[styles.textInput]}
@@ -202,6 +207,8 @@ const CompleteProfile = ({navigation}) => {
                 label="Middle Name"
                 containerStyle={[styles.TextInputcontainerStyle]}
                 isRequired
+                BorderColor={COLORS.borderSecondary}
+                variant="outline"
                 placeholderTextColor={COLORS.textPrimaryLight}
                 placeholder="Enter Your Middle Name * "
                 textInputStyle={[styles.textInput]}
@@ -218,6 +225,8 @@ const CompleteProfile = ({navigation}) => {
                 label="Last Name"
                 containerStyle={[styles.TextInputcontainerStyle]}
                 isRequired
+                BorderColor={COLORS.borderSecondary}
+                variant="outline"
                 placeholderTextColor={COLORS.textPrimaryLight}
                 placeholder="Enter Your Last Name * "
                 textInputStyle={[styles.textInput]}
@@ -231,6 +240,8 @@ const CompleteProfile = ({navigation}) => {
                 error={errors.lname}
               />
               <CustomTextInput
+                BorderColor={COLORS.borderSecondary}
+                variant="outline"
                 label="Active Phone Number"
                 containerStyle={[styles.TextInputcontainerStyle]}
                 isRequired
@@ -266,6 +277,8 @@ const CompleteProfile = ({navigation}) => {
               </View>
 
               <CustomTextInput
+                BorderColor={COLORS.borderSecondary}
+                variant="outline"
                 label="Date of Birth"
                 containerStyle={[styles.TextInputcontainerStyle]}
                 isRequired
@@ -287,6 +300,8 @@ const CompleteProfile = ({navigation}) => {
               />
               <CustomTextInput
                 label="Active Email Address"
+                BorderColor={COLORS.borderSecondary}
+                variant="outline"
                 isRequired
                 containerStyle={[styles.TextInputcontainerStyle]}
                 placeholderTextColor={COLORS.textPrimaryLight}
@@ -311,6 +326,8 @@ const CompleteProfile = ({navigation}) => {
                 label="Country"
                 containerStyle={[styles.TextInputcontainerStyle]}
                 isRequired
+                BorderColor={COLORS.borderSecondary}
+                variant="outline"
                 placeholderTextColor={COLORS.textPrimary}
                 placeholder="India"
                 textInputStyle={[styles.textInput]}

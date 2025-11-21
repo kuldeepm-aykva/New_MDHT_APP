@@ -6,11 +6,17 @@ import {COLORS} from '../../../constants';
 import {DynamicIcon} from '../../common/Icon';
 import {scale} from '../../../constants/responsive';
 import {
-  getTextVariantStyle,
-  getRadiusStyle,
   getFontSizeStyle,
+  getRadiusStyle,
+  getTextVariantStyle,
   getVariantStyle,
-} from '../../../constants/common';
+} from '../../../utils/styleHelpers';
+// import {
+//   getTextVariantStyle,
+//   getRadiusStyle,
+//   getFontSizeStyle,
+//   getVariantStyle,
+// } from '../../../constants/common';
 
 const CustomTextInput = ({
   label,

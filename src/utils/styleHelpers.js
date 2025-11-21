@@ -29,7 +29,7 @@ export const getVariantStyle = ({
       break;
     case 'outline':
       backgroundColor = 'transparent';
-      borderColor = COLORS.textPrimary;
+      borderColor = COLORS.borderSecondary;
       break;
     case 'black':
       backgroundColor = COLORS.black;

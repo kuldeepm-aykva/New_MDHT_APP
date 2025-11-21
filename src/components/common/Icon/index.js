@@ -8,7 +8,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-import Octicons from "react-native-vector-icons/Octicons";
+import Octicons from 'react-native-vector-icons/Octicons';
 
 // Dynamic icons
 export const DynamicIcon = ({

@@ -145,6 +145,9 @@ const SingleHealthDisease = ({navigation}) => {
               TextColor={COLORS.primary}
               CustomRadius={RADIUS.lg}
               icon="graph"
+              onPress={()=>{
+                navigation.navigate(ROUTES.Graph)
+              }}
               iconcolor={COLORS.primary}
               fontWeight={FONT_WEIGHT.bold}
               iconSize={ICON_SIZE.sm}

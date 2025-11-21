@@ -1,103 +1,123 @@
-// CustomDropdown.jsx
-import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
-import {
-  COLORS,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  RADIUS,
-  SPACING,
-} from '../../../constants';
-import {scale, SCREEN_HEIGHT} from '../../../constants/responsive';
-import {Row} from '../../layout';
-import CustomText from '../../common/CustomText/CustomText';
+import {COLORS, FONT_SIZE, FONT_WEIGHT, RADIUS} from '../../../constants';
 import {DynamicIcon} from '../../common/Icon';
-
-const CustomDropdown = ({
-  data = [],
+import {scale, verticalScale} from '../../../constants/responsive';
+import CustomText from '../../common/CustomText/CustomText';
+import {Row} from '../../layout';
+export default CustomDropdown = ({
+  data,
   value,
   onChange,
-  placeholder = 'Select option',
-  labelField = 'label',
-  valueField = 'value',
-  typeField = 'type',
-  containerStyle,
+  placeholder = 'Select',
+  icon = 'chevron-down',
+  icontype = 'Entypo',
+  iconColor,
+  iconSize,
+  showType = false,
   style,
+  mainTextStyle,
+  TypeTextStyle,
 }) => {
   return (
     <Dropdown
-      style={[styles.dropdown, style]}
-      renderRightIcon={() => (
-        <DynamicIcon
-          name="chevron-down"
-          type="Entypo"
-          color={COLORS.textPrimary}
-          size={scale(18)}
-        />
-      )}
-      placeholderStyle={styles.placeholder}
-      selectedTextStyle={styles.selectedText}
-      itemTextStyle={styles.itemText}
+      style={[styles.Dropdown, style]}
+      containerStyle={[styles.menuContainer]}
+      placeholderStyle={{
+        fontSize: FONT_SIZE.sm,
+        color: COLORS.textDark,
+      }}
+      selectedTextStyle={{
+        fontSize: FONT_SIZE.sm,
+        fontWeight: FONT_WEIGHT.bold,
+        color: COLORS.textDark,
+      }}
       data={data}
-      maxHeight={300}
-      labelField={labelField}
-      valueField={valueField}
+      labelField="label"
+      valueField="value"
       value={value}
       placeholder={placeholder}
       onChange={onChange}
-      renderItem={item => (
-        <Row align="center" justify="space-between" style={styles.item}>
-          <CustomText
-            fontSize={FONT_SIZE.sm}
-            TextColor={COLORS.textDark}
-            fontWeight={FONT_WEIGHT.bold}>
-            {item[labelField]}
-          </CustomText>
-          {item[typeField] && (
-            <CustomText
-              TextColor={COLORS.textPrimary}
-              fontSize={FONT_SIZE.xs}
-              fontWeight={FONT_WEIGHT.medium}>
-              {item[typeField]}
-            </CustomText>
-          )}
-        </Row>
+      renderRightIcon={() => (
+        <DynamicIcon
+          name={icon}
+          type={icontype}
+          color={iconColor ?? COLORS.textPrimary}
+          size={scale(iconSize ?? 18)}
+        />
       )}
-      containerStyle={[styles.dropdownContainer, containerStyle]}
+      renderItem={(item, index) => {
+        const isFirst = index === 0;
+        const isLast = index === data.length - 1;
+
+        return (
+          <View
+            style={[
+              styles.itemWrapper,
+              isFirst && styles.firstItem,
+              isLast && styles.lastItem,
+            ]}>
+            <Row
+              align="center"
+              justify="space-between"
+              style={styles.DropdownMenuItem}>
+              <CustomText
+                style={[mainTextStyle]}
+                TextColor={COLORS.textDark}
+                fontSize={FONT_SIZE.sm}
+                fontWeight={FONT_WEIGHT.bold}>
+                {item.label}
+              </CustomText>
+
+              {showType && item.type && (
+                <CustomText
+                  style={[TypeTextStyle]}
+                  TextColor={COLORS.textPrimary}
+                  fontSize={FONT_SIZE.sm}
+                  fontWeight={FONT_WEIGHT.regular}>
+                  {item.type}
+                </CustomText>
+              )}
+            </Row>
+          </View>
+        );
+      }}
     />
   );
 };
 
-export default CustomDropdown;
-
 const styles = StyleSheet.create({
-  dropdown: {
-    height: SCREEN_HEIGHT * 0.055,
-    borderColor: COLORS.borderSecondary,
-    borderWidth: 1,
-    borderRadius: RADIUS.lg,
-    paddingHorizontal: SPACING.md,
-    backgroundColor: COLORS.white,
-    marginBottom:scale(12),
-  },
-  placeholder: {
-    fontSize: FONT_SIZE.sm,
-    color: COLORS.textDark,
-    fontWeight: FONT_WEIGHT.bold,
-  },
-  selectedText: {
-    fontSize: FONT_SIZE.sm,
-    color: COLORS.textDark,
-    fontWeight: FONT_WEIGHT.bold,
-  },
-  dropdownContainer: {
-    borderRadius: RADIUS.lg,
-    paddingVertical: SPACING.sm,
+  menuContainer: {
     backgroundColor: '#EFF9FF',
-    marginTop: scale(8),
+    borderRadius: RADIUS.md,
+    paddingVertical: 4,
   },
-  item: {
-    padding: 14,
+
+  itemWrapper: {
+    backgroundColor: '#EFF9FF',
+  },
+
+  firstItem: {
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+  },
+
+  lastItem: {
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+  },
+
+  DropdownMenuItem: {
+    paddingVertical: verticalScale(10),
+    paddingHorizontal: scale(14),
+  },
+
+  Dropdown: {
+    height: 48,
+    borderWidth: 1,
+    borderColor: COLORS.borderSecondary,
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    marginBottom: scale(10),
   },
 });

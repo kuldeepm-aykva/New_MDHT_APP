@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator();
 const MainNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={ROUTES.Graph}
+      initialRouteName={ROUTES.PatientDashboard}
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name={ROUTES.PatientDashboard}
