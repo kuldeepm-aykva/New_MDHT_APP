@@ -1,7 +1,7 @@
-import {View, KeyboardAvoidingView, ScrollView} from 'react-native';
-import {styles} from './Container.styles';
-import {getMarginStyle, getPaddingStyle} from '../../../utils/styleHelpers';
-import {SPACING} from '../../../constants';
+import { View, KeyboardAvoidingView, ScrollView } from 'react-native';
+import styles from './Container.styles';
+import { getMarginStyle, getPaddingStyle } from '../../../utils/styleHelpers';
+import { SPACING } from '../../../constants';
 
 // Your helper imports
 
@@ -61,7 +61,7 @@ export const Container = ({
 
   // MAIN OUTER STYLE
   const containerStyle = [
-    {flex, backgroundColor},
+    { flex, backgroundColor },
     paddingStyle,
     marginStyle,
     centered && styles.centered,
@@ -96,7 +96,7 @@ export const Container = ({
   if (scrollable && !keyboardAware) {
     return (
       <ScrollView
-        style={[{flex: flex ?? 1, backgroundColor}, style]}
+        style={[{ flex: flex ?? 1, backgroundColor }, style]}
         contentContainerStyle={scrollContentStyle}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         refreshControl={refreshControl}>
@@ -108,11 +108,11 @@ export const Container = ({
   // ------------ SCROLLABLE + KEYBOARD AWARE -------------
   return (
     <KeyboardAvoidingView
-      style={[{flex: 1, backgroundColor}]}
+      style={[{ flex: 1, backgroundColor }]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
       <ScrollView
-        style={[{flex: 1, backgroundColor}, style]}
+        style={[{ flex: 1, backgroundColor }, style]}
         contentContainerStyle={scrollContentStyle}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         refreshControl={refreshControl}>
